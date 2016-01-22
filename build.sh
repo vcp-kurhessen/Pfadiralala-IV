@@ -8,7 +8,7 @@ echo Folder Location: "$dir"
 cd $dir
 
 pdflatex PfadiralalaIV.tex
-songidx titleIndexF.sxd
+songidx titelIndexF.sxd 
 
 mv titelIndexF.sbx titelIndexF.org.sbx
 sed 's/songlink/hyperlink/g' titelIndexF.org.sbx > titelIndexF.sbx
