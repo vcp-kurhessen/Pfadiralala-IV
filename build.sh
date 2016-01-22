@@ -11,6 +11,6 @@ pdflatex PfadiralalaIV.tex
 songidx titelIndexF.sxd 
 
 mv titelIndexF.sbx titelIndexF.org.sbx
-sed 's/songlink/hyperlink/g' titelIndexF.org.sbx > titelIndexF.sbx
+sed 's/\songlink/\hyperlink/g' titelIndexF.org.sbx > titelIndexF.sbx
 
 pdflatex PfadiralalaIV.tex
