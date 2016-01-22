@@ -1,0 +1,155 @@
+\usepackage{ifthen}
+
+% Mit oder ohne Bildern kompilieren
+\newboolean{pics} %Deklaration
+\setboolean{pics}{true}
+
+% Mit oder ohne Schnittmarken kompilieren
+\newboolean{cuts} %Deklaration
+\setboolean{cuts}{false}
+
+\usepackage[dvips=false,pdftex=false,vtex=false,left=1.2cm,right=1.2cm,
+top=0.4cm,bottom=0.5cm,includeheadfoot,
+paperwidth=148mm,paperheight=210mm,twoside]{geometry}
+
+% Schnittmarken, auskommentieren für randlose Version
+\ifthenelse{\boolean{cuts}}
+        {\usepackage[cam,a4,center,dvips]{crop}}{}
+
+% \ifthenelse{\equal{\leftmark}{\rightmark}}
+%         {\rightmark}
+%         {From \rightmark\ until \leftmark}
+% \usepackage[cam,a4,center,dvips]{crop}
+
+% Songs Latex Package
+\usepackage[chorded, noshading]{songs}
+
+\newcommand{\songlink}[2]{\hyperlink{#1}{#2}}
+
+% Umlaute
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+% PDF Seiten Import, Watermarks für Daumenregister und Multicolumn für das Impressum
+\usepackage{pdfpages}
+\usepackage{watermark}
+\usepackage{multicol}
+
+% Hintergrundbild
+\usepackage{wallpaper}
+
+%Kein Einzug bei Absatz-Beginn
+\setlength{\parindent}{0in} 			
+
+% Helvetica
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+
+%Überschriften zentrieren
+\usepackage[center]{titlesec}
+
+% Header und Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}	
+
+\fancyhead{} % clear all header fields
+\fancyfoot{} % clear all footer fields
+
+% Seitenzahl bei geraden/linken Seiten nach links/aussen
+% Seitenzahl bei ungeraden/rechten Seiten nach rechts/aussen
+\fancyfoot[LE,RO]{\thepage}
+
+% Pfadiralala Oben Innen
+\fancyhead[LO,RE]{Pfadiralala IV}
+
+% Ignore sectionmarks - own mymarks
+\renewcommand{\sectionmark}[1]{}
+\newcommand{\mymarks}{%
+        \ifthenelse{\equal{\leftmark}{\rightmark}}
+                {\rightmark}
+                {From \rightmark\ until \leftmark}
+        }
+\fancyhead[LE,RO]{\mymarks}
+
+%Inhaltsverzeichnisse
+\newindex{titelIndex}{titelIndexF}
+% Seitennummer anstatt Liednummer
+\indexsongsas{titelIndex}{\thepage}
+ 
+% Genau eine Spalte für die Lieder
+\songcolumns{1}
+
+% Balken Refrain
+\setlength{\cbarwidth}{0pt}
+% Balken Liedanfang und Ende											
+\setlength{\sbarheight}{0pt}											
+
+% keine Nummerierung der Lieder
+\nosongnumbers
+
+% Schriftarten für die verschiedenen Teile
+% Lieder 
+\renewcommand*\familydefault{\sfdefault}
+% Überschriften
+\renewcommand{\stitlefont}{\sffamily\bf\LARGE\centering}
+% Strophen
+\renewcommand{\lyricfont}{\sffamily}
+% Akkorde
+\renewcommand{\printchord}[1]{\sffamily\bf#1}
+% Refrain
+%\renewcommand{\chorusfont}{\it}
+\renewcommand{\everychorus}{\textnote{\bf Refrain}}
+% Beschreibungen
+%\renewcommand{\scripturefont}{\sffamily\it}
+% Inhaltsverzeichnis
+\renewcommand{\idxtitlefont}{\sffamily} 
+\renewcommand{\idxlyricfont}{\sffamily}
+
+
+% Darstellung der Meta-Informationen
+% Kein Autor unter Titel
+\renewcommand{\extendprelude}{}
+
+% Worte und Weise
+\newcommand{\wuweise}{}
+\newsongkey{wuw}{\def\wuweise{}}
+        {\def\wuweise{\normalsize\bf Worte und Weise: #1\par}}
+
+% Melodie
+\newcommand{\melodie}{}
+\newsongkey{mel}{\def\melodie{}}
+        {\def\melodie{\normalsize\bf Melodie: #1 }}
+
+% Text
+\newcommand{\text}{}
+\newsongkey{txt}{\def\text{}}
+        {\def\text{\normalsize\bf Text: #1\par}}
+
+% Bock
+\newcommand{\bock}{}
+\newsongkey{bo}{\def\bock{}}
+        {\def\bock{\normalsize\it Liederbock: #1  }}
+
+% Pfadiralala II
+\newcommand{\pfadii}{}
+\newsongkey{pfii}{\def\pfadii{}}
+        {\def\pfadii{\normalsize\it Pfadiralala II: #1 }}
+
+% Pfadiralala III
+\newcommand{\pfadiii}{}
+\newsongkey{pfiii}{\def\pfadiii{}}
+        {\def\pfadiii{\normalsize\it Pfadiralala III: #1 }}
+
+% Jurtenburg
+\newcommand{\jurte}{}
+\newsongkey{ju}{\def\jurte{}}
+        {\def\jurte{\normalsize\it Jurtenburg: #1}}
+
+
+ %Nach dem Lied
+\renewcommand{\extendpostlude}{\wuweise\melodie\text\bock\pfadii\pfadiii\jurte\break}
+
+% Notennamen
+%\notenamesin{A}{B}{C}{D}{E}{F}{G}
+%\notenamesout{A}{H}{C}{D}{E}{F}{G}
+

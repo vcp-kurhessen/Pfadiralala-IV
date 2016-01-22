@@ -1,149 +1,15 @@
-% Dokument
 \documentclass{article}
 
-\usepackage[dvips=false,pdftex=false,vtex=false,left=1.2cm,right=1.2cm,
-top=0.4cm,bottom=0.5cm,includeheadfoot,
-paperwidth=148mm,paperheight=210mm,twoside]{geometry}
-
-% Schnittmarken, auskommentieren für randlose Version
-\usepackage[cam,a4,center,dvips]{crop}
-
-% Songspackage
-\usepackage[chorded, noshading]{songs}										
-
-% Umlaute
-\usepackage[ngerman]{babel}											
-\usepackage[utf8]{inputenc}		
-
-\usepackage{pdfpages}
-\usepackage{watermark}
-\usepackage{multicol}
-
-%Kein Einzug bei Absatz-Beginn
-\setlength{\parindent}{0in} 			
-
-% Helvetica
-\usepackage[T1]{fontenc}
-\usepackage[scaled]{helvet}
-
-%Überschriften zentrieren
-\usepackage[center]{titlesec}
-
-% Header und Footer
-\usepackage{fancyhdr}
-\pagestyle{fancy}	
-
-\fancyhead{} % clear all header fields	
-\fancyfoot{} % clear all footer fields				
-
-% Seitenzahl bei geraden/linken Seiten nach links/aussen
-% Seitenzahl bei ungeraden/rechten Seiten nach rechts/aussen
-\fancyfoot[LE,RO]{\thepage}
-
-% Pfadiralala Oben Innen
-\fancyhead[LO,RE]{Pfadiralala IV}
-
-\renewcommand{\sectionmark}[1]{}
-\newcommand{\mymarks}{%
-\ifthenelse{\equal{\leftmark}{\rightmark}}
-{\rightmark}
-{From \rightmark\ until \leftmark}}
-\fancyhead[LE,RO]{\mymarks}
-
-%Inhaltsverzeichnisse
-\newindex{titelIndex}{titelIndexF}
-% Seitennummer anstatt Liednummer
-\indexsongsas{titelIndex}{\thepage}
- 
-% Seiten
-\songcolumns{1}
-
-% Hintergrundbild
-\usepackage{wallpaper}
-
-% Balken Refrain
-\setlength{\cbarwidth}{0pt}
-% Balken Liedanfang und Ende											
-\setlength{\sbarheight}{0pt}											
-
-% Nummerierung
-\nosongnumbers
-
-% Lieder 
-\renewcommand*\familydefault{\sfdefault}
-% Überschriften
-\renewcommand{\stitlefont}{\sffamily\bf\LARGE\centering}
-% Strophen
-\renewcommand{\lyricfont}{\sffamily}
-% Akkorde
-\renewcommand{\printchord}[1]{\sffamily\bf#1}
-% Refrain
-%\renewcommand{\chorusfont}{\it}
-\renewcommand{\everychorus}{\textnote{\bf Refrain}}
-% Beschreibungen
-%\renewcommand{\scripturefont}{\sffamily\it}
-% Inhaltsverzeichnis
-\renewcommand{\idxtitlefont}{\sffamily} 
-\renewcommand{\idxlyricfont}{\sffamily}
-
-% Kein Autor unter Titel
-\renewcommand{\extendprelude}{
-}
-
-% Worte und Weise
- \newcommand{\wuweise}{}
- \newsongkey{wuw}{\def\wuweise{}}
-                 {\def\wuweise{\normalsize\bf Worte und Weise: #1\par}}
-
-% Melodie
- \newcommand{\melodie}{}
- \newsongkey{mel}{\def\melodie{}}
-                 {\def\melodie{\normalsize\bf Melodie: #1 }}
-
-% Text
- \newcommand{\text}{}
- \newsongkey{txt}{\def\text{}}
-                 {\def\text{\normalsize\bf Text: #1\par}}
-
-% Bock
- \newcommand{\bock}{}
- \newsongkey{bo}{\def\bock{}}
-                 {\def\bock{\normalsize\it Liederbock: #1  }}
-
-% Pfadiralala II
- \newcommand{\pfadii}{}
- \newsongkey{pfii}{\def\pfadii{}}
-                 {\def\pfadii{\normalsize\it Pfadiralala II: #1 }}
-
-% Pfadiralala III
- \newcommand{\pfadiii}{}
- \newsongkey{pfiii}{\def\pfadiii{}}
-                 {\def\pfadiii{\normalsize\it Pfadiralala III: #1 }}
-
-% Jurtenburg
- \newcommand{\jurte}{}
- \newsongkey{ju}{\def\jurte{}}
-                 {\def\jurte{\normalsize\it Jurtenburg: #1}}
-
-
- %Nach dem Lied
- \renewcommand{\extendpostlude}{
- \wuweise\melodie\text\bock\pfadii\pfadiii\jurte\break
- }
-
-% Notennamen
-%\notenamesin{A}{B}{C}{D}{E}{F}{G}
-%\notenamesout{A}{H}{C}{D}{E}{F}{G}
-
-%mit oder ohne Bilder kompilieren
-\newboolean{pics} %Deklaration
-\setboolean{pics}{true}
+\input{basic-design}
 
 \begin{document}
 \begin{songs}{titelIndex}
 
-\input{Impressum} \newpage
-\input{Vorwort} \newpage
+\input{Impressum}
+\newpage
+
+\input{Vorwort}
+\newpage
 
 \showindex[2]{Inhaltsverzeichnis}{titelIndex}
 
@@ -151,15 +17,15 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 \songsection{Traditionelles}
 
 \ifthenelse{\boolean{pics}}{
-\vspace{40pt}
-\centering\includegraphics[width=0.7\textwidth]{Bilder/traditionelles_heiko.png}
+        \vspace{40pt}
+        \centering
+        \includegraphics[width=0.7\textwidth]{Bilder/traditionelles_heiko.png}
 }{}
 \newpage
 
 \leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_A}}}
 \rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_A}}}
 
-%\setcounter{page}{3}
 
 \input{Lieder/Lied001}
 \input{Lieder/Lied002}
@@ -684,7 +550,6 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 
 \input{GrifftabelleUkuleleADFisH}
 \input{GrifftabelleUkuleleDGHE}
-
 \input{GrifftabelleGitarre}
 
 \end{songs}
