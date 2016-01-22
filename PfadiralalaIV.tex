@@ -1,0 +1,692 @@
+% Dokument
+\documentclass{article}
+
+\usepackage[dvips=false,pdftex=false,vtex=false,left=1.2cm,right=1.2cm,
+top=0.4cm,bottom=0.5cm,includeheadfoot,
+paperwidth=148mm,paperheight=210mm,twoside]{geometry}
+
+% Schnittmarken, auskommentieren für randlose Version
+\usepackage[cam,a4,center,dvips]{crop}
+
+% Songspackage
+\usepackage[chorded, noshading]{songs}										
+
+% Umlaute
+\usepackage[ngerman]{babel}											
+\usepackage[utf8]{inputenc}		
+
+\usepackage{pdfpages}
+\usepackage{watermark}
+\usepackage{multicol}
+
+%Kein Einzug bei Absatz-Beginn
+\setlength{\parindent}{0in} 			
+
+% Helvetica
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+
+%Überschriften zentrieren
+\usepackage[center]{titlesec}
+
+% Header und Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}	
+
+\fancyhead{} % clear all header fields	
+\fancyfoot{} % clear all footer fields				
+
+% Seitenzahl bei geraden/linken Seiten nach links/aussen
+% Seitenzahl bei ungeraden/rechten Seiten nach rechts/aussen
+\fancyfoot[LE,RO]{\thepage}
+
+% Pfadiralala Oben Innen
+\fancyhead[LO,RE]{Pfadiralala IV}
+
+\renewcommand{\sectionmark}[1]{}
+\newcommand{\mymarks}{%
+\ifthenelse{\equal{\leftmark}{\rightmark}}
+{\rightmark}
+{From \rightmark\ until \leftmark}}
+\fancyhead[LE,RO]{\mymarks}
+
+%Inhaltsverzeichnisse
+\newindex{titelIndex}{titelIndexF}
+% Seitennummer anstatt Liednummer
+\indexsongsas{titelIndex}{\thepage}
+ 
+% Seiten
+\songcolumns{1}
+
+% Hintergrundbild
+\usepackage{wallpaper}
+
+% Balken Refrain
+\setlength{\cbarwidth}{0pt}
+% Balken Liedanfang und Ende											
+\setlength{\sbarheight}{0pt}											
+
+% Nummerierung
+\nosongnumbers
+
+% Lieder 
+\renewcommand*\familydefault{\sfdefault}
+% Überschriften
+\renewcommand{\stitlefont}{\sffamily\bf\LARGE\centering}
+% Strophen
+\renewcommand{\lyricfont}{\sffamily}
+% Akkorde
+\renewcommand{\printchord}[1]{\sffamily\bf#1}
+% Refrain
+%\renewcommand{\chorusfont}{\it}
+\renewcommand{\everychorus}{\textnote{\bf Refrain}}
+% Beschreibungen
+%\renewcommand{\scripturefont}{\sffamily\it}
+% Inhaltsverzeichnis
+\renewcommand{\idxtitlefont}{\sffamily} 
+\renewcommand{\idxlyricfont}{\sffamily}
+
+% Kein Autor unter Titel
+\renewcommand{\extendprelude}{
+}
+
+% Worte und Weise
+ \newcommand{\wuweise}{}
+ \newsongkey{wuw}{\def\wuweise{}}
+                 {\def\wuweise{\normalsize\bf Worte und Weise: #1\par}}
+
+% Melodie
+ \newcommand{\melodie}{}
+ \newsongkey{mel}{\def\melodie{}}
+                 {\def\melodie{\normalsize\bf Melodie: #1 }}
+
+% Text
+ \newcommand{\text}{}
+ \newsongkey{txt}{\def\text{}}
+                 {\def\text{\normalsize\bf Text: #1\par}}
+
+% Bock
+ \newcommand{\bock}{}
+ \newsongkey{bo}{\def\bock{}}
+                 {\def\bock{\normalsize\it Liederbock: #1  }}
+
+% Pfadiralala II
+ \newcommand{\pfadii}{}
+ \newsongkey{pfii}{\def\pfadii{}}
+                 {\def\pfadii{\normalsize\it Pfadiralala II: #1 }}
+
+% Pfadiralala III
+ \newcommand{\pfadiii}{}
+ \newsongkey{pfiii}{\def\pfadiii{}}
+                 {\def\pfadiii{\normalsize\it Pfadiralala III: #1 }}
+
+% Jurtenburg
+ \newcommand{\jurte}{}
+ \newsongkey{ju}{\def\jurte{}}
+                 {\def\jurte{\normalsize\it Jurtenburg: #1}}
+
+
+ %Nach dem Lied
+ \renewcommand{\extendpostlude}{
+ \wuweise\melodie\text\bock\pfadii\pfadiii\jurte\break
+ }
+
+% Notennamen
+%\notenamesin{A}{B}{C}{D}{E}{F}{G}
+%\notenamesout{A}{H}{C}{D}{E}{F}{G}
+
+%mit oder ohne Bilder kompilieren
+\newboolean{pics} %Deklaration
+\setboolean{pics}{true}
+
+\begin{document}
+\begin{songs}{titelIndex}
+
+\input{Impressum} \newpage
+\input{Vorwort} \newpage
+
+\showindex[2]{Inhaltsverzeichnis}{titelIndex}
+
+\thiswatermark{}
+\songsection{Traditionelles}
+
+\ifthenelse{\boolean{pics}}{
+\vspace{40pt}
+\centering\includegraphics[width=0.7\textwidth]{Bilder/traditionelles_heiko.png}
+}{}
+\newpage
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_A}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_A}}}
+
+%\setcounter{page}{3}
+
+\input{Lieder/Lied001}
+\input{Lieder/Lied002}
+\input{Lieder/Lied003}
+\input{Lieder/Lied005} % 005 <-> 004, um platz zu sparen!
+\input{Lieder/Lied004}
+\input{Lieder/Lied004a}
+\input{Lieder/Lied006}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_B}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_B}}}
+
+\input{Lieder/Lied007} 
+\input{Lieder/Lied008}
+\input{Lieder/Lied010}
+\input{Lieder/Lied009}
+\input{Lieder/Lied011}
+\input{Lieder/Lied011a}
+\input{Lieder/Lied012}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_C}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_C}}}
+
+\input{Lieder/Lied013}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_D}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_D}}}
+
+\input{Lieder/Lied014}
+\input{Lieder/Lied015}
+\input{Lieder/Lied016}
+\input{Lieder/Lied017}
+\input{Lieder/Lied018}
+\input{Lieder/Lied019}
+\input{Lieder/Lied020} %BILD, Alter!
+\input{Lieder/Lied021}
+\input{Lieder/Lied022}
+\input{Lieder/Lied023}
+\input{Lieder/Lied023a}
+\input{Lieder/Lied024}
+\input{Lieder/Lied026} % 025, 026 getauscht -> platz
+\input{Lieder/Lied025}
+\input{Lieder/Lied027}
+\input{Lieder/Lied028}
+\input{Lieder/Lied029} 
+\input{Lieder/Lied030}
+\input{Lieder/Lied031}
+\input{Lieder/Lied032}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_E}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_E}}}
+
+\input{Lieder/Lied033}
+\input{Lieder/Lied033a}
+\input{Lieder/Lied033b}
+\input{Lieder/Lied034}
+\input{Lieder/Lied036} % 035, 036 getauscht -> Platz
+\input{Lieder/Lied035}
+%\input{Lieder/Lied037} %Es ist an der Zeit: Alles anders machen, Kack Lied!
+%\input{Lieder/Lied037a} Nicht hinreichend bekannt, konnte nicht abgetippt werden.
+\input{Lieder/Lied038}
+\input{Lieder/Lied039}
+\input{Lieder/Lied040} % 040a, 041 getauscht -> Platz
+\input{Lieder/Lied041}
+\input{Lieder/Lied040a}
+\input{Lieder/Lied042}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_F}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_F}}}
+
+\input{Lieder/Lied043}
+\input{Lieder/Lied044}
+\input{Lieder/Lied045}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_G}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_G}}}
+
+
+\input{Lieder/Lied046}
+\input{Lieder/Lied047}
+\input{Lieder/Lied048}
+%\input{Lieder/Lied048a} %Rausgeworfen! Noten, nicht Traditionell 
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_H}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_H}}}
+
+\input{Lieder/Lied049}
+\input{Lieder/Lied050}
+\input{Lieder/Lied051}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_I}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_I}}}
+
+\input{Lieder/Lied052} %Noten, Jakob macht sie noch
+\input{Lieder/Lied054} % 053, 054 getauscht -> Platz
+\input{Lieder/Lied053}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_J}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_J}}}
+
+\input{Lieder/Lied055}
+\input{Lieder/Lied056}
+\input{Lieder/Lied057}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_K}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_K}}}
+
+\input{Lieder/Lied058}
+\input{Lieder/Lied059} 
+\input{Lieder/Lied059a} 
+
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_L}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_L}}}
+
+
+\input{Lieder/Lied060}
+\input{Lieder/Lied061}
+\input{Lieder/Lied061a}
+\input{Lieder/Lied061b} %Ohne Noten (Peter)
+\input{Lieder/Lied062}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_M}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_M}}}
+
+\input{Lieder/Lied063}
+\input{Lieder/Lied064}
+\input{Lieder/Lied065}
+\input{Lieder/Lied066}
+\input{Lieder/Lied067}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_N}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_N}}}
+
+\input{Lieder/Lied068}
+\input{Lieder/Lied069} %Ohne Noten (Mikesch)
+\input{Lieder/Lied070} 
+\input{Lieder/Lied071}
+\input{Lieder/Lied072} % 071a, 072 getauscht -> Platz
+%\input{Lieder/Lied071a}
+\input{Lieder/Lied073}
+\input{Lieder/Lied073a}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_O}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_O}}}
+
+\input{Lieder/Lied074}   %Bild
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_P}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_P}}}
+
+\input{Lieder/Lied076} % 075, 076 getauscht -> Platz
+\input{Lieder/Lied075} 
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_R}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_R}}}
+
+\input{Lieder/Lied078} % 077, 078 getauscht -> Platz
+\input{Lieder/Lied077}
+\input{Lieder/Lied079}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_S}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_S}}}
+
+\input{Lieder/Lied080}
+\input{Lieder/Lied080a}
+\input{Lieder/Lied081}
+\input{Lieder/Lied082}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_T}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_T}}}
+
+\input{Lieder/Lied083a} % 083, 083a, 084 -> Platz
+%\input{Lieder/Lied084} %Wild Rover, Noten kommen noch
+\input{Lieder/Lied083}
+\input{Lieder/Lied085}
+\input{Lieder/Lied086}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_U}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_U}}}
+
+\input{Lieder/Lied087}
+\input{Lieder/Lied088}
+\input{Lieder/Lied090} % 089, 090 getauscht -> Platz   %Bild
+\input{Lieder/Lied089} 
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_W}}}
+\rightwatermark{\put(351,-583){\includegraphics{Daumenregister/DaumenregisterAL_W}}}
+
+\input{Lieder/Lied091}
+\input{Lieder/Lied092}
+\input{Lieder/Lied092a}
+\input{Lieder/Lied093}
+\input{Lieder/Lied093a} 
+\input{Lieder/Lied094}
+\input{Lieder/Lied095}
+\input{Lieder/Lied096}
+\input{Lieder/Lied097}
+\input{Lieder/Lied097a}
+\input{Lieder/Lied098}
+\input{Lieder/Lied100}
+\input{Lieder/Lied099}
+\input{Lieder/Lied101}
+%\input{Lieder/Lied102} % 100a, 101, 102 getauscht -> Platz
+%\input{Lieder/Lied100a}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_Y}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_Y}}}
+
+\input{Lieder/Lied103}
+
+\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_Z}}}
+\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_Z}}}
+
+\input{Lieder/Lied104}
+\input{Lieder/Lied105} % Eigentlich Christlich!
+
+\thiswatermark{}
+\markboth{}{}
+\songsection{Christliches}
+\ifthenelse{\boolean{pics}}{
+\center\includegraphics[width=1\textwidth]{Bilder/christliches_irena2.png}
+}{}
+\newpage
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_A}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_A}}}
+ 
+
+\input{Lieder/Lied106} %Ohne Noten, Peter, fertig
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_D}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_D}}}
+
+\input{Lieder/Lied107a} %(Der Himmel geht über allen auf, bleibt das?) Noten 
+\input{Lieder/Lied107} %Ohne Noten, Peter, fertig
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_E}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_E}}}
+
+\input{Lieder/Lied108} %Eine Hand voll Erde ?? -- Noten fehlen
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_G}}}
+\rightwatermark{\put(330,-590	){\includegraphics{Daumenregister/DaumenregisterBL_G}}}
+
+\input{Lieder/Lied109}
+\input{Lieder/Lied109a} %Ohne Noten, Jonas, fertig
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_H}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_H}}}
+
+\input{Lieder/Lied110}
+\input{Lieder/Lied111} %Ohne Noten, Jonas, fertig
+\input{Lieder/Lied111a} %Ohne Note, Peter,fertig 
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_I}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_I}}}
+
+\input{Lieder/Lied112} %Ohne Noten, Jonas, fertig
+
+\input{Lieder/Lied113} %Ohne Noten, Peter
+
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_K}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_K}}}
+
+\input{Lieder/Lied114} %Ohne Noten, Jonas, fertig
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_L}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_L}}}
+
+\input{Lieder/Lied114a} %Ohne Noten, Jonas, fertig
+\input{Lieder/Lied114aa} %Ohne Noten, Jonas, fertig
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_M}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_M}}}
+
+\input{Lieder/Lied114b}
+\input{Lieder/Lied115} %Noten
+
+\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_S}}}
+\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_S}}}
+
+
+\input{Lieder/Lied116}
+\input{Lieder/Lied117} %Ohne Noten, Jonas fertig
+\input{Lieder/Lied118} %Ohne Noten, Jonas fertig
+\input{Lieder/Lied120}
+
+
+\thiswatermark{}
+\markboth{}{}
+\songsection{Modernes}
+\ifthenelse{\boolean{pics}}{
+\vspace{100pt}
+\center\includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
+}{}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Nr}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Nr}}}
+
+\clearpage
+\input{Lieder/Lied119}
+\input{Lieder/Lied000}
+\input{Lieder/Lied121}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_A}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_A}}}
+
+%\input{Lieder/Lied122} %Löschen
+\input{Lieder/Lied123}
+\input{Lieder/Lied124}
+\input{Lieder/Lied125}
+\input{Lieder/Lied126}
+\input{Lieder/Lied127}
+%\input{Lieder/Lied128} %Löschen
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_B}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_B}}}
+
+\input{Lieder/Lied129}
+\input{Lieder/Lied130} %Löschen ?
+
+\input{Lieder/Lied131} 
+\input{Lieder/Lied132} 
+\input{Lieder/Lied133} 
+\input{Lieder/Lied134} 
+\input{Lieder/Lied135} 
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_C}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_C}}}
+
+\input{Lieder/Lied136} 
+\input{Lieder/Lied137}
+\input{Lieder/Lied138} 
+%\input{Lieder/Lied139} %Löschen
+\input{Lieder/Lied140}  
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_D}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_D}}}
+
+\input{Lieder/Lied141}  
+\input{Lieder/Lied142}  
+\input{Lieder/Lied143}  
+\input{Lieder/Lied144}  
+%\input{Lieder/Lied144a}  Der Traum ist aus, gekickt
+\input{Lieder/Lied145}  
+\input{Lieder/Lied146}  
+\input{Lieder/Lied147}  %Du trägst kjeine Liebe in dir!!!!!!!!
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_E}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_E}}}
+
+\input{Lieder/Lied148}  
+%\input{Lieder/Lied149}  Er muss uns jetzt was singen; löschen
+\input{Lieder/Lied150} 
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_F}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_F}}}
+ 
+\input{Lieder/Lied152}  
+\input{Lieder/Lied151}  
+\input{Lieder/Lied152a}  
+\input{Lieder/Lied153}  
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_G}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_G}}}
+
+\input{Lieder/Lied154}  
+\input{Lieder/Lied155}  
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_H}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_H}}}
+
+\input{Lieder/Lied156}  
+\input{Lieder/Lied157}  
+%\input{Lieder/Lied158}  %Löschen
+\input{Lieder/Lied159}  
+\input{Lieder/Lied160}  
+\input{Lieder/Lied161}
+\input{Lieder/Lied162}
+\input{Lieder/Lied163}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_I}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_I}}}
+
+\input{Lieder/Lied164}
+\input{Lieder/Lied165}
+%\input{Lieder/Lied166} %Löschen
+\input{Lieder/Lied168}
+\input{Lieder/Lied167}
+\input{Lieder/Lied169}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_J}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_J}}}
+
+\input{Lieder/Lied170}
+\input{Lieder/Lied171}
+\input{Lieder/Lied172}
+\input{Lieder/Lied173}
+\input{Lieder/Lied174}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_K}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_K}}}
+
+\input{Lieder/Lied175}
+%\input{Lieder/Lied175a} König von Deutschland, raus
+\input{Lieder/Lied176}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_L}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_L}}}
+
+\input{Lieder/Lied177}
+\input{Lieder/Lied178}
+\input{Lieder/Lied179}
+\input{Lieder/Lied180}
+\input{Lieder/Lied181}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_M}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_M}}}
+
+\input{Lieder/Lied182}
+\input{Lieder/Lied183}
+\input{Lieder/Lied184}
+\input{Lieder/Lied187} %186 fehlt komplett, sonst getauscht
+\input{Lieder/Lied185}
+%\input{Lieder/Lied188} %Löschen Moskau
+\input{Lieder/Lied189}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_N}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_N}}}
+
+\input{Lieder/Lied190}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_O}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_O}}}
+
+\input{Lieder/Lied192}
+\input{Lieder/Lied191}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_P}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_P}}}
+
+\input{Lieder/Lied193}
+\input{Lieder/Lied194}
+\input{Lieder/Lied195}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_R}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_R}}}
+
+\input{Lieder/Lied196}
+\input{Lieder/Lied197}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_S}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_S}}}
+
+\input{Lieder/Lied199} % 198, 199 getauscht -> Platz
+\input{Lieder/Lied198}
+\input{Lieder/Lied200}
+\input{Lieder/Lied201}
+\input{Lieder/Lied202}
+\input{Lieder/Lied203}
+\input{Lieder/Lied204}
+\input{Lieder/Lied205}
+\input{Lieder/Lied206}
+\input{Lieder/Lied207}
+\input{Lieder/Lied208}
+\input{Lieder/Lied209}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_T}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_T}}}
+
+\input{Lieder/Lied210}
+\input{Lieder/Lied210a}
+%\input{Lieder/Lied211} %Löschen
+%\input{Lieder/Lied212} %Löschen
+\input{Lieder/Lied213}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_U}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_U}}}
+
+
+\input{Lieder/Lied215} %214, 215 getauscht -> Platz
+\input{Lieder/Lied214}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_W}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_W}}}
+
+\input{Lieder/Lied217} % 216, 217 getauscht -> Platz
+\input{Lieder/Lied216}
+%\input{Lieder/Lied218} %Löschen
+\input{Lieder/Lied219}
+\input{Lieder/Lied220}
+\input{Lieder/Lied221}
+\input{Lieder/Lied222}
+\input{Lieder/Lied223}
+\input{Lieder/Lied224}
+\input{Lieder/Lied225}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Y}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Y}}}
+
+
+\input{Lieder/Lied226}
+
+\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Z}}}
+\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Z}}}
+
+
+\input{Lieder/Lied227}
+
+\leftwatermark{\put(-56,-593){}}
+\rightwatermark{\put(345,-593){}}
+
+\markboth{Platz für eigene Lieder}{Platz für eigene Lieder}
+\input{Lieder/empty}
+\input{Lieder/empty}
+\input{Lieder/empty}
+\input{Lieder/empty}
+\input{Lieder/empty}
+\input{Lieder/empty}
+
+\input{GrifftabelleUkuleleADFisH}
+\input{GrifftabelleUkuleleDGHE}
+
+\input{GrifftabelleGitarre}
+
+\end{songs}
+
+\end{document}
