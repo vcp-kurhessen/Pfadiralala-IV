@@ -113,41 +113,71 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 % Worte und Weise
 \newcommand{\wuweise}{}
 \newsongkey{wuw}{\def\wuweise{}}
-        {\def\wuweise{\normalsize\bf Worte und Weise: #1\par}}
+        {\def\wuweise{ Worte und Weise: #1}}
 
 % Melodie
 \newcommand{\melodie}{}
 \newsongkey{mel}{\def\melodie{}}
-        {\def\melodie{\normalsize\bf Melodie: #1 }}
+        {\def\melodie{ Melodie: #1}}
 
 % Text
 \newcommand{\text}{}
 \newsongkey{txt}{\def\text{}}
-        {\def\text{\normalsize\bf Text: #1\par}}
+        {\def\text{ Text: #1}}
+        
+% Album
+\newcommand{\album}{}
+\newsongkey{alb}{\def\album{}}
+        {\def\album{ Album: #1}}
+        
+% Jahr
+\newcommand{\jahrformat}{}
+\newsongkey{jahr}{\def\jahrformat{}}
+        {\def\jahrformat{, #1}}
 
 % Bock
 \newcommand{\bock}{}
 \newsongkey{bo}{\def\bock{}}
-        {\def\bock{\normalsize\it Liederbock: #1  }}
+        {\def\bock{Liederbock: #1 }}
+
+% Pfadiralala I
+\newcommand{\pfadi}{}
+\newsongkey{pfi}{\def\pfadi{}}
+        {\def\pfadi{Pfadiralala I: #1 }}
 
 % Pfadiralala II
 \newcommand{\pfadii}{}
 \newsongkey{pfii}{\def\pfadii{}}
-        {\def\pfadii{\normalsize\it Pfadiralala II: #1 }}
+        {\def\pfadii{Pfadiralala II: #1 }}
 
 % Pfadiralala III
 \newcommand{\pfadiii}{}
 \newsongkey{pfiii}{\def\pfadiii{}}
-        {\def\pfadiii{\normalsize\it Pfadiralala III: #1 }}
+        {\def\pfadiii{Pfadiralala III: #1 }}
 
 % Jurtenburg
 \newcommand{\jurte}{}
 \newsongkey{ju}{\def\jurte{}}
-        {\def\jurte{\normalsize\it Jurtenburg: #1}}
+        {\def\jurte{Jurtenburg: #1 }}
 
 
  %Nach dem Lied
-\renewcommand{\extendpostlude}{\wuweise\melodie\text\bock\pfadii\pfadiii\jurte\break}
+\renewcommand{\extendpostlude}{
+    \normalsize\bf
+        \wuweise
+        \melodie
+        \text
+        \album
+        \jahrformat
+    \par
+    \normalsize\it
+        \bock
+        \pfadi
+        \pfadii
+        \pfadiii
+        \jurte
+    \break
+    }
 
 % Notennamen
 %\notenamesin{A}{B}{C}{D}{E}{F}{G}
