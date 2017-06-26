@@ -99,6 +99,24 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 % Refrain
 %\renewcommand{\chorusfont}{\it}
 \renewcommand{\everychorus}{\textnote{\bf Refrain}}
+\newcommand{\printchorus}[0]{
+	\renewcommand{\everychorus}{\textnote{\bf Refrain (wdh.)}}
+	\beginchorus
+	\endchorus
+	\renewcommand{\everychorus}{\textnote{\bf Refrain}}
+}
+\newcommand{\repchorus}[1]{
+	\renewcommand{\everychorus}{\textnote{\bf Refrain (#1x)}}
+	\beginchorus
+	\endchorus
+	\renewcommand{\everychorus}{\textnote{\bf Refrain}}
+}
+
+\newcommand{\interlude}[1]{
+	\beginverse*
+	{\nolyrics #1}
+	\endverse
+}
 % Beschreibungen
 %\renewcommand{\scripturefont}{\sffamily\it}
 % Inhaltsverzeichnis
