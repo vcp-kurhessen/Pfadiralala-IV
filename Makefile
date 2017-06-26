@@ -4,6 +4,7 @@ all: PfadiralalaIV PfadiralalaIV-2 basic-design.tex songs.sty GrifftabelleGitarr
 
 PfadiralalaIV: PfadiralalaIV.tex Lieder/*.tex Vorwort.tex Impressum.tex
 	$(LATEXMK) $@.tex
+	open $@.pdf
 
 PfadiralalaIV-2: PfadiralalaIV-2.tex Lieder-neu/*.tex GrifftabelleUkuleleGCEA.tex
 	$(LATEXMK) $@.tex
