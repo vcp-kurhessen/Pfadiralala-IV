@@ -52,30 +52,30 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}	
 
-\fancyhead{} % clear all header fields
-\fancyfoot{} % clear all footer fields
+% clear all header & footer fields
+\fancyhead{}
+\fancyfoot{}
 
-% Seitenzahl bei geraden/linken Seiten nach links/aussen
-% Seitenzahl bei ungeraden/rechten Seiten nach rechts/aussen
+% remove section namings from headers
+\renewcommand\sectionmark[1]{}
+
+% Seitenzahl auf die unteren äußeren Ecken
 \fancyfoot[LE,RO]{\thepage}
 
-% Pfadiralala Oben Innen
+% Songtitel auf die oberen äußeren Ecken
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+
+% "Pfadiralala IV" Oben Innen
 \fancyhead[LO,RE]{Pfadiralala IV}
 
-% Ignore sectionmarks - own mymarks
-\renewcommand{\sectionmark}[1]{}
-\newcommand{\mymarks}{%
-        \ifthenelse{\equal{\leftmark}{\rightmark}}
-                {\rightmark}
-                {From \rightmark\ until \leftmark}
-        }
-\fancyhead[LE,RO]{\mymarks}
+% \beginsong patchen, damit \songtitle in die fancyhdr marks geschrieben wird
+\usepackage{etoolbox}
+\makeatletter
+\appto\SB@@@beginsong{\markboth{\songtitle}{\songtitle}}
+\appto\SB@@@endsong{\markboth{}{}}
+\makeatother
 
-%Inhaltsverzeichnisse
-% \newindex{titelIndex}{titelIndexF}
-% Seitennummer anstatt Liednummer
-% \indexsongsas{titelIndex}{\thepage}
- 
 % Genau eine Spalte für die Lieder
 \songcolumns{1}
 
@@ -104,7 +104,6 @@ paperwidth=148mm,paperheight=210mm,twoside]{geometry}
 % Inhaltsverzeichnis
 \renewcommand{\idxtitlefont}{\sffamily} 
 \renewcommand{\idxlyricfont}{\sffamily}
-
 
 % Darstellung der Meta-Informationen
 % Kein Autor unter Titel
