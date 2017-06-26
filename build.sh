@@ -8,9 +8,9 @@ echo Folder Location: "$dir"
 cd $dir
 # 1st: get size of index
 pdflatex PfadiralalaIV.tex
-songidx titelIndexF.sxd
+songidx PfadiralalaIV.sxd
 # 2nd: get correct positions
 pdflatex PfadiralalaIV.tex
-songidx titelIndexF.sxd
+songidx PfadiralalaIV.sxd
 # 3rd: use correct index
 pdflatex PfadiralalaIV.tex
