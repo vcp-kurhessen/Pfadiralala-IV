@@ -12,3 +12,10 @@ PfadiralalaIV-2: PfadiralalaIV-2.tex Lieder-neu/*.tex GrifftabelleUkuleleGCEA.te
 
 clean:
 	latexmk -CA
+	
+PDFs/%: Lieder*/%.tex
+	mkdir -p PDFs
+	SONG=$< pdflatex -jobname=$@ Single-Song.tex
+	rm $@.log
+	rm $@.aux
+	open $@.pdf
