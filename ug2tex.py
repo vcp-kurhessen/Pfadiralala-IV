@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import sys, re
 
 legit_chords = ["A","B","H","C","C#","D","C#","E","F","F#","G","G#"]
@@ -29,12 +30,23 @@ def mergeChordsAndLine(chords, line):
 
     return "".join(merged)
 
+def cleanupLine(line):
+    return line.replace("´", "'")
+    
+
 if __name__ == "__main__":
     
+    sys.stdout.write('''%!TEX root = ../Single-Song.tex
+\\beginsong{Song}[]
+
+\\beginverse
+''')
+    
     for line in sys.stdin:
+        line = cleanupLine(line)
         if isChordLine(line):
             chords = getChordLocations(line)
-            lyrics = sys.stdin.next()
+            lyrics = cleanupLine(sys.stdin.next())
             
             chordline = mergeChordsAndLine(chords, lyrics)
             sys.stdout.write(chordline)
@@ -42,4 +54,13 @@ if __name__ == "__main__":
             sys.stdout.write(line)
             pass
     
-    
+    sys.stdout.write('''
+\\endverse
+
+\\endsong
+\\beginscripture{}
+\\endscripture
+
+\\begin{intersong}
+
+\\end{intersong}''')
