@@ -6,26 +6,30 @@
   \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{}%
   \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
 
-% Mit oder ohne Bildern kompilieren
-\newboolean{pics} %Deklaration
-\setboolean{pics}{true}
+\getenv[\PRINT]{PRINT}
+\getenv[\PICS]{PICS}
+\def\true{true }
 
-% Mit oder ohne Schnittmarken kompilieren
-\newboolean{cuts} %Deklaration
-\setboolean{cuts}{false}
+\newboolean{pics}
+\setboolean{pics}{false}
 
-\usepackage[dvips=false,pdftex=false,vtex=false,left=1.2cm,right=1.2cm,
-top=0.4cm,bottom=0.5cm,includeheadfoot,
-paperwidth=148mm,paperheight=210mm,twoside]{geometry}
+% Keine Bilder einfügen, wenn ein draft erzeugt wird.
+\ifx\PICS\true
+	\setboolean{pics}{true}
+\fi
 
-% Schnittmarken, auskommentieren für randlose Version
-\ifthenelse{\boolean{cuts}}
-        {\usepackage[cam,a4,center,dvips]{crop}}{}
+% Schnittmarken hinzufügen, wenn ein Druckdokument erzeugt wird.
+\ifx\PRINT\true
+	\setboolean{pics}{true}
+	\usepackage[cam,a4,center,dvips]{crop}
+\fi
 
-% \ifthenelse{\equal{\leftmark}{\rightmark}}
-%         {\rightmark}
-%         {From \rightmark\ until \leftmark}
-% \usepackage[cam,a4,center,dvips]{crop}
+\usepackage[dvips=false, pdftex=false, vtex=false,
+	left=1.2cm, right=1.2cm,
+	top=0.4cm, bottom=0.5cm,
+	includeheadfoot,
+	paperwidth=148mm, paperheight=210mm,
+	twoside]{geometry}
 
 % Songs Latex Package
 \usepackage{hyperref}
