@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+name=`uname -s`
+hardware=`uname -m`
+
+if [ "$name" == "Darwin" ]; then
+	if [ "$hardware" == "x86_64" ]; then
+		echo "exec ${0%.multi}.macosx_64 $@"
+		exec ${0%.multi}.macosx_64 $@
+	fi
+fi
+
+echo "songidx.multi: no binary found for $name $hardware"
+exit 1
