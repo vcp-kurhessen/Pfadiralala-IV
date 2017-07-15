@@ -45,7 +45,7 @@ PfadiralalaIV-2-pics.pdf: PfadiralalaIV-2.pdf
 
 
 clean:
-	@rm -f *.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
+	@rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
 
 	
 PDFs/%: Lieder*/%.tex
