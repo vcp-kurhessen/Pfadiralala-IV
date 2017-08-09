@@ -53,4 +53,5 @@ PDFs/%: Lieder*/%.tex
 	SONG=$< pdflatex -jobname=$@ Single-Song.tex
 	rm $@.log
 	rm $@.aux
+	rm $@.out
 	open $@.pdf
