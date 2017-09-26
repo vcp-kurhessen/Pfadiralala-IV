@@ -55,3 +55,17 @@ PDFs/%: Lieder*/%.tex
 	rm $@.aux
 	rm $@.out
 	open $@.pdf
+	
+
+Sommerfest: Sommerfest.pdf
+Sommerfest.pdf: Sommerfest.tex Lieder-andere/*.tex Sommerfest.sbx basic-design.tex songs.sty
+	@echo "### $@"
+	$(PDFLATEX) $(basename $@).tex > $@.log
+Sommerfest.sbx: Sommerfest.sxd Sommerfest.tex
+	@echo "### $@"
+	$(SONGIDX) $< &> $@.log
+Sommerfest.sxd: Sommerfest.tex
+	@echo "### $@"
+	$(PDFLATEX) $(basename $@).tex 
+	make $(basename $@).sbx
+	$(PDFLATEX) $(basename $@).tex 
