@@ -1,16 +1,28 @@
 PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
+TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 
-.PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2 Sommerfest
+.PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2
 
+# Generic targets
 all: PfadiralalaIV.pdf PfadiralalaIV-2.pdf
 clean:
 	@rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
 	
 
+# Target definitions for song PDFs
+PDFs/%.pdf: Lieder/%.tex
+	@mkdir -p PDFs
+	SONG=$< $(PDFLATEX) -jobname=$(basename $@) Misc/Song.tex
+	rm -f $(basename $@).log $(basename $@).aux $(basename $@).out
+	
+PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
+
+
+# Pfadiralala IV
 PfadiralalaIV: PfadiralalaIV.pdf
 	open $<
-PfadiralalaIV.pdf: PfadiralalaIV.tex Lieder-neu/*.tex GrifftabelleUkuleleGCEA.tex PfadiralalaIV.sbx basic-design.tex songs.sty GrifftabelleGitarre.tex GrifftabelleUkuleleADFisH.tex GrifftabelleUkuleleDGHE.tex 
+PfadiralalaIV.pdf: PfadiralalaIV.tex PfadiralalaIV.sbx $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 PfadiralalaIV-print.pdf: PfadiralalaIV.pdf
@@ -25,11 +37,12 @@ PfadiralalaIV.sxd: PfadiralalaIV.tex
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
 	$(PDFLATEX) $(basename $@).tex
-	
 
+
+# Pfadiralala IV+
 PfadiralalaIV-2: PfadiralalaIV-2.pdf
 	open $<
-PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex Lieder-neu/*.tex GrifftabelleUkuleleGCEA.tex PfadiralalaIV-2.sbx basic-design.tex songs.sty GrifftabelleGitarre.tex GrifftabelleUkuleleADFisH.tex GrifftabelleUkuleleDGHE.tex 
+PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex PfadiralalaIV-2.sbx  $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 PfadiralalaIV-2-print.pdf: PfadiralalaIV-2.pdf
@@ -44,25 +57,3 @@ PfadiralalaIV-2.sxd: PfadiralalaIV-2.tex
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
 	$(PDFLATEX) $(basename $@).tex
-
-PDFs/%.pdf: Lieder/%.tex
-	@mkdir -p PDFs
-	SONG=$< $(PDFLATEX) -jobname=$(basename $@) Misc/Song.tex
-	rm -f $(basename $@).log $(basename $@).aux $(basename $@).out
-	
-PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
-	
-	
-
-Sommerfest: Sommerfest.pdf
-Sommerfest.pdf: Sommerfest.tex Lieder-andere/*.tex Sommerfest.sbx basic-design.tex songs.sty
-	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex
-Sommerfest.sbx: Sommerfest.sxd Sommerfest.tex
-	@echo "### $@"
-	$(SONGIDX) $< &> $@.log
-Sommerfest.sxd: Sommerfest.tex
-	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex 
-	make $(basename $@).sbx
-	$(PDFLATEX) $(basename $@).tex 
