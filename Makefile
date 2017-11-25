@@ -18,6 +18,14 @@ PDFs/%.pdf: Lieder/%.tex
 	
 PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 
+# Noten
+Noten/%.a5.ps: ABC_Noten/%.abc
+	abcm2ps -O $@ -c -F Misc/abcm2ps.fmt $<
+Noten/%.a5.pdf: Noten/%.a5.ps
+	ps2pdf $< $@
+Noten/%.pdf: Noten/%.a5.pdf
+	pdfcrop $< $@
+Noten: $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 
 # Pfadiralala IV
 PfadiralalaIV: PfadiralalaIV.pdf
