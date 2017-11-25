@@ -2,7 +2,7 @@ PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 
-.PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2
+.PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2 Noten
 
 # Generic targets
 all: PfadiralalaIV.pdf PfadiralalaIV-2.pdf
@@ -11,19 +11,19 @@ clean:
 	
 
 # Target definitions for song PDFs
-PDFs/%.pdf: Lieder/%.tex
+PDFs/%.pdf: Lieder/%.tex Noten
 	@mkdir -p PDFs
-	SONG=$< $(PDFLATEX) -jobname=$(basename $@) Misc/Song.tex
+	SONG=$< pdflatex --enable-write18 -shell-escape -jobname=$(basename $@) Misc/Song.tex
 	rm -f $(basename $@).log $(basename $@).aux $(basename $@).out
 	
 PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 
 # Noten
-Noten/%.a5.ps: ABC_Noten/%.abc
+ABC_Noten/%.a5.ps: ABC_Noten/%.abc Misc/abcm2ps.fmt
 	abcm2ps -O $@ -c -F Misc/abcm2ps.fmt $<
-Noten/%.a5.pdf: Noten/%.a5.ps
+ABC_Noten/%.a5.pdf: ABC_Noten/%.a5.ps
 	ps2pdf $< $@
-Noten/%.pdf: Noten/%.a5.pdf
+Noten/%.pdf: ABC_Noten/%.a5.pdf
 	pdfcrop $< $@
 Noten: $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 
@@ -48,7 +48,7 @@ PfadiralalaIV.sxd: PfadiralalaIV.tex
 
 
 # Pfadiralala IV+
-PfadiralalaIV-2: PfadiralalaIV-2.pdf
+PfadiralalaIV-2: PfadiralalaIV-2.pdf Noten
 	open $<
 PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex PfadiralalaIV-2.sbx  $(TEX_DEPENDENCIES)
 	@echo "### $@"
