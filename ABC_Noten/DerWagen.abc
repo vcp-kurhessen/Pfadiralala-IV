@@ -1,10 +1,1 @@
-X: 1
-M: 2/4 % Taktart
-L: 1/8 % Standartnotenlänge
-K: G % Tonart
-"Am"A,4 | "F"A4 | "G"zG G D | "Am"E4 | zE E G | "F"F2C2 | 
-w:Staub, Staub, und Step-pen-land, zwei al-te Mu-lis
-"G"zD D E | "Am"E4 | z2 A G | "F" A2 A2 | "G"z2 G A | 
-w:am We-ges-rand ziehn den Wag-en aus der
-"Dm"D4 | zC C D | "Am" E2G2 | "Em"z E c B | "Am"A4 |]
-w:Stadt, wei-ter nach O-sten dreht sich das Rad.
+X: 1M: 2/4 % TaktartL: 1/8 % StandartnotenlängeK: G % Tonart"Am"A,4 | "F"A4 | "G"zG G D | "Am"E4 | zE E G | "F"F2C2 | w:Staub, Staub, und Step-pen-land, zwei al-te Mu-lis"G"zD D E | "Am"E4 | z2 A G | "F" A2 A2 | "G"z2 G A | w:am We-ges-rand ziehn den Wag-en aus der"Dm"D4 | zC C D | "Am" E2G2 | "Em"z E c B | "Am"A4 |]w:Stadt, wei-ter nach O-sten dreht sich das Rad.

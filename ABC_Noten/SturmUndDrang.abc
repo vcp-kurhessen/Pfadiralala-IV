@@ -1,10 +1,1 @@
-X:1
-M: 4/4 % Meter / Taktart
-L: 1/8 % Standard Noten Länge
-K: Am % Tonart:
-"Am"A2 A2 AG FE |"Dm" D3 E F2 G2 | "Am"(E4E)D CD |"E"E8 | 
-w:Je-den Mor-gen ruft das jun-ge Le-ben, was_der Tag ihm bringt, 
-|:"Am"A2 A2 AG FE | "Dm" D3 EF2G2|"Am"E C2 CB,2(CB,) | "Am"A,8 :|
-w:bis der Zwei-fel all die gu-ten Ta-ten schlie-ßlich zu Bo-den_ ringt. 
-|:"Am"(E4E)D CD | E8 |"C"(E4E)D CD | E8|"G"G4 A4|B2 G2 c2B2|"Am"A8 |]
-w:Ge_ stern ist vor-bei, mor--gen ei-ner-lei, heu-te noch da sind wir jung.
+X:1M: 4/4 % Meter / TaktartL: 1/8 % Standard Noten LängeK: Am % Tonart:"Am"A2 A2 AG FE |"Dm" D3 E F2 G2 | "Am"(E4E)D CD |"E"E8 | w:Je-den Mor-gen ruft das jun-ge Le-ben, was_der Tag ihm bringt, |:"Am"A2 A2 AG FE | "Dm" D3 EF2G2|"Am"E C2 C"E"B,2(CB,) | "Am"A,8 :|w:bis der Zwei-fel all die gu-ten Ta-ten schlie-ßlich zu Bo-den_ ringt. |:"Am"(E4E)D CD | E8 |"C"(E4E)D CD | E8|"G"G4 A4|B2 G2 c2B2|"Am"A8 :|w:Ge_ stern ist vor-bei, mor--gen ei-ner-lei, heu-te noch da sind wir jung.
