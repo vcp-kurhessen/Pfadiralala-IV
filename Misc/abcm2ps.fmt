@@ -102,12 +102,12 @@ wordsfont       Times-Roman utf-8 16.0
 wordsspace      0.00
 writefields     CMOPQTWw
 
-gchordfont      Helvetica utf-8 14.0
-vocalfont       Helvetica utf-8 12.0
+gchordfont      Helvetica utf-8 13.0
+vocalfont       Helvetica utf-8 11.0
 breaklimit      0.90
-maxshrink       1.00
-#vocalspace      0.00
-#musicspace      0.00
+maxshrink       0.90
+vocalspace      0.00
+musicspace      0.00
 
 # required for direct compilation of .abc files
 pageheight      21.01cm
