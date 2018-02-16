@@ -20,7 +20,7 @@ PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 
 # Noten
 ABC_Noten/%.a5.ps: ABC_Noten/%.abc Misc/abcm2ps.fmt
-	abcm2ps -O $@ -c -F Misc/abcm2ps.fmt $<
+	abcm2ps -O $@ -c -F Misc/abcm2ps.fmt $< || true # The OR true is a quick fix to ignore errors...
 ABC_Noten/%.a5.pdf: ABC_Noten/%.a5.ps
 	ps2pdf $< $@
 Noten/%.pdf: ABC_Noten/%.a5.pdf
