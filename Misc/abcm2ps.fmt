@@ -7,7 +7,7 @@ barsperstaff    0
 bgcolor         ""
 botmargin       1.00cm
 breaklimit      0.70
-breakoneoln     yes
+breakoneoln     no
 bstemdown       no
 cancelkey       yes
 combinevoices   0
@@ -104,11 +104,12 @@ writefields     CMOPQTWw
 
 gchordfont      Helvetica utf-8 13.0
 vocalfont       Helvetica utf-8 11.0
-breaklimit      0.90
-maxshrink       0.90
+# breaklimit      0.90
+# maxshrink       0.90
 vocalspace      0.00
 musicspace      0.00
 
 # required for direct compilation of .abc files
-pageheight      21.01cm
+# pageheight      21.01cm
+pageheight      19.51cm
 pagewidth       14.81cm

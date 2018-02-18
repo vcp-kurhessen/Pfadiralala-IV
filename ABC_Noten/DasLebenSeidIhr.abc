@@ -1,10 +1,10 @@
-X: 1
-M: 4/4 % Meter / Taktart
-L: 1/4 % Standard Noten Länge
-K: C % Tonart: C beendet den Header
-A| "Am" e2 "F"fe |"G" d3//e3//"Am" f/ e3//c3// c/ | "C" g3/  g/"F"fe | "G" d1e/ "C"f/e3/ c/ | 
-w: Ihr sollt nicht im Dun-kel ver-mo-dern zu Bes-ser em seid ihr no-ch hier: Das
-"C"g3//g3// g/ g3//g3// g/| "F" g (c2 c/)c/ | "C"g3//g3// g/ g3//a3// g/|"G" (g2 g3/)g/ |
-w:Le-ben will flam-men und lo-dern _und Freun-de das Le-ben seid ihr. _Das 
-"Am" c'3//c'3// c'/ "G" b3//b3// a/| "F"g (c2c/)c/ | "C"e3//e3// e/"G" d3//c3// B/ | "C"c4|]
-w: Le-ben will flam-men und lo-dern _und Freun-de das Le-ben seid ihr.
+X:1
+M:4/4% Meter / Taktart
+L:1/4% Standard Noten Länge
+K:Cmaj% Tonart: C beendet den Header
+A,| "Am" E2 "F"FE |"G" D3/4E3/4"Am" F/2 E3/4C3/4 C/2 | "C" G3/2 G/2"F"FE | "G" DE/2 "C"F/2E3/2 C/2 | 
+w:Ihr sollt nicht im Dun-kel ver-mo-dern zu Bes-ser em seid ihr no-ch hier: Das
+"C"G3/4G3/4 G/2 G3/4G3/4 G/2| "F" G (C2 C/2)C/2 | "C"G3/4G3/4 G/2 G3/4A3/4 G/2|"G" (G2 G3/2)G/2 |
+w:Le-ben will flam-men und lo-dern _und Freun-de das Le-ben seid ihr. _Das
+"Am" c3/4c3/4 c/2 "G" B3/4B3/4 A/2| "F"G (C2C/2)C/2 | "C"E3/4E3/4 E/2"G" D3/4C3/4 B,/2 | "C"C4|]
+w:Le-ben will flam-men und lo-dern _und Freun-de das Le-ben seid ihr.
