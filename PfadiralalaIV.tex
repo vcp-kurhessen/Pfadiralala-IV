@@ -5,7 +5,6 @@
 \indexsongsas{Seitenzahlen}{\thepage}
 
 \begin{document}
-\begin{songs}{Seitenzahlen}
 
 \input{Misc/Impressum}
 \newpage
@@ -17,19 +16,19 @@
 \showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
 \markboth{}{}
 
+\begin{songs}{Seitenzahlen}
+
 \thiswatermark{}
 \songsection{Traditionelles}
-
 \ifthenelse{\boolean{pics}}{
-        \vspace{40pt}
-        \centering
-        \includegraphics[width=0.7\textwidth]{Bilder/traditionelles_heiko.png}
+    \vspace{40pt}
+    \centering
+    \includegraphics[width=0.7\textwidth]{Bilder/traditionelles_heiko.png}
 }{}
 \newpage
 
 \leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_A}}}
 \rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_A}}}
-
 
 \input{Lieder/Abendward}
 \input{Lieder/AbendstretenElche}
@@ -238,20 +237,23 @@
 \rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_Z}}}
 
 \input{Lieder/ZogeneinstfuenfwildeSchwaene}
-\input{Lieder/AmazingGrace} % Eigentlich Christlich!
 
-\thiswatermark{}
-\markboth{}{}
-\songsection{Christliches}
-\ifthenelse{\boolean{pics}}{
-\center\includegraphics[width=1\textwidth]{Bilder/christliches_irena2.png}
-}{}
-\newpage
+
+\begin{intersong}
+    \thiswatermark{}
+    \newpage
+    \markboth{}{}
+    \songsection{Christliches}
+    \ifthenelse{\boolean{pics}}{
+        \center\includegraphics[width=1\textwidth]{Bilder/christliches_irena2.png}
+    }{}
+    \newpage
+\end{intersong}
 
 \leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_A}}}
 \rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_A}}}
  
-
+\input{Lieder/AmazingGrace} % Eigentlich Christlich!
 \input{Lieder/Aufstehnnaufeinanderzugehn} %Ohne Noten, Peter, fertig
 
 \leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_D}}}
@@ -310,21 +312,26 @@
 \input{Lieder/Sandyland}
 \input{Lieder/Singhallelujah} %Ohne Noten, Jonas fertig
 \input{Lieder/Siyahamba} %Ohne Noten, Jonas fertig
-\input{Lieder/500Miles}
 
 
-\thiswatermark{}
-\markboth{}{}
-\songsection{Modernes}
-\ifthenelse{\boolean{pics}}{
-\vspace{100pt}
-\center\includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
-}{}
-
+\begin{intersong}
+    \newpage
+    \thiswatermark{}
+    \markboth{}{}
+    
+    \songsection{Modernes}
+    \ifthenelse{\boolean{pics}}{
+        \vspace{100pt}
+        \center\includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
+    }{}
+    \newpage
+\end{intersong}
+    
 \leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Nr}}}
 \rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Nr}}}
 
 \clearpage
+\input{Lieder/500Miles}
 \input{Lieder/1-2Lovesong}
 \input{Lieder/500JahreMusik}
 \input{Lieder/74-75}
@@ -521,24 +528,32 @@
 
 \input{Lieder/ZuSpaet}
 
+\newpage
 \leftwatermark{\put(-56,-593){}}
 \rightwatermark{\put(345,-593){}}
 
 \beginsong{}
-\markboth{Platz für eigene Lieder}{Platz für eigene Lieder}
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
-\clearpage
+    \markboth{Platz für eigene Lieder}{Platz für eigene Lieder}
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
+    \clearpage
 \endsong
 
-\input{Misc/GrifftabelleUkuleleGCEA}
+\begin{intersong}
+    \newpage
+    \thiswatermark{}
+    \markboth{}{}
+    \songsection{Appendix}
+\end{intersong}
+
+% \input{Misc/GrifftabelleUkuleleGCEA}
 \input{Misc/GrifftabelleUkuleleADFisH}
 \input{Misc/GrifftabelleUkuleleDGHE}
 \input{Misc/GrifftabelleGitarre}
