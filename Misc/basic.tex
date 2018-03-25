@@ -215,3 +215,30 @@
 % Deutsches H statt englisches B (wichtig für transponierte Noten)
 \notenames{A}{H}{C}{D}{E}{F}{G}
 
+% Thumb-Indexes using LaTeX
+\usepackage{fp}
+\newcommand{\setthumb}[2]{
+    \FPeval{\result}{#2}                % Convert the input parameter to a number (no idea why fp is needed for this)
+    \setlength{\unitlength}{7.78mm}     % Set the distance of the individual thumb markers
+    \begin{intersong}
+    \leftwatermark{
+        \put(0, -\result) {
+            \setlength{\unitlength}{1pt}
+            \put(-69, 0)    {\rule{60pt}{25pt}}
+            \put(-34, 0)    {\Huge \color{white} \makebox(25, 25){#1}}
+        }
+    }
+    \rightwatermark{
+        \put(0, -\result) {
+            \setlength{\unitlength}{1pt}
+            \put(362, 0)    {\rule{60pt}{25pt}}
+            \put(362, 0)    {\Huge \color{white} \makebox(25, 25){#1}}
+        }
+    }
+    \end{intersong}
+}
+
+\newcommand{\nothumb}{
+    \leftwatermark{}
+    \rightwatermark{}
+}
