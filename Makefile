@@ -48,9 +48,9 @@ PfadiralalaIV.sxd: PfadiralalaIV.tex
 
 
 # Pfadiralala IV+
-PfadiralalaIV-2: PfadiralalaIV-2.pdf Noten
+PfadiralalaIV-2: PfadiralalaIV-2.pdf
 	open $<
-PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex PfadiralalaIV-2.sbx  $(TEX_DEPENDENCIES)
+PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex PfadiralalaIV-2.sbx  Noten $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 PfadiralalaIV-2-print.pdf: PfadiralalaIV-2.pdf
