@@ -1,15 +1,14 @@
-\documentclass{article}
+\documentclass{book}
 \input{Misc/basic}
 
 % Disables page numbers
 \fancyfoot[LE,RO]{}
-% Disables "Pfadiralala IV" in header
-\fancyhead[LO,RE]{}
 
 \begin{document}
 \begin{songs}{}
-\getenv[\SONG]{SONG}
-\input{\SONG}
+
+    \getenv[\SONG]{SONG}
+    \input{\SONG}
 
 \end{songs}
 \end{document}
