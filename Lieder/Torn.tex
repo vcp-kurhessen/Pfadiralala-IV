@@ -1,4 +1,10 @@
-\beginsong{Torn}[wuw={Nathalie Imruglia}, pfiii={188} index={I thought I saw a man brought to life}]
+\beginsong{Torn}[
+    wuw={Nathalie Imruglia}, 
+    pfiii={188}, 
+    index={I thought I saw a man brought to life},
+    ]
+
+\transpose{-1}
 
 \beginverse*
 {\nolyrics Intro: \[F] \[Fsus4] \[F] \[Fsus4]}
@@ -13,12 +19,13 @@ you don't seem to know, seem to care what your \[H&]heart is for,
 but I don't know him anymore.
 \endverse
 
-\beginverse*
-Bridge:
+\renewcommand{\everychorus}{\textnote{\bf Bridge}}
+\beginchorus
 There's \[Dm]nothing where you used to lie, \[C]the conversation has run dry,
 \[Am] that's what's going on...\[C] Nothing's fine, I'm \[F]torn!
-\endverse
+\endchorus
 
+\renewcommand{\everychorus}{\textnote{\bf Chorus}}
 \beginchorus
 I'm all out of \[C]faith, this is how I \[Dm]feel.
 I'm cold and I am \[H&]shamed lying naked on the \[F]floor,
@@ -33,22 +40,20 @@ I should have seen just what was there and not some ^holy light
 to crawl beneath my veins and now: 
 \endverse
 
-\beginverse*
-Bridge:
+\renewcommand{\everychorus}{\textnote{\bf Bridge}}
+\beginchorus
 \[Dm] I don't care I have no luck,\[C] I don't miss it all that much, \[Am]
 there's just so many \[C]things... That I can't touch, I'm \[F]torn!
-\endverse
-
-\beginchorus
 \endchorus
 
-\beginverse*
-Bridge:
+\printchorus
+
+\renewcommand{\everychorus}{\textnote{\bf Bridge}}
+\beginchorus
 There's \[Dm]nothing where you used to lie,\[C] my inspiration has run dry, \[Am]
 that's what's going \[C]on... Nothing's right, I'm \[F]torn!
-\endverse
-
-\beginchorus
 \endchorus
+
+\printchorus
 
 \endsong
