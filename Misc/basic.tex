@@ -72,7 +72,8 @@
 \fancyhead{}
 \fancyfoot{}
 
-% remove section namings from headers
+% remove chapter / section namings from headers
+\renewcommand\chaptermark[1]{}
 \renewcommand\sectionmark[1]{}
 
 % Seitenzahl auf die unteren äußeren Ecken
@@ -194,7 +195,7 @@
         {\def\jurte{Jurtenburg: #1 }}
 
 
- %Nach dem Lied
+% Nach dem Lied 
 \renewcommand{\extendpostlude}{
     \normalsize\bf
         \wuweise
@@ -210,7 +211,7 @@
         \pfadiii
         \jurte
     \break
-    }
+}
 
 % Deutsches H statt englisches B (wichtig für transponierte Noten)
 \notenames{A}{H}{C}{D}{E}{F}{G}
@@ -242,3 +243,8 @@
     \leftwatermark{}
     \rightwatermark{}
 }
+
+% different spacing
+\versesep=10pt plus 2pt minus 4pt
+\afterpreludeskip=2pt
+\beforepostludeskip=2pt
