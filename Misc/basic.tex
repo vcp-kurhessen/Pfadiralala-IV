@@ -145,72 +145,93 @@
 \renewcommand{\extendprelude}{}
 
 % Worte und Weise
-\newcommand{\wuweise}{}
-\newsongkey{wuw}{\def\wuweise{}}
-        {\def\wuweise{ Worte und Weise: #1}}
+\newcommand{\wuw}{}
+\newsongkey{wuw}{\def\wuw{}}
+        {\def\wuw{ Worte und Weise: #1}}
 
 % Melodie
-\newcommand{\melodie}{}
-\newsongkey{mel}{\def\melodie{}}
-        {\def\melodie{ Melodie: #1}}
+\newcommand{\mel}{}
+\newsongkey{mel}{\def\mel{}}
+        {\def\mel{ Melodie: #1}}
 
 % Text
-\newcommand{\text}{}
-\newsongkey{txt}{\def\text{}}
-        {\def\text{ Text: #1}}
+\newcommand{\txt}{}
+\newsongkey{txt}{\def\txt{}}
+        {\def\txt{ Text: #1}}
         
 % Album
-\newcommand{\album}{}
-\newsongkey{alb}{\def\album{}}
-        {\def\album{ Album: #1}}
+\newcommand{\alb}{}
+\newsongkey{alb}{\def\alb{}}
+        {\def\alb{ Album: #1}}
+        
+        
+% Lager
+\newcommand{\lager}{}
+\newsongkey{lager}{\def\lager{}}
+        {\def\lager{ #1}}
         
 % Jahr
-\newcommand{\jahrformat}{}
-\newsongkey{jahr}{\def\jahrformat{}}
-        {\def\jahrformat{, #1}}
+\newcommand{\jahr}{}
+\newsongkey{jahr}{\def\jahr{}}
+        {\def\jahr{, #1}}
+        
+% Jahr Text
+\newcommand{\txtjahr}{}
+\newsongkey{txtjahr}{\def\txtjahr{}}
+        {\def\txtjahr{, #1}}
+        
+% Jahr Melodie
+\newcommand{\meljahr}{}
+\newsongkey{meljahr}{\def\meljahr{}}
+        {\def\meljahr{, #1}}
 
 % Bock
-\newcommand{\bock}{}
-\newsongkey{bo}{\def\bock{}}
-        {\def\bock{Liederbock: #1 }}
+\newcommand{\bo}{}
+\newsongkey{bo}{\def\bo{}}
+        {\def\bo{Liederbock: #1 }}
 
 % Pfadiralala I
-\newcommand{\pfadi}{}
-\newsongkey{pfi}{\def\pfadi{}}
-        {\def\pfadi{Pfadiralala I: #1 }}
+\newcommand{\pfi}{}
+\newsongkey{pfi}{\def\pfi{}}
+        {\def\pfi{Pfadiralala I: #1 }}
 
 % Pfadiralala II
-\newcommand{\pfadii}{}
-\newsongkey{pfii}{\def\pfadii{}}
-        {\def\pfadii{Pfadiralala II: #1 }}
+\newcommand{\pfii}{}
+\newsongkey{pfii}{\def\pfii{}}
+        {\def\pfii{Pfadiralala II: #1 }}
 
 % Pfadiralala III
-\newcommand{\pfadiii}{}
-\newsongkey{pfiii}{\def\pfadiii{}}
-        {\def\pfadiii{Pfadiralala III: #1 }}
+\newcommand{\pfiii}{}
+\newsongkey{pfiii}{\def\pfiii{}}
+        {\def\pfiii{Pfadiralala III: #1 }}
 
 % Jurtenburg
-\newcommand{\jurte}{}
-\newsongkey{ju}{\def\jurte{}}
-        {\def\jurte{Jurtenburg: #1 }}
+\newcommand{\ju}{}
+\newsongkey{ju}{\def\ju{}}
+        {\def\ju{Jurtenburg: #1 }}
 
 
 % Nach dem Lied 
 \renewcommand{\extendpostlude}{
-    \normalsize\bf
-        \wuweise
-        \melodie
-        \text
-        \album
-        \jahrformat
-    \par
-    \normalsize\it
-        \bock
-        \pfadi
-        \pfadii
-        \pfadiii
-        \jurte
-    \break
+    {\normalsize\bf
+        \mel
+        \meljahr
+        \txt
+        \txtjahr
+        \wuw
+        \alb
+        \jahr
+    \par}
+    {\small
+        \lager
+    \par}
+    {\normalsize\it
+        \bo
+        \pfi
+        \pfii
+        \pfiii
+        \ju
+    \break}
 }
 
 % Deutsches H statt englisches B (wichtig für transponierte Noten)
