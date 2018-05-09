@@ -1,14 +1,14 @@
 X:1
-M: 4/4 % Meter / Taktart
-L: 1/4 % Standard Noten Länge
-K: Dm % Tonart:
-(3zzA|"Dm" (3AFG (3AFG | "Bb"(3BBB (3BcB|
+M:4/4% Meter / Taktart
+L:1/8% Standard Noten Länge
+K:Em% Tonart:
+(3zzB|"Em" (3BGA (3BGA "C"(3ccc (3cdc|
 w:Seit Ta-gen schon wan-dern wir im Schein der süd-li-chen
-"F"(3AFG (3AFG | "C"G2 (3zzA|"Dm"(3AFG (3AFG | "Bb"(3BFG (3BFG |
+"G"(3BGA (3BGA "D"A2 (3zzB|"Em"(3BGA (3BGA "C"(3cGA (3cGA |
 w:Son-ne durch fel-si-ges Land. Auf We-gen nach Sü-den, durch Wäl-der und Tä-ler am
-"F"(3AAA (3AFG | "C"G4|:"Refrain""Bb"(3zFF (3FzF | "F"(3FCC (3FCC|
+"G"(3BBB (3BGA "D"A4|:"Refrain""C"(3zGG (3GzG "G"(3GDD (3GDD|
 w:Fi-ume Is-ar-co ent-lang.|Rechts und links  des We-ges, auf dem wir nun
-"C"(3zGG (3GFE | "Dm"D2 (3zDF|
+"D"(3zAA (3AGF "Em"E2 (3zEG|
 w:un-serm Zie-le zu zieh'n, sah ich,
-"Bb"(3zBB (3cBB | "F"(3AFG (3AFG|"A"AA (3AGF | "Dm"D4 :|
-w: wa-chsen krie-chend, er-klim-mend und duf-tend uns strah-lend wei-ße Jas-min.
+"C"(3zcc (3dcc "G"(3BGA (3BGA|"B"BB (3BAG "Em"E4 :|
+w:wa-chsen krie-chend, er-klim-mend und duf-tend uns strah-lend wei-ße Jas-min.
