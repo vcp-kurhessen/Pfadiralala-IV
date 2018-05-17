@@ -1,6 +1,7 @@
 PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
+ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
 
 .PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2 Noten
 
@@ -20,7 +21,7 @@ PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 
 # Noten
 ABC_Noten/%.a5.ps: ABC_Noten/%.abc Misc/abcm2ps.fmt
-	abcm2ps -O $@ -c -F Misc/abcm2ps.fmt $< || true # The OR true is a quick fix to ignore errors...
+	 $(ABCM2PS) -O $@ $< || true # The OR true is a quick fix to ignore errors...
 ABC_Noten/%.a5.pdf: ABC_Noten/%.a5.ps
 	ps2pdf $< $@
 Noten/%.pdf: ABC_Noten/%.a5.pdf
