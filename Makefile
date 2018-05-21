@@ -3,10 +3,10 @@ SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
 
-.PHONY: clean PDFs PfadiralalaIV PfadiralalaIV-2 Noten
+.PHONY: clean PDFs PfadiralalaIV PfadiralalaIVplus Noten
 
 # Generic targets
-all: PfadiralalaIV.pdf PfadiralalaIV-2.pdf
+all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf
 clean:
 	@rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
 	
@@ -31,7 +31,7 @@ Noten: $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 # Pfadiralala IV
 PfadiralalaIV: PfadiralalaIV.pdf
 	open $<
-PfadiralalaIV.pdf: PfadiralalaIV.tex PfadiralalaIV.sbx $(TEX_DEPENDENCIES)
+PfadiralalaIV.pdf: PfadiralalaIV.tex PfadiralalaIV.sbx Misc/Impressum.tex Misc/Vorwort.tex $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 PfadiralalaIV-print.pdf: PfadiralalaIV.pdf
@@ -48,20 +48,20 @@ PfadiralalaIV.sxd: PfadiralalaIV.tex
 	$(PDFLATEX) $(basename $@).tex
 
 
-# Pfadiralala IV+
-PfadiralalaIV-2: PfadiralalaIV-2.pdf
+# Pfadiralala IVplus
+PfadiralalaIVplus: PfadiralalaIVplus.pdf
 	open $<
-PfadiralalaIV-2.pdf: PfadiralalaIV-2.tex PfadiralalaIV-2.sbx  Noten $(TEX_DEPENDENCIES)
+PfadiralalaIVplus.pdf: PfadiralalaIVplus.tex PfadiralalaIVplus.sbx Misc/Impressum2.tex Misc/Vorwort2.tex Noten $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
-PfadiralalaIV-2-print.pdf: PfadiralalaIV-2.pdf
+PfadiralalaIVplus-print.pdf: PfadiralalaIVplus.pdf
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-PfadiralalaIV-2-pics.pdf: PfadiralalaIV-2.pdf
+PfadiralalaIVplus-pics.pdf: PfadiralalaIVplus.pdf
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-PfadiralalaIV-2.sbx: PfadiralalaIV-2.sxd PfadiralalaIV-2.tex
+PfadiralalaIVplus.sbx: PfadiralalaIVplus.sxd PfadiralalaIVplus.tex
 	@echo "### $@"
 	$(SONGIDX) $< &> $@.log
-PfadiralalaIV-2.sxd: PfadiralalaIV-2.tex
+PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
