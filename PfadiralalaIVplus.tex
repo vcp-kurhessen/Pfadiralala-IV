@@ -153,8 +153,14 @@
 
 \begin{intersong}
     \newpage
-    \nothumb
+	\nothumb
+	\markboth{}{}
     \songchapter{Tischlieder}
+	\ifthenelse{\boolean{pics}}{
+		\vspace{4cm}
+		\center
+		\includegraphics[width=.9\textwidth]{Bilder/SolangDerBauch.jpg}
+    }{}
     \newpage
 \end{intersong}
 
@@ -182,8 +188,15 @@
 
 \begin{intersong}
     \newpage
+	\nothumb
+	\markboth{}{}
     \songchapter{Christliches}
-    \newpage
+	% \ifthenelse{\boolean{pics}}{
+	% 	\vspace{4cm}
+	% 	\center
+	% 	\includegraphics[width=.9\textwidth]{Bilder/SolangDerBauch.jpg}
+	% }{}
+	\newpage
 \end{intersong}
 
 \setthumb{D}{4}
@@ -218,8 +231,14 @@
 
 \begin{intersong}
     \newpage
-    \songchapter{Popsongs}
     \nothumb
+	\markboth{}{}
+    \songchapter{Popsongs}
+	% \ifthenelse{\boolean{pics}}{
+	% 	\vspace{4cm}
+	% 	\center
+	% 	\includegraphics[width=.9\textwidth]{Bilder/SolangDerBauch.jpg}
+	%     }{}
     \newpage
 \end{intersong}
 
@@ -317,6 +336,8 @@
 
 \begin{intersong}
     \newpage
+	\nothumb
+	\markboth{}{}
     \songchapter{Appendix}
     \newpage
 \end{intersong}
