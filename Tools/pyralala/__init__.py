@@ -25,7 +25,8 @@ class SongReader:
         parsed = []
         ex = re.compile(r"(\w+={[\w \(\),]+})")
         for pair in ex.findall(args):
-            parsed.append(pair.split("="))
+            key, val = pair.split("=")
+            parsed.append((key, val.strip("{}")))
         return parsed
 
     def read_content(self, d):

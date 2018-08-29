@@ -95,9 +95,23 @@ SVG_IGNORE_ATTRIBUTES = ("height", "width")
 class HTMLCompiler(Compiler):
     def _compile_start(self, song):
         self._lines.append("<html>")
-        head_path = os.path.join(os.path.dirname(__file__), "head.html")
+        self._lines.append("<head>")
+        self._lines.append("    <title>{}</title>".format(song.title))
+        self._lines.append("    <meta charset=\"UTF-8\">")
+        self._lines.append("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=0.5, user-scalable=yes\">")
+        self._lines.append("    <meta name=\"keywords\" content=\"Liederbuch, Songbook, Songs, Bündisch, Pfadfinder, Pfadiralala, VCP\">")
+        for k, v in song.info:
+            self._lines.append("    <meta name=\"{}\" content=\"{}\">".format(k, v))
+            # additionally set the song author as document author (to enable search engines better matching)
+            if k in ["wuw", "mel", "txt"]:
+                self._lines.append("    <meta name=\"author\" content=\"{}\">".format(v))
+        self._lines.append("    ")
+        self._lines.append("    <style>")
+        head_path = os.path.join(os.path.dirname(__file__), "pyralala.css")
         with open(head_path, "r") as head_file:
             self._lines.append(head_file.read())
+        self._lines.append("    </style>")
+        self._lines.append("</head>")
         self._lines.append("<body>")
         self._lines.append("<header>")
         self._lines.append("    <h2> {} </h2>".format(song.title))
@@ -114,7 +128,7 @@ class HTMLCompiler(Compiler):
             prev = split
         parts.append(lyric_line[split:])
         parts.append("</p>")
-        return "".join(parts)
+        return "".join(parts).replace("|:", "&#119046;").replace(":|", "&#119047;")
 
     def _compile_music(self, part):
         if isinstance(part, pyralala.data.Song.Chorus):
@@ -133,6 +147,10 @@ class HTMLCompiler(Compiler):
         self._lines.append("</div>")
 
     def _compile_end(self, song):
+        self._lines.append("<footer>")
+        self._lines.append("    <h3>{}</h3>".format("".join(song.metainfo)))
+        self._lines.append("    <h4>{}</h4>".format("".join(song.songbookinfo)))
+        self._lines.append("</footer>")
         self._lines.append("</body>")
         self._lines.append("</html>")
 

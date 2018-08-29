@@ -1,9 +1,31 @@
 """
 Data structures used by pyralala
 """
-import re, itertools
+import re, itertools, collections
 
 __all__ = ["Song", "DummySong"]
+
+METAINFO_FORMAT = collections.OrderedDict([
+    ("mel", " Melodie: {}"),
+    ("meljahr", " Text: {}"),
+    ("txt", " Album: {}"),
+    ("txtjahr", ", {}"),
+    ("wuw", " Worte und Weise: {}"),
+    ("alb", " Album: {}"),
+    ("jahr", ", {}"),
+])
+
+SONGBOOK_FORMAT = collections.OrderedDict([
+    ("bo", "Liederbock: {} "),
+    ("pfi", "Pfadiralala I: {} "),
+    ("pfii", "Pfadiralala II: {} "),
+    ("pfiii", "Pfadiralala III: {} "),
+    ("ju", "Jurtenburg: {} "),
+    ("gruen", "Das Grüne: {} "),
+    ("kssiv", "Kinder-Schoko-Songs IV: {} "),
+    ("siru", "Die singende Runde: {} "),
+    ("biest", "Das Biest: {} "),
+])
 
 class DummySong(object):
     def add_text(self, text):
@@ -170,3 +192,22 @@ class Song(object):
 
     def add_text(self, text):
         self._contents[-1].append(text)
+
+    @staticmethod
+    def _key_formatter(formats, data):
+        out = []
+        for key, form in formats.items():
+            for data_key, data_val in data:
+                if data_val == "":
+                    continue
+                if key == data_key:
+                    out.append(form.format(data_val))
+        return out
+
+    @property
+    def metainfo(self):
+        return self._key_formatter(METAINFO_FORMAT, self.info)
+    
+    @property
+    def songbookinfo(self):
+        return self._key_formatter(SONGBOOK_FORMAT, self.info)

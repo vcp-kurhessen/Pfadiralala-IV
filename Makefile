@@ -19,6 +19,14 @@ PDFs/%.pdf: Lieder/%.tex Noten
 	
 PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 
+# HTML exports 
+html/%.html: Lieder/%.tex Noten
+	@mkdir -p html
+	@Tools/pfadi2ascii.py -o $@ $<
+
+html: $(patsubst Lieder/%.tex,html/%.html,$(wildcard Lieder/*.tex))
+
+
 # Noten
 ABC_Noten/%.a5.ps: ABC_Noten/%.abc Misc/abcm2ps.fmt
 	 $(ABCM2PS) -O $@ $< || true # The OR true is a quick fix to ignore errors...

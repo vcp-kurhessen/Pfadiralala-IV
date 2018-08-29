@@ -1,9 +1,7 @@
-<head>
-    <style>
         body {
             font: normal 16pt Helvetica, Arial, sans-serif;
-            padding: 20px;
-            width: 600pt;
+            padding: 40pt;
+            width: 540pt;
         }
         object.sheet, svg {
             width: 100%;
@@ -13,7 +11,7 @@
             text-align: center;
         }
         h3 {
-            font-size: 16pt;
+            font-size: 14pt;
             font-weight: bold;
         }
         div.verse {
@@ -36,24 +34,22 @@
         }
         div.verse>p, div.chorus>p {
             position: relative;
-            font-size: 16pt;
+            font-size: 14pt;
             height: 20pt;
         }
         div.verse>p>span, div.chorus>p>span {
             position: relative;
             display: inline-block;
-            width: 0;
-            top: -14pt;
+            width: 0pt;
+            top: -12pt;
             font-weight: bold;
         }
         footer {
             margin-top: 30pt;
         }
         footer>h4 {
-            font-size: 16pt;
+            font-size: 14pt;
             font-weight: normal;
             font-style: italic;
             margin-top: -16pt;
         }
-    </style>
-</head>
