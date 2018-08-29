@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse, sys
 from pyralala import SongReader
-from pyralala.export import Compiler, MarkdownCompiler
+from pyralala.export import Compiler, MarkdownCompiler, HTMLCompiler
 
 parser = argparse.ArgumentParser(description='Convert LaTeX songs files.')
 parser.add_argument("file", help="The LaTeX song file to be converted.")
@@ -23,6 +23,6 @@ except (FileNotFoundError, PermissionError) as e:
     print(e)
     sys.exit(1)
 
-compiler = MarkdownCompiler()
+compiler = HTMLCompiler()
 compiler.compile(reader.song)
 compiler.write(out)

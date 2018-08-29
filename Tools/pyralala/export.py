@@ -1,7 +1,7 @@
 """
 Data structures used by pyralala
 """
-import sys, itertools
+import sys, itertools, os.path, tempfile, subprocess
 import pyralala
 
 __all__ = ["Compiler"]
@@ -23,6 +23,8 @@ class Compiler(object):
                 self._compile_graphics(part)
             else:
                 raise Exception("Implementation missing for song part {}.".format(type(part)))
+
+        self._compile_end(song)
 
     def write(self, out=sys.stdout):
         out.write("\n".join(self._lines))
@@ -88,5 +90,67 @@ class MarkdownCompiler(Compiler):
         for pos, val in chords:
             out = out.ljust(pos) + val
         return out
+
+SVG_IGNORE_ATTRIBUTES = ("height", "width")
+class HTMLCompiler(Compiler):
+    def _compile_start(self, song):
+        self._lines.append("<html>")
+        head_path = os.path.join(os.path.dirname(__file__), "head.html")
+        with open(head_path, "r") as head_file:
+            self._lines.append(head_file.read())
+        self._lines.append("<body>")
+        self._lines.append("<header>")
+        self._lines.append("    <h2> {} </h2>".format(song.title))
+        self._lines.append("</header>")
+
+    @staticmethod
+    def _gen_music_line(lyric_line, chord_line):
+        parts = ["<p>"]
+        splits = [pos for pos, _ in chord_line]
+        prev = 0
+        for i, split in enumerate(splits):
+            parts.append(lyric_line[prev:split])
+            parts.append("<span>{}</span>".format(chord_line[i][1]))
+            prev = split
+        parts.append(lyric_line[split:])
+        parts.append("</p>")
+        return "".join(parts)
+
+    def _compile_music(self, part):
+        if isinstance(part, pyralala.data.Song.Chorus):
+            self._lines.append("<div class=\"chorus\">")
+            self._lines.append("    <h3>{}</h3>".format(part.heading))
+        elif isinstance(part, pyralala.data.Song.Verse):
+            self._lines.append("<div class=\"verse\">")
+
+        if len(part.lyrics) > 0:
+            if isinstance(part, pyralala.data.Song.Verse):
+                self._lines.append("    <h3>{}.</h3>".format(part.verse_number))
+            
+            for lyric_line, chord_line in zip(part.lyrics, part.chords):
+                self._lines.append(self._gen_music_line(lyric_line, chord_line))
+
+        self._lines.append("</div>")
+
+    def _compile_end(self, song):
+        self._lines.append("</body>")
+        self._lines.append("</html>")
+
+    def _compile_graphics(self, part):
+        graphics_id = os.path.splitext(os.path.basename(part.path))[0]
+        temp_name = tempfile.mktemp()
+        subprocess.call(["pdf2svg", part.path, temp_name])
+        with open(temp_name, "r") as temp_file:
+            svg = temp_file.readlines()
+
+            self._lines.append(" ".join([attr for attr in svg[1].split(" ") if not attr.startswith(SVG_IGNORE_ATTRIBUTES)]))
+
+            for svg_line in svg[2:]:
+                self._lines.append(svg_line[:-1].replace("glyph", graphics_id))
+
+        os.remove(temp_name)
+
+
+
 
     
