@@ -2,6 +2,7 @@ PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
+GSED = gsed
 
 .PHONY: clean PDFs PfadiralalaIV PfadiralalaIVplus Noten
 
@@ -66,9 +67,11 @@ PfadiralalaIVplus-print.pdf: PfadiralalaIVplus.pdf
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 PfadiralalaIVplus-pics.pdf: PfadiralalaIVplus.pdf
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-PfadiralalaIVplus.sbx: PfadiralalaIVplus.sxd PfadiralalaIVplus.tex
+LEGACY_IDX = ~~~~{\\footnotesize\\textit{&}}
+PfadiralalaIVplus.sbx: PfadiralalaIV.sxd PfadiralalaIVplus.sxd
 	@echo "### $@"
-	$(SONGIDX) $< &> $@.log
+	# concat both sxd files; remove hyperrefs and set format in first file, skip header in 2nd file
+	{ $(GSED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
 PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
