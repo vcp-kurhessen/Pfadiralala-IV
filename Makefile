@@ -70,7 +70,6 @@ PfadiralalaIVplus-pics.pdf: PfadiralalaIVplus.pdf
 LEGACY_IDX = ~~~~{\\footnotesize\\textit{&}}
 PfadiralalaIVplus.sbx: PfadiralalaIV.sxd PfadiralalaIVplus.sxd
 	@echo "### $@"
-	# concat both sxd files; remove hyperrefs and set format in first file, skip header in 2nd file
 	{ $(GSED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
 PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex
 	@echo "### $@"
