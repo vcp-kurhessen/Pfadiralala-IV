@@ -2,13 +2,10 @@ PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
+SED = sed
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-    GSED = sed
-endif
-ifeq ($(UNAME_S),Darwin)
-    GSED = gsed
+ifeq ($(shell uname -s),Darwin)
+    SED = gsed
 endif
 
 
@@ -51,36 +48,51 @@ PfadiralalaIV: PfadiralalaIV.pdf
 PfadiralalaIV.pdf: PfadiralalaIV.tex PfadiralalaIV.sbx Misc/Impressum.tex Misc/Vorwort.tex $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
+	@echo ""
 PfadiralalaIV-print.pdf: PfadiralalaIV.pdf
+	@echo "### $@"
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+	@echo ""
 PfadiralalaIV-pics.pdf: PfadiralalaIV.pdf
+	@echo "### $@"
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+	@echo ""
 PfadiralalaIV.sbx: PfadiralalaIV.sxd
 	@echo "### $@"
 	$(SONGIDX) $< &> $@.log	
+	@echo ""
 PfadiralalaIV.sxd: PfadiralalaIV.tex
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
 	$(PDFLATEX) $(basename $@).tex
+	@echo ""
 
 
 # Pfadiralala IVplus
+LEGACY_IDX = ~~~~{\\footnotesize\\textit{&}}
+
 PfadiralalaIVplus: PfadiralalaIVplus.pdf
 	open $<
 PfadiralalaIVplus.pdf: PfadiralalaIVplus.tex PfadiralalaIVplus.sbx Misc/Impressum2.tex Misc/Vorwort2.tex Noten $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
+	@echo ""
 PfadiralalaIVplus-print.pdf: PfadiralalaIVplus.pdf
+	@echo "### $@"
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+	@echo ""
 PfadiralalaIVplus-pics.pdf: PfadiralalaIVplus.pdf
+	@echo "### $@"
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-LEGACY_IDX = ~~~~{\\footnotesize\\textit{&}}
+	@echo ""
 PfadiralalaIVplus.sbx: PfadiralalaIV.sxd PfadiralalaIVplus.sxd
 	@echo "### $@"
-	{ $(GSED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
+	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
+	@echo ""
 PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
 	$(PDFLATEX) $(basename $@).tex
+	@echo ""
