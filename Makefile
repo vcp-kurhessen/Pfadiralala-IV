@@ -2,7 +2,15 @@ PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
 TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
-GSED = gsed
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    GSED = sed
+endif
+ifeq ($(UNAME_S),Darwin)
+    GSED = gsed
+endif
+
 
 .PHONY: clean PDFs PfadiralalaIV PfadiralalaIVplus Noten
 
