@@ -1,4 +1,7 @@
 FROM ubuntu:bionic
+LABEL maintainer="pfadfinder@jonashoechst.de"
+LABEL description="A docker image for build the Pfadiralala IV VCP Kurhessen (german scouts) songbook."
+LABEL version="1.0"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -14,3 +17,6 @@ RUN apt-get update \
         ghostscript \
         make \
     && apt-get clean
+
+RUN mkdir /PfadiralalaIV
+WORKDIR /PfadiralalaIV
