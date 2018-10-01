@@ -61,7 +61,7 @@ PfadiralalaIV.sbx: PfadiralalaIV.sxd
 	@echo "### $@"
 	$(SONGIDX) $< &> $@.log	
 	@echo ""
-PfadiralalaIV.sxd: PfadiralalaIV.tex
+PfadiralalaIV.sxd: PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex Noten $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
@@ -90,7 +90,7 @@ PfadiralalaIVplus.sbx: PfadiralalaIV.sxd PfadiralalaIVplus.sxd
 	@echo "### $@"
 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
 	@echo ""
-PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex
+PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex Misc/Impressum2.tex Misc/Vorwort2.tex Noten $(TEX_DEPENDENCIES)
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	make $(basename $@).sbx
