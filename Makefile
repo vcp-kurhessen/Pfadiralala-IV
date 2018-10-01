@@ -70,7 +70,7 @@ PfadiralalaIV.sxd: PfadiralalaIV.tex
 
 
 # Pfadiralala IVplus
-LEGACY_IDX = ~~~~{\\footnotesize\\textit{&}}
+LEGACY_IDX = ~~~{\\textit{&}}
 
 PfadiralalaIVplus: PfadiralalaIVplus.pdf
 	open $<
