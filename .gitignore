@@ -12,3 +12,4 @@ PDFs
 !Tutorial.pdf
 .vscode
 html
+*.tmp

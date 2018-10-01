@@ -1,6 +1,6 @@
 PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
 SONGIDX = ./Tools/songidx
-TEX_DEPENDENCIES = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
+GENERIC_DEPS = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
 SED = sed
 
@@ -9,7 +9,7 @@ ifeq ($(shell uname -s),Darwin)
 endif
 
 
-.PHONY: clean PDFs PfadiralalaIV PfadiralalaIVplus Noten
+.PHONY: clean PDFs Noten
 
 # Generic targets
 all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf
@@ -43,56 +43,75 @@ Noten/%.pdf: ABC_Noten/%.a5.pdf
 Noten: $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 
 # Pfadiralala IV
-PfadiralalaIV: PfadiralalaIV.pdf
-	open $<
-PfadiralalaIV.pdf: PfadiralalaIV.tex PfadiralalaIV.sbx Misc/Impressum.tex Misc/Vorwort.tex $(TEX_DEPENDENCIES)
+PfadiralalaIV_DEPS = PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex
+
+PfadiralalaIV.pdf: 			$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	@echo ""
-PfadiralalaIV-print.pdf: PfadiralalaIV.pdf
+PfadiralalaIV-print.pdf: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
 	@echo "### $@"
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 	@echo ""
-PfadiralalaIV-pics.pdf: PfadiralalaIV.pdf
+PfadiralalaIV-pics.pdf: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
 	@echo "### $@"
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 	@echo ""
-PfadiralalaIV.sbx: PfadiralalaIV.sxd
+
+PfadiralalaIV.sbx: 		PfadiralalaIV.sxd
 	@echo "### $@"
-	$(SONGIDX) $< &> $@.log	
+	$(SONGIDX) --output $@ $< &> $@.log	
 	@echo ""
-PfadiralalaIV.sxd: PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex Noten $(TEX_DEPENDENCIES)
+PfadiralalaIV.sbx.tmp: 	PfadiralalaIV.sxd.tmp
 	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex
-	make $(basename $@).sbx
-	$(PDFLATEX) $(basename $@).tex
+	$(SONGIDX) --output $@ $< &> $@.log	
+	@echo ""
+PfadiralalaIV.sxd:		$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx.tmp
+	@echo "### $@"
+	cp PfadiralalaIV.sbx.tmp PfadiralalaIV.sbx
+	$(PDFLATEX) PfadiralalaIV.tex
+	@echo ""
+PfadiralalaIV.sxd.tmp: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS)
+	@echo "### $@"
+	$(PDFLATEX) PfadiralalaIV.tex
+	mv PfadiralalaIV.sxd $@
 	@echo ""
 
 
 # Pfadiralala IVplus
+PfadiralalaIVplus_DEPS = PfadiralalaIVplus.tex Misc/Impressum2.tex Misc/Vorwort2.tex Noten
 LEGACY_IDX = ~~~{\\textit{&}}
 
-PfadiralalaIVplus: PfadiralalaIVplus.pdf
-	open $<
-PfadiralalaIVplus.pdf: PfadiralalaIVplus.tex PfadiralalaIVplus.sbx Misc/Impressum2.tex Misc/Vorwort2.tex Noten $(TEX_DEPENDENCIES)
+PfadiralalaIVplus.pdf: 			$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
 	@echo "### $@"
 	$(PDFLATEX) $(basename $@).tex
 	@echo ""
-PfadiralalaIVplus-print.pdf: PfadiralalaIVplus.pdf
+PfadiralalaIVplus-print.pdf: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
 	@echo "### $@"
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 	@echo ""
-PfadiralalaIVplus-pics.pdf: PfadiralalaIVplus.pdf
+PfadiralalaIVplus-pics.pdf: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
 	@echo "### $@"
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 	@echo ""
-PfadiralalaIVplus.sbx: PfadiralalaIV.sxd PfadiralalaIVplus.sxd
+
+PfadiralalaIVplus.sbx: 		PfadiralalaIV.sxd 		PfadiralalaIVplus.sxd
 	@echo "### $@"
-	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | $(SONGIDX) - --output $@ &> $@.log
+	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | \
+	$(SONGIDX) --output $@ - &> $@.log
 	@echo ""
-PfadiralalaIVplus.sxd: PfadiralalaIVplus.tex Misc/Impressum2.tex Misc/Vorwort2.tex Noten $(TEX_DEPENDENCIES)
+PfadiralalaIVplus.sbx.tmp: 	PfadiralalaIV.sxd.tmp	PfadiralalaIVplus.sxd.tmp 
 	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex
-	make $(basename $@).sbx
-	$(PDFLATEX) $(basename $@).tex
+	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd.tmp ; tail -n+2 PfadiralalaIVplus.sxd.tmp; } | \
+	$(SONGIDX) --output $@ - &> $@.log
+	@echo ""
+PfadiralalaIVplus.sxd: 		$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx.tmp 
+	@echo "### $@"
+	cp PfadiralalaIVplus.sbx.tmp PfadiralalaIVplus.sbx
+	$(PDFLATEX) PfadiralalaIVplus.tex
+	@echo ""
+PfadiralalaIVplus.sxd.tmp: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS)
+	@echo "### $@"
+	$(PDFLATEX) PfadiralalaIVplus.tex
+	mv PfadiralalaIVplus.sxd $@
 	@echo ""
