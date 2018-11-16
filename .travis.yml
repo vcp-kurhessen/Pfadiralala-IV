@@ -27,7 +27,11 @@ deploy:
     secure: jVdu1A1tv3L8vwZCvWKOc9H/PYqIEUZbcMVopKV/P+oCSMo2D4EotG8lnOslfqQ2tEAiaASKW6erKPfPFma0dVuMAPNEVn6IiIWHUw2BOwZLEhTQphEl+4Q7F87ccL6kR2T36CYvlUgXRopMJwwm8FELdYQIqv4ogioDq6nSeFANmjuLFSXSzQNrWTiV8Sp1HNk3G35a4aMPoMRL0QXEDFgscx0DcZNbByWdY62q6EfqhLKQVi26XbHnS0oa/nAOsbk9BlQPHvNdomlZcfJRnoC7EQZGJECKxND4Py8NEOKQCzx/QMhGL6j/XqTZc8SKeHV8vz/LboiTEG4EB/2xA3lQJ7UsSwImuPgVN5QhGh97neHPlGX7xvVmn2LbcidOc5+kB9VG8TFF0C6Qn1KAOFKxjIRaglBXY24hmCuzDK/Q2IAukF3FKV8cMEmo0IXZduR9tcGMGcwt9Yrmsv6bqwOj601seMNqtL3CZyTnBZPY/N0FkSSWrTtYa/EFsw/9pnLXcX9hDELZin9/wwZH/d80z+k4CyvG97wS8OgkNtGg1Yiiv2Wye2bV623P3onRR/4HI8weLSHz6tRiNth44VydS+0ASZYMe5Uklf4NrT6My7LyDuU6aA4TN+qVVH3ySBC5G7ToWntLLQH4YwPuIB2r6neB4/8ZKcYkN33hHDY=
   skip_cleanup: true
   file_glob: true
-  file: *.pdf
+  file:
+    - PfadiralalaIV.pdf
+    - PfadiralalaIV-pics.pdf
+    - PfadiralalaIVplus.pdf
+    - PfadiralalaIVplus-pics.pdf
   on:
     tags: true
     repo: vcp-kurhessen/Pfadiralala-IV
