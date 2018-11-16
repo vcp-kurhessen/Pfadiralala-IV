@@ -8,3 +8,11 @@ script:
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV.pdf
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Noten
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus.pdf
+
+after_failure:
+  - cat PfadiralalaIV.sbx.tmp.log
+  - cat PfadiralalaIV.sbx.log
+  - cat PfadiralalaIV.log
+  - cat PfadiralalaIVplus.sbx.tmp.log
+  - cat PfadiralalaIVplus.sbx.log
+  - cat PfadiralalaIVplus.log
