@@ -15,9 +15,11 @@ after_failure:
   - cat PfadiralalaIV.sbx.tmp.log
   - cat PfadiralalaIV.sbx.log
   - cat PfadiralalaIV.log
+  - cat PfadiralalaIV-pics.log
   - cat PfadiralalaIVplus.sbx.tmp.log
   - cat PfadiralalaIVplus.sbx.log
   - cat PfadiralalaIVplus.log
+  - cat PfadiralalaIVplus-pics.log
   
 deploy:
   provider: releases
