@@ -7,4 +7,9 @@ before_install:
   - docker build -t hoechst/pfadiralala Tools/.
 
 script:
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV.sbx
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV.pdf
+  
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Noten
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus.sbx
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus.pdf
