@@ -60,13 +60,11 @@ PfadiralalaIV-pics.pdf: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
 
 PfadiralalaIV.sbx: 		PfadiralalaIV.sxd
 	@echo "### $@"
-	@echo "Using binary `uname -s`_`uname -m`"
-	$(SONGIDX) --output $@ $< &> $@.log	
+	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
 	@echo ""
 PfadiralalaIV.sbx.tmp: 	PfadiralalaIV.sxd.tmp
 	@echo "### $@"
-	@echo "Using binary `uname -s`_`uname -m`"
-	$(SONGIDX) --output $@ $< &> $@.log	
+	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
 	@echo ""
 PfadiralalaIV.sxd:		$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx.tmp
 	@echo "### $@"
@@ -100,12 +98,12 @@ PfadiralalaIVplus-pics.pdf: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) Pfadirala
 PfadiralalaIVplus.sbx: 		PfadiralalaIV.sxd 		PfadiralalaIVplus.sxd
 	@echo "### $@"
 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | \
-	$(SONGIDX) --output $@ - &> $@.log
+	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
 	@echo ""
 PfadiralalaIVplus.sbx.tmp: 	PfadiralalaIV.sxd.tmp	PfadiralalaIVplus.sxd.tmp 
 	@echo "### $@"
 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd.tmp ; tail -n+2 PfadiralalaIVplus.sxd.tmp; } | \
-	$(SONGIDX) --output $@ - &> $@.log
+	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
 	@echo ""
 PfadiralalaIVplus.sxd: 		$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx.tmp 
 	@echo "### $@"
