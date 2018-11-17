@@ -9,13 +9,14 @@ ifeq ($(shell uname -s),Darwin)
 endif
 
 
-.PHONY: clean PDFs Noten
+.PHONY: clean clean_Noten PDFs Noten
 
 # Generic targets
 all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf
-clean:
-	@rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
-	
+clean: clean_Noten
+	rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
+clean_Noten: 
+	rm -f $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 
 # Target definitions for song PDFs
 PDFs/%.pdf: Lieder/%.tex Noten
