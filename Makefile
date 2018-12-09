@@ -12,7 +12,7 @@ endif
 .PHONY: clean clean_Noten PDFs Noten
 
 # Generic targets
-all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf
+all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf PfadiralalaIV-pics.pdf PfadiralalaIVplus-pics.pdf
 clean: clean_Noten
 	rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
 clean_Noten: 
