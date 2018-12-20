@@ -184,6 +184,11 @@
 \newcommand{\meljahr}{}
 \newsongkey{meljahr}{\def\meljahr{}}
         {\def\meljahr{, #1}}
+        
+% Originaltonart
+\newcommand{\tonart}{}
+\newsongkey{tonart}{\def\tonart{}}
+        {\def\tonart{ Originaltonart: #1}}
 
 % Bock
 \newcommand{\bo}{}
@@ -246,6 +251,7 @@
         \wuw
         \alb
         \jahr
+        \tonart
     \par}
     {\small
         \lager
