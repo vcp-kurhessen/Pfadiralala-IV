@@ -35,13 +35,13 @@ html: $(patsubst Lieder/%.tex,html/%.html,$(wildcard Lieder/*.tex))
 
 
 # Noten
-ABC_Noten/%.a5.ps: ABC_Noten/%.abc Misc/abcm2ps.fmt
+ABC_Noten/%.a5.ps: ABC_Noten/%.mcm Misc/abcm2ps.fmt
 	 $(ABCM2PS) -O $@ $< || true # The OR true is a quick fix to ignore errors...
 ABC_Noten/%.a5.pdf: ABC_Noten/%.a5.ps
 	ps2pdf $< $@
 Noten/%.pdf: ABC_Noten/%.a5.pdf
 	pdfcrop $< $@
-Noten: $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
+Noten: $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 
 # Pfadiralala IV
 PfadiralalaIV_DEPS = PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex
