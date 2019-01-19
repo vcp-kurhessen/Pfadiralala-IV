@@ -140,9 +140,14 @@
 \renewcommand{\idxtitlefont}{\sffamily} 
 \renewcommand{\idxlyricfont}{\sffamily}
 
+\newcommand{\capostr}{}
+\newsongkey{capo}{\def\capostr{}}
+        {\def\capostr{Capo #1}}
+
 % Darstellung der Meta-Informationen
 % Kein Autor unter Titel
-\renewcommand{\extendprelude}{}
+\renewcommand{\extendprelude}
+  {\hfill\normalsize\bf\capostr}
 
 % Worte und Weise
 \newcommand{\wuw}{}
