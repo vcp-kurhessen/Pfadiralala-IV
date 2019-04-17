@@ -13,3 +13,4 @@ PDFs
 .vscode
 html
 *.tmp
+!Einband/export/*.pdf
