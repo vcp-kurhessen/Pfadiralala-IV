@@ -38,10 +38,10 @@ deploy:
     - PfadiralalaIVplus.pdf
     - PfadiralalaIVplus-pics.pdf
     - PfadiralalaIVplus-print.pdf
-	  - Einband/EXPORT/Standbogen.pdf
-	  - Einband/EXPORT/Standbogen_mitHilfslinien.pdf
-	  - Einband/EXPORT/Standbogen_IVplus.pdf
-	  - Einband/EXPORT/Standbogen_IVplus_mitHilfslinien.pdf
+    - Einband/EXPORT/Standbogen.pdf
+    - Einband/EXPORT/Standbogen_mitHilfslinien.pdf
+    - Einband/EXPORT/Standbogen_IVplus.pdf
+    - Einband/EXPORT/Standbogen_IVplus_mitHilfslinien.pdf
   on:
     tags: true
     repo: vcp-kurhessen/Pfadiralala-IV
