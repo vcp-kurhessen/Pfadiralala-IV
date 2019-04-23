@@ -25,7 +25,7 @@ Folgende Software wird zum bauen der Bücher verwendet bzw. benötigt:
 
 ## LaTeX kompilieren / Makefile
 
-Im Makefile sind verschiedene build targets für die Bücher definiert, die verschiedene Versionen des gleichen Buches erzeugen.
+Im Makefile sind verschiedene build targets für die Bücher definiert, die verschiedene Versionen der beiden Bücher erzeugen.
 
 Um die einfachen (bilderlosen) Versionen zu erzeugen, genügt ein simpler Aufruf:
 
@@ -35,9 +35,10 @@ make
 
 - **PfadiralalaIV{plus}.pdf**: Draft version des Liederbuchs
 - **PfadiralalaIV{plus}-pics.pdf**: Version des Liederbuchs mit Bildern
-- **PfadiralalaIV{plus}.pdf**: Version des Liederbuchs mit Bildern und Schnittrand
+- **PfadiralalaIV{plus}-print.pdf**: Version des Liederbuchs mit Bildern und Schnittrand
 - **clean**: Löscht alle temporären Dateien und Liederbuch PDFs
 - **PDFs**: Sucht in den Lieder* Ordnern nach dem Dateinamen und erzeugt ein PDF im Ordner PDFs
+- **Noten**: Erzeugt die pdf-Dateien aus den Quelldateien im Ordner `ABC_Noten`
 
 ### Kompilieren mit Docker
 
@@ -56,15 +57,10 @@ docker build -t hoechst/pfadiralala Tools/.
 ```
 
 ##### Mit Docker kompilieren
-Um das Buch mit Hilfe des Docker images zu bauen, kann entweder docker oder docker-compose verwendet werden:
+Um das Buch mit Hilfe von Docker images zu bauen, kann entweder `docker` oder `docker-compose` verwendet werden:
 
 ```bash
 # Build mit Docker und manuellem mount
-docker run --rm -it -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make
-```
-
-```bash
-# Build mit docker und expliziter Angabe der Quelldaten
 docker run --rm -it -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make
 ```
 
