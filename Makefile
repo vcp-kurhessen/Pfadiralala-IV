@@ -29,7 +29,7 @@ PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
 # HTML exports 
 html/%.html: Lieder/%.tex Noten
 	@mkdir -p html
-	@Tools/pfadi2ascii.py -o $@ $<
+	Tools/pfadi2ascii.py -o $@ $<
 
 html: $(patsubst Lieder/%.tex,html/%.html,$(wildcard Lieder/*.tex))
 
