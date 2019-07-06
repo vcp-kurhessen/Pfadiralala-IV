@@ -140,7 +140,7 @@ class HTMLCompiler(Compiler):
             parts.append(lyric_line[prev:split])
             parts.append("<span>{}</span>".format(chord_line[i][1]))
             prev = split
-        parts.append(lyric_line[split:])
+        parts.append(lyric_line[prev:])
         parts.append("</p>")
         return "".join(parts).replace("|:", "&#119046;").replace(":|", "&#119047;")
 

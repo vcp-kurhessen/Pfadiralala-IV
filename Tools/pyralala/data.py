@@ -179,6 +179,9 @@ class Song(object):
         self._contents[-1].end(self._memory, self._memorize_key)
         self._contents.append(self.Intermediate())
 
+        # reset memorize key after use
+        self._memorize_key = None
+
     def includegraphics(self, path, options):
         self._contents.append(self.Graphics(path, options))
         self._contents.append(self.Intermediate())
