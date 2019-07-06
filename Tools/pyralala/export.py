@@ -1,10 +1,15 @@
 """
 Data structures used by pyralala
 """
-import sys, itertools, os.path, tempfile, subprocess
+import sys
+import itertools
+import os.path
+import tempfile
+import subprocess
 import pyralala
 
 __all__ = ["Compiler"]
+
 
 class Compiler(object):
     def __init__(self):
@@ -22,7 +27,8 @@ class Compiler(object):
             elif isinstance(part, pyralala.data.Song.Graphics):
                 self._compile_graphics(part)
             else:
-                raise Exception("Implementation missing for song part {}.".format(type(part)))
+                raise Exception(
+                    "Implementation missing for song part {}.".format(type(part)))
 
         self._compile_end(song)
 
@@ -59,6 +65,7 @@ class Compiler(object):
             out = out.ljust(pos) + val
         return out
 
+
 class MarkdownCompiler(Compiler):
     def _compile_start(self, song):
         self._lines.append("## {} ".format(song.title))
@@ -91,20 +98,27 @@ class MarkdownCompiler(Compiler):
             out = out.ljust(pos) + val
         return out
 
+
 SVG_IGNORE_ATTRIBUTES = ("height", "width")
+
+
 class HTMLCompiler(Compiler):
     def _compile_start(self, song):
         self._lines.append("<html>")
         self._lines.append("<head>")
         self._lines.append("    <title>{}</title>".format(song.title))
         self._lines.append("    <meta charset=\"UTF-8\">")
-        self._lines.append("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=0.5, user-scalable=yes\">")
-        self._lines.append("    <meta name=\"keywords\" content=\"Liederbuch, Songbook, Songs, Bündisch, Pfadfinder, Pfadiralala, VCP\">")
+        self._lines.append(
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=0.5, user-scalable=yes\">")
+        self._lines.append(
+            "    <meta name=\"keywords\" content=\"Liederbuch, Songbook, Songs, Bündisch, Pfadfinder, Pfadiralala, VCP\">")
         for k, v in song.info:
-            self._lines.append("    <meta name=\"{}\" content=\"{}\">".format(k, v))
+            self._lines.append(
+                "    <meta name=\"{}\" content=\"{}\">".format(k, v))
             # additionally set the song author as document author (to enable search engines better matching)
             if k in ["wuw", "mel", "txt"]:
-                self._lines.append("    <meta name=\"author\" content=\"{}\">".format(v))
+                self._lines.append(
+                    "    <meta name=\"author\" content=\"{}\">".format(v))
         self._lines.append("    ")
         self._lines.append("    <style>")
         head_path = os.path.join(os.path.dirname(__file__), "pyralala.css")
@@ -139,17 +153,20 @@ class HTMLCompiler(Compiler):
 
         if len(part.lyrics) > 0:
             if isinstance(part, pyralala.data.Song.Verse):
-                self._lines.append("    <h3>{}.</h3>".format(part.verse_number))
-            
+                self._lines.append(
+                    "    <h3>{}.</h3>".format(part.verse_number))
+
             for lyric_line, chord_line in zip(part.lyrics, part.chords):
-                self._lines.append(self._gen_music_line(lyric_line, chord_line))
+                self._lines.append(
+                    self._gen_music_line(lyric_line, chord_line))
 
         self._lines.append("</div>")
 
     def _compile_end(self, song):
         self._lines.append("<footer>")
         self._lines.append("    <h3>{}</h3>".format("".join(song.metainfo)))
-        self._lines.append("    <h4>{}</h4>".format("".join(song.songbookinfo)))
+        self._lines.append(
+            "    <h4>{}</h4>".format("".join(song.songbookinfo)))
         self._lines.append("</footer>")
         self._lines.append("</body>")
         self._lines.append("</html>")
@@ -161,14 +178,10 @@ class HTMLCompiler(Compiler):
         with open(temp_name, "r") as temp_file:
             svg = temp_file.readlines()
 
-            self._lines.append(" ".join([attr for attr in svg[1].split(" ") if not attr.startswith(SVG_IGNORE_ATTRIBUTES)]))
+            self._lines.append(" ".join([attr for attr in svg[1].split(
+                " ") if not attr.startswith(SVG_IGNORE_ATTRIBUTES)]))
 
             for svg_line in svg[2:]:
                 self._lines.append(svg_line[:-1].replace("glyph", graphics_id))
 
         os.remove(temp_name)
-
-
-
-
-    

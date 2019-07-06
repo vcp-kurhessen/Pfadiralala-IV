@@ -1,7 +1,9 @@
 """
 Data structures used by pyralala
 """
-import re, itertools, collections
+import re
+import itertools
+import collections
 
 __all__ = ["Song", "DummySong"]
 
@@ -27,9 +29,11 @@ SONGBOOK_FORMAT = collections.OrderedDict([
     ("biest", "Das Biest: {} "),
 ])
 
+
 class DummySong(object):
     def add_text(self, text):
         return
+
 
 class Song(object):
     class MusicPart(object):
@@ -37,13 +41,14 @@ class Song(object):
             self._raw_text = ""
             self._lines = []
             self._replay_key = ""
-        
+
         def append(self, new_text):
             self._raw_text += str(new_text)
 
         def end(self, memory, memorize_key=None):
             # remove comments
-            lines = [line.split("%")[0] for line in self._raw_text.splitlines()]
+            lines = [line.split("%")[0]
+                     for line in self._raw_text.splitlines()]
             # take only nonempty lines
             self._lines = ([l for l in lines if len(l) > 0])
 
@@ -55,7 +60,6 @@ class Song(object):
 
             self._finalize(memory)
 
-
         def _finalize(self, memory):
             # create lyrics and chords array
             self.lyrics = []
@@ -65,7 +69,7 @@ class Song(object):
             try:
                 chords = memory[self._replay_key]
                 chord_gen = (c for c in chords)
-            except KeyError: 
+            except KeyError:
                 return
 
             # get extra chords for this part
@@ -77,13 +81,14 @@ class Song(object):
                 line_chords = []
                 loc = 0
                 for c in l:
-                    if c == '^': line_chords.append((loc, next(chord_gen)))
-                    elif c == "$": line_chords.append((loc, next(extra_gen)))
-                    else: loc += 1
+                    if c == '^':
+                        line_chords.append((loc, next(chord_gen)))
+                    elif c == "$":
+                        line_chords.append((loc, next(extra_gen)))
+                    else:
+                        loc += 1
                 self.lyrics.append(l.replace("^", "").replace("§", ""))
                 self.chords.append(line_chords)
-                
-
 
         def _get_memorize_chords(self, token="^"):
             # find all the chords
@@ -95,7 +100,7 @@ class Song(object):
 
         def __repr__(self, head="[Music Part]"):
             ret = "{}\n".format(head)
-            if len(self.text) == 0: 
+            if len(self.text) == 0:
                 return ret
             return ret + self.chorded_text + "\n\n"
 
@@ -103,8 +108,6 @@ class Song(object):
         def text(self, sep="\n"):
             return sep.join(self.lyrics)
             # return sep.join([l.replace("^", "") for l in self.lines])
-
-
 
     class Chorus(MusicPart):
         def __init__(self, heading):
@@ -159,14 +162,13 @@ class Song(object):
             ascii_song += str(c)
         return ascii_song
 
-
     def beginchorus(self, heading):
         self._contents.append(self.Chorus(heading))
 
     def beginverse(self):
         self._verse_counter += 1
         self._contents.append(self.Verse(self._verse_counter))
-    
+
     def beginanonverse(self):
         self._contents.append(self.AnonVerse())
 
@@ -207,7 +209,7 @@ class Song(object):
     @property
     def metainfo(self):
         return self._key_formatter(METAINFO_FORMAT, self.info)
-    
+
     @property
     def songbookinfo(self):
         return self._key_formatter(SONGBOOK_FORMAT, self.info)
