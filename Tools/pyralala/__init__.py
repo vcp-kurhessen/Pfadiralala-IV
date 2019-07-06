@@ -13,8 +13,11 @@ import re
 # As chors don't end like a math env, but just with a closing brackt, TexSoup fails parsing.
 # As a workaround, the math backets just ignored for our case.
 # The ALL_TOKENS constant needs to be rewritten.
-TexSoup.reader.MATH_TOKENS = {'$', '\(', '\)'}
-TexSoup.reader.ALL_TOKENS = TexSoup.reader.COMMAND_TOKENS | TexSoup.reader.ARG_TOKENS | TexSoup.reader.MATH_TOKENS | TexSoup.reader.COMMENT_TOKENS
+TexSoup.reader.MATH_TOKENS.remove('\[')
+TexSoup.reader.MATH_TOKENS.remove('\]')
+TexSoup.reader.ALL_TOKENS.remove('\[')
+TexSoup.reader.ALL_TOKENS.remove('\]')
+
 
 IGNORE_CMD = {"intersong", "centering", "markboth", "beginscripture", "endscripture",
               "nolyrics", "newline", "newpage", "transpose", "vfill", "newchords", "$"}
@@ -28,7 +31,7 @@ class SongReader:
 
         self.tex = TexSoup.TexSoup(self.lines)
         self.song = DummySong()
-        self._commands = {'\\everychorus': 'Refrain'}
+        self._commands = {'everychorus': 'Refrain'}
 
     @staticmethod
     def parse_opt_args(args):
@@ -55,11 +58,12 @@ class SongReader:
             self.song.endsong()
 
         elif d.name == "renewcommand":
-            arg = list(d.contents)[2]
-            self._commands[d.args[0]] = arg.value[4:].rstrip()
+            name = d.args[0].contents[0].name
+            arg = list(d.contents)[1].args.all[0].contents[1]
+            self._commands[name] = arg
 
         elif d.name == "beginchorus":
-            self.song.beginchorus(self._commands['\\everychorus'])
+            self.song.beginchorus(self._commands['everychorus'])
         elif d.name == "printchorus":
             self.song.beginchorus("Refrain (wdh.)")
             self.song.endmusicpart()
