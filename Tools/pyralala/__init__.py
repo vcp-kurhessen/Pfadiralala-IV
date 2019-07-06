@@ -8,6 +8,13 @@ Pyralala
 from pyralala.data import *
 import TexSoup, re
 
+# TexSoup parses the chords backets as math environment, as '\[' begins this.
+# As chors don't end like a math env, but just with a closing brackt, TexSoup fails parsing.
+# As a workaround, the math backets just ignored for our case. 
+# The ALL_TOKENS constant needs to be rewritten.
+TexSoup.reader.MATH_TOKENS = {'$', '\(', '\)'}
+TexSoup.reader.ALL_TOKENS = TexSoup.reader.COMMAND_TOKENS | TexSoup.reader.ARG_TOKENS | TexSoup.reader.MATH_TOKENS | TexSoup.reader.COMMENT_TOKENS
+
 IGNORE_CMD = {"intersong", "centering", "markboth", "beginscripture", "endscripture", "nolyrics", "newline", "newpage", "transpose", "vfill", "newchords", "$"}
 
 class SongReader:
