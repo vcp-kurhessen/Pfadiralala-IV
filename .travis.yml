@@ -12,6 +12,7 @@ script:
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus.pdf
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus-pics.pdf
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus-print.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Songbook.pdf
   
 after_failure:
   - cat PfadiralalaIV.sbx.tmp.log
@@ -38,6 +39,7 @@ deploy:
     - PfadiralalaIVplus.pdf
     - PfadiralalaIVplus-pics.pdf
     - PfadiralalaIVplus-print.pdf
+    - Songbook.pdf
     - Einband/EXPORT/Standbogen.pdf
     - Einband/EXPORT/Standbogen_mitHilfslinien.pdf
     - Einband/EXPORT/Standbogen_IVplus.pdf

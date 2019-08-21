@@ -43,6 +43,33 @@ Noten/%.pdf: ABC_Noten/%.a5.pdf
 	pdfcrop $< $@
 Noten: $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 
+# Generic Songbook
+Songbook.tex:
+	@echo "### $@"
+	bash Songbook.tex.sh > Songbook.tex
+Songbook.pdf:				$(GENERIC_DEPS) Songbook.tex Songbook.sbx
+	@echo "### $@"
+	$(PDFLATEX) Songbook.tex
+	@echo ""
+Songbook.sbx: 				Songbook.sxd
+	@echo "### $@"
+	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
+	@echo ""
+Songbook.sbx.tmp: 			Songbook.sxd.tmp
+	@echo "### $@"
+	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
+	@echo ""
+Songbook.sxd:				$(GENERIC_DEPS) Songbook.sbx.tmp
+	@echo "### $@"
+	cp Songbook.sbx.tmp Songbook.sbx
+	$(PDFLATEX) Songbook.tex
+	@echo ""
+Songbook.sxd.tmp: 			$(GENERIC_DEPS)
+	@echo "### $@"
+	$(PDFLATEX) Songbook.tex
+	mv Songbook.sxd $@
+	@echo ""
+
 # Pfadiralala IV
 PfadiralalaIV_DEPS = PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex
 
