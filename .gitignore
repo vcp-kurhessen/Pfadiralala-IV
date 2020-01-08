@@ -14,4 +14,4 @@ PDFs
 html
 *.tmp
 !Einband/export/*.pdf
-Songbook.tex
+Ausgaben/CompleteEdition.tex

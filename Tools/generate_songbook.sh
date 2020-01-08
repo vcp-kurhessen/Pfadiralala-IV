@@ -4,7 +4,7 @@
 cat <<EOF
 \documentclass{book}
 
-\providecommand{\bookname}{Songbook}
+\providecommand{\bookname}{Pfadiralala IV: Complete Edition}
 
 \input{Misc/basic}
 
@@ -13,7 +13,7 @@ cat <<EOF
 \afterpreludeskip=2pt
 \beforepostludeskip=2pt
 
-\newindex{Seitenzahlen}{Songbook}
+\newindex{Seitenzahlen}{Ausgaben/CompleteEdition}
 \indexsongsas{Seitenzahlen}{\thepage}
 
 \begin{document}

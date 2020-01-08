@@ -5,26 +5,26 @@ before_install:
   - docker build -t hoechst/pfadiralala Tools/.
   
 script:
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV.pdf
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV-pics.pdf
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIV-print.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIV.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIV-pics.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIV-print.pdf
   - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Noten
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus.pdf
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus-pics.pdf
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make PfadiralalaIVplus-print.pdf
-  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Songbook.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIVplus.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIVplus-pics.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/PfadiralalaIVplus-print.pdf
+  - docker run -it --rm -v "$PWD:/PfadiralalaIV" hoechst/pfadiralala make Ausgaben/CompleteEdition.pdf
   
 after_failure:
-  - cat PfadiralalaIV.sbx.tmp.log
-  - cat PfadiralalaIV.sbx.log
-  - cat PfadiralalaIV.log
-  - cat PfadiralalaIV-pics.log
-  - cat PfadiralalaIV-print.log
-  - cat PfadiralalaIVplus.sbx.tmp.log
-  - cat PfadiralalaIVplus.sbx.log
-  - cat PfadiralalaIVplus.log
-  - cat PfadiralalaIVplus-pics.log
-  - cat PfadiralalaIVplus-print.log
+  - cat Ausgaben/PfadiralalaIV.sbx.tmp.log
+  - cat Ausgaben/PfadiralalaIV.sbx.log
+  - cat Ausgaben/PfadiralalaIV.log
+  - cat Ausgaben/PfadiralalaIV-pics.log
+  - cat Ausgaben/PfadiralalaIV-print.log
+  - cat Ausgaben/PfadiralalaIVplus.sbx.tmp.log
+  - cat Ausgaben/PfadiralalaIVplus.sbx.log
+  - cat Ausgaben/PfadiralalaIVplus.log
+  - cat Ausgaben/PfadiralalaIVplus-pics.log
+  - cat Ausgaben/PfadiralalaIVplus-print.log
   
 deploy:
   provider: releases
@@ -33,13 +33,13 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - PfadiralalaIV.pdf
-    - PfadiralalaIV-pics.pdf
-    - PfadiralalaIV-print.pdf
-    - PfadiralalaIVplus.pdf
-    - PfadiralalaIVplus-pics.pdf
-    - PfadiralalaIVplus-print.pdf
-    - Songbook.pdf
+    - Ausgaben/PfadiralalaIV.pdf
+    - Ausgaben/PfadiralalaIV-pics.pdf
+    - Ausgaben/PfadiralalaIV-print.pdf
+    - Ausgaben/PfadiralalaIVplus.pdf
+    - Ausgaben/PfadiralalaIVplus-pics.pdf
+    - Ausgaben/PfadiralalaIVplus-print.pdf
+    - Ausgaben/CompleteEdition.pdf
     - Einband/EXPORT/Standbogen.pdf
     - Einband/EXPORT/Standbogen_mitHilfslinien.pdf
     - Einband/EXPORT/Standbogen_IVplus.pdf

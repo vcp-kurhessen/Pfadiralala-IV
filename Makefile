@@ -8,23 +8,24 @@ ifeq ($(shell uname -s),Darwin)
     SED = gsed
 endif
 
-
 .PHONY: clean clean_Noten PDFs Noten
 
-# Generic targets
-all: PfadiralalaIV.pdf PfadiralalaIVplus.pdf PfadiralalaIV-pics.pdf PfadiralalaIVplus-pics.pdf
+# make default targets
+all: $(patsubst Ausgaben/%.tex,Ausgaben/%.pdf,$(wildcard Ausgaben/*.tex)) $(patsubst Ausgaben/%.tex,Ausgaben/%-pics.pdf,$(wildcard Ausgaben/*.tex))
 clean: clean_Noten
-	rm -f *.lb .*.lb *.aux *.log *.sxc *.sxd *.sbx *.synctex.gz *.out *.fls Pfadiralala*.pdf
+	rm -f Ausgaben/*.lb Ausgaben/.*.lb Ausgaben/*.aux Ausgaben/*.log Ausgaben/*.sxc Ausgaben/*.sxd Ausgaben/*.sbx Ausgaben/*.synctex.gz Ausgaben/*.out Ausgaben/*.fls Ausgaben/*.pdf Ausgaben/*.tmp Ausgaben/CompleteEdition.tex
 clean_Noten: 
 	rm -f $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
 
-# Target definitions for song PDFs
+
+# targets for song PDFs
 PDFs/%.pdf: Lieder/%.tex Noten
 	@mkdir -p PDFs
 	SONG=$< pdflatex --enable-write18 -shell-escape -jobname=$(basename $@) Misc/Song.tex
 	rm -f $(basename $@).log $(basename $@).aux $(basename $@).out
 	
 PDFs: $(patsubst Lieder/%.tex,PDFs/%.pdf,$(wildcard Lieder/*.tex))
+
 
 # HTML exports 
 html/%.html: Lieder/%.tex Noten
@@ -43,103 +44,41 @@ Noten/%.pdf: ABC_Noten/%.a5.pdf
 	pdfcrop $< $@
 Noten: $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 
-# Generic Songbook
-Songbook.tex:
-	@echo "### $@"
-	bash Songbook.tex.sh > Songbook.tex
-Songbook.pdf:				$(GENERIC_DEPS) Songbook.tex Songbook.sbx
-	@echo "### $@"
-	$(PDFLATEX) Songbook.tex
-	@echo ""
-Songbook.sbx: 				Songbook.sxd
-	@echo "### $@"
-	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
-	@echo ""
-Songbook.sbx.tmp: 			Songbook.sxd.tmp
-	@echo "### $@"
-	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
-	@echo ""
-Songbook.sxd:				$(GENERIC_DEPS) Songbook.sbx.tmp
-	@echo "### $@"
-	cp Songbook.sbx.tmp Songbook.sbx
-	$(PDFLATEX) Songbook.tex
-	@echo ""
-Songbook.sxd.tmp: 			$(GENERIC_DEPS)
-	@echo "### $@"
-	$(PDFLATEX) Songbook.tex
-	mv Songbook.sxd $@
-	@echo ""
+	
+# Generic targets for all books
+AUSGABE_DEPS = Ausgaben/%.tex $(wildcard Ausgaben/%/*.tex)
 
-# Pfadiralala IV
-PfadiralalaIV_DEPS = PfadiralalaIV.tex Misc/Impressum.tex Misc/Vorwort.tex
-
-PfadiralalaIV.pdf: 			$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
-	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex
-	@echo ""
-PfadiralalaIV-print.pdf: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
-	@echo "### $@"
+Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS)
+	$(PDFLATEX)  -jobname=$(basename $@) $(basename $@).tex
+Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-	@echo ""
-PfadiralalaIV-pics.pdf: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx
-	@echo "### $@"
+Ausgaben/%-pics.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-	@echo ""
 
-PfadiralalaIV.sbx: 		PfadiralalaIV.sxd
-	@echo "### $@"
+# create a temporary sxd
+Ausgaben/%.sxd.tmp: 	$(AUSGABE_DEPS) $(GENERIC_DEPS)
+	$(PDFLATEX) -jobname=$(basename $(basename $@)) $(basename $(basename $@)).tex
+	mv $(basename $@) $@
+# compile temporary sxd to temporary sbx
+Ausgaben/%.sbx.tmp: 	Ausgaben/%.sxd.tmp
 	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
-	@echo ""
-PfadiralalaIV.sbx.tmp: 	PfadiralalaIV.sxd.tmp
-	@echo "### $@"
+# use temporary sbx file to create final sxd
+Ausgaben/%.sxd:			Ausgaben/%.sbx.tmp $(AUSGABE_DEPS) $(GENERIC_DEPS)
+	cp $(basename $@).sbx.tmp $(basename $@).sbx
+	$(PDFLATEX) -jobname=$(basename $@) $(basename $@).tex
+# compile final sxd
+Ausgaben/%.sbx: 		Ausgaben/%.sxd
 	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
-	@echo ""
-PfadiralalaIV.sxd:		$(PfadiralalaIV_DEPS) $(GENERIC_DEPS) PfadiralalaIV.sbx.tmp
-	@echo "### $@"
-	cp PfadiralalaIV.sbx.tmp PfadiralalaIV.sbx
-	$(PDFLATEX) PfadiralalaIV.tex
-	@echo ""
-PfadiralalaIV.sxd.tmp: 	$(PfadiralalaIV_DEPS) $(GENERIC_DEPS)
-	@echo "### $@"
-	$(PDFLATEX) PfadiralalaIV.tex
-	mv PfadiralalaIV.sxd $@
-	@echo ""
 
-
-# Pfadiralala IVplus
-PfadiralalaIVplus_DEPS = PfadiralalaIVplus.tex Misc/Impressum2.tex Misc/Vorwort2.tex Noten
+# Special case: Pfadiralala IVplus with combined Index
 LEGACY_IDX = ~~~{\\textit{&}}
-
-PfadiralalaIVplus.pdf: 			$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
-	@echo "### $@"
-	$(PDFLATEX) $(basename $@).tex
-	@echo ""
-PfadiralalaIVplus-print.pdf: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
-	@echo "### $@"
-	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-	@echo ""
-PfadiralalaIVplus-pics.pdf: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx
-	@echo "### $@"
-	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-	@echo ""
-
-PfadiralalaIVplus.sbx: 		PfadiralalaIV.sxd 		PfadiralalaIVplus.sxd
-	@echo "### $@"
-	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd ; tail -n+2 PfadiralalaIVplus.sxd; } | \
+Ausgaben/PfadiralalaIVplus.sbx: 		Ausgaben/PfadiralalaIV.sxd Ausgaben/PfadiralalaIVplus.sxd
+	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd; } | \
 	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
-	@echo ""
-PfadiralalaIVplus.sbx.tmp: 	PfadiralalaIV.sxd.tmp	PfadiralalaIVplus.sxd.tmp 
-	@echo "### $@"
-	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' PfadiralalaIV.sxd.tmp ; tail -n+2 PfadiralalaIVplus.sxd.tmp; } | \
+Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/PfadiralalaIVplus.sxd.tmp
+	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd.tmp ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd.tmp; } | \
 	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
-	@echo ""
-PfadiralalaIVplus.sxd: 		$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS) PfadiralalaIVplus.sbx.tmp 
-	@echo "### $@"
-	cp PfadiralalaIVplus.sbx.tmp PfadiralalaIVplus.sbx
-	$(PDFLATEX) PfadiralalaIVplus.tex
-	@echo ""
-PfadiralalaIVplus.sxd.tmp: 	$(PfadiralalaIVplus_DEPS) $(GENERIC_DEPS)
-	@echo "### $@"
-	$(PDFLATEX) PfadiralalaIVplus.tex
-	mv PfadiralalaIVplus.sxd $@
-	@echo ""
+
+# Special case: Generated Songbook with all Songs
+Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
+	bash ./Tools/generate_songbook.sh > $@
