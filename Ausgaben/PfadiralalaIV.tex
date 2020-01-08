@@ -3,10 +3,19 @@
 \providecommand{\bookname}{Pfadiralala IV}
 
 \input{Misc/basic}
+
+% different spacing
+\versesep=10pt plus 2pt minus 4pt
+\afterpreludeskip=2pt
+\beforepostludeskip=2pt
+
 \newindex{Seitenzahlen}{Ausgaben/PfadiralalaIV}
 \indexsongsas{Seitenzahlen}{\thepage}
 
 \begin{document}
+
+
+\begin{songs}{Seitenzahlen}
 
 \input{Ausgaben/PfadiralalaIV/Impressum}
 \newpage
@@ -14,35 +23,31 @@
 \input{Ausgaben/PfadiralalaIV/Vorwort}
 \newpage
 
-\markboth{Inhaltsverzeichnis}{Inhaltsverzeichnis}
 \showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
-\markboth{}{}
 
-\begin{songs}{Seitenzahlen}
+\nothumb
 
-\thiswatermark{}
-\songchapter{Traditionelles}
-\ifthenelse{\boolean{pics}}{
-    \vspace{40pt}
-    \centering
-    \includegraphics[width=0.7\textwidth]{Bilder/HeikoSchmelz_Halstuch.png}
-}{}
-\newpage
+% \begin{intersong} % don't use intersong here - saves one page for consistency with 1st edition
+    \songchapter{Traditionelles}
+    \ifthenelse{\boolean{pics}}{
+        \vspace{40pt}
+        \center
+        \includegraphics[width=0.7\textwidth]{Bilder/HeikoSchmelz_Halstuch.png}
+    }{}
+    \newpage
+% \end{intersong}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_A}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_A}}}
 
+\setthumb{A}{1}
 \input{Lieder/Abendward}
 \input{Lieder/AbendstretenElche}
 \input{Lieder/AllzeitBereit}
-\input{Lieder/AndrediedasLandsosehrnichtliebten} % 005 <-> 004, um platz zu sparen!
+\input{Lieder/AndrediedasLandsosehrnichtliebten}
 \input{Lieder/AmUral}
 \input{Lieder/AndensechsvergangnenTagen}
 \input{Lieder/AufvielenStrassen}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_B}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_B}}}
-
+\setthumb{B}{2}
 \input{Lieder/Bajuschkibaju} 
 \input{Lieder/BannerZelte}
 \input{Lieder/Bellaciao}
@@ -51,27 +56,23 @@
 \input{Lieder/Buergerlied}
 \input{Lieder/BurschenBurschen}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_C}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_C}}}
-
+\setthumb{C}{3}
 \input{Lieder/Circles}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_D}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_D}}}
-
+\setthumb{D}{4}
 \input{Lieder/DasGegenlied}
 \input{Lieder/DerKarmeliter}
 \input{Lieder/DerkleineTroll}
 \input{Lieder/DerMondistaufgegangen}
 \input{Lieder/DerPfahl}
 \input{Lieder/DerPietamGalgenhaengt}
-\input{Lieder/DerTodundderMediziner} %BILD, Alter!
+\input{Lieder/DerTodundderMediziner}
 \input{Lieder/DieBrombeeren}
 \input{Lieder/DiefreieRepublik}
 \input{Lieder/DieGedankensindfrei}
 \input{Lieder/DieInternationale}
 \input{Lieder/DieLappenhoch}
-\input{Lieder/DieRegenfrau} % 025, 026 getauscht -> platz
+\input{Lieder/DieRegenfrau}
 \input{Lieder/DieMoorsoldaten}
 \input{Lieder/DieschlesischenWeber}
 \input{Lieder/Donnadonna}
@@ -80,141 +81,108 @@
 \input{Lieder/DumachstKleinholz}
 \input{Lieder/Edelweisspiraten}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_E}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_E}}}
 
+\setthumb{E}{5}
 \input{Lieder/EinKrampenschlagvorTag}
 \input{Lieder/EinstolzesSchiff}
 \input{Lieder/Einheitsfrontlied}
 \input{Lieder/EndloslangziehtsichdieStrasse}
-\input{Lieder/EsistanderZeit} % 035, 036 getauscht -> Platz
+\input{Lieder/EsistanderZeit}
 \input{Lieder/EsfuehrtueberdenMain}
 \input{Lieder/EsliegendreiglaenzendeKugeln}
 \input{Lieder/EssollsichderMensch}
-\input{Lieder/EswaraneinemSommertag} % 040a, 041 getauscht -> Platz
+\input{Lieder/EswaraneinemSommertag}
 \input{Lieder/EswarineinerRegennacht}
 \input{Lieder/EswareinKoeniginThule}
 \input{Lieder/EswollteinBauerfruehaufstehn}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_F}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_F}}}
 
+\setthumb{F}{6}
 \input{Lieder/Fahren}
 \input{Lieder/FlanderninNot}
 \input{Lieder/Foggydew}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_G}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_G}}}
 
-
+\setthumb{G}{7}
 \input{Lieder/Geburtstagslied}
 \input{Lieder/Gospodar}
 \input{Lieder/Gregor}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_H}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_H}}}
 
+\setthumb{H}{8}
 \input{Lieder/HesterJonas}
 \input{Lieder/Heutehiermorgendort}
 \input{Lieder/HierwaechstkeinAhorn}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_I}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_I}}}
-
-\input{Lieder/ImSilberbirkenland} %Noten, Jakob macht sie noch
-\input{Lieder/InJunkersKneipe} % 053, 054 getauscht -> Platz
+\setthumb{I}{9}
+\input{Lieder/ImSilberbirkenland}
+\input{Lieder/InJunkersKneipe}
 \input{Lieder/IndasDorf}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_J}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_J}}}
-
+\setthumb{J}{10}
 \input{Lieder/Jalava}
 \input{Lieder/JenseitsdesTales}
 \input{Lieder/Jerchenkow}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_K}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_K}}}
-
+\setthumb{K}{11}
 \input{Lieder/Kaperslied}
 \input{Lieder/Kaspar} 
 \input{Lieder/KommrausausdeinerEcke} 
 
-
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_L}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_L}}}
-
-
+\setthumb{L}{12}
 \input{Lieder/Lagerboogie}
 \input{Lieder/LangwardieReise}
 \input{Lieder/LandeslagerLampenfieber}
-\input{Lieder/Leinenlos} %Ohne Noten (Peter)
+\input{Lieder/Leinenlos}
 \input{Lieder/LeisewehtderWind}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_M}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_M}}}
-
+\setthumb{M}{13}
 \input{Lieder/MarktfrauenKinderundTroubadoure}
 \input{Lieder/Michelwarumweinestdu}
 \input{Lieder/Miruschka}
 \input{Lieder/MollyMalone}
 \input{Lieder/NachtsaufdemDorfplatz}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_N}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_N}}}
-
+\setthumb{N}{14}
 \input{Lieder/NachtsstehtHungerstarr}
-\input{Lieder/NeartoBanbridgeTown} %Ohne Noten (Mikesch)
+\input{Lieder/NeartoBanbridgeTown}
 \input{Lieder/NeartoBanbridgeTown_deutsch} 
 \input{Lieder/NehmtAbschiedBrueder}
-\input{Lieder/Nordwaerts} % 071a, 072 getauscht -> Platz
+\input{Lieder/Nordwaerts}
 \input{Lieder/Notabene}
 \input{Lieder/Nunlustiglustig}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_O}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_O}}}
+\setthumb{O}{15}
+\input{Lieder/Onmyhonour}
 
-\input{Lieder/Onmyhonour}   %Bild
-
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_P}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_P}}}
-
-\input{Lieder/Popmywhip} % 075, 076 getauscht -> Platz
+\setthumb{P}{16}
+\input{Lieder/Popmywhip}
 \input{Lieder/PapstundSultan} 
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_R}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_R}}}
-
-\input{Lieder/RoterMond} % 077, 078 getauscht -> Platz
+\setthumb{R}{18}
+\input{Lieder/RoterMond}
 \input{Lieder/Raubritter}
 \input{Lieder/RoterWeinimBecher}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_S}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_S}}}
-
+\setthumb{S}{19}
 \input{Lieder/Schilf}
 \input{Lieder/Schonsolang}
 \input{Lieder/SonnenscheinundwildeFeste}
 \input{Lieder/StrassenaufundStrassenab}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_T}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_T}}}
-
-\input{Lieder/TheWildRover} % 083, 083a, 084 -> Platz
+\setthumb{T}{20}
+\input{Lieder/TheWildRover}
 \input{Lieder/Tandaradei}
 \input{Lieder/TrinkliedvomAbgang}
 \input{Lieder/Triodimali}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_U}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_U}}}
-
+\setthumb{U}{21}
 \input{Lieder/UebermeinerHeimatFruehling}
 \input{Lieder/UndwirkauernwiederumdieheisseGlut}
-\input{Lieder/UnterdenToren} % 089, 090 getauscht -> Platz   %Bild
+\input{Lieder/UnterdenToren}
 \input{Lieder/UngezaehlteMale} 
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_W}}}
-\rightwatermark{\put(351,-583){\includegraphics{Daumenregister/DaumenregisterAL_W}}}
-
+\setthumb{W}{23}
 \input{Lieder/WasgehneuchmeineLumpenan}
 \input{Lieder/WashelfenmirtausendDukaten}
 \input{Lieder/Wasliessenjene}
@@ -230,146 +198,111 @@
 \input{Lieder/WirsinddesGeyers}
 \input{Lieder/WosnurFelsengibt}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_Y}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_Y}}}
-
+\setthumb{Y}{25}
 \input{Lieder/YeJacobites}
 
-\leftwatermark{\put(-48,-586){\includegraphics{Daumenregister/DaumenregisterA_Z}}}
-\rightwatermark{\put(351,-585){\includegraphics{Daumenregister/DaumenregisterAL_Z}}}
-
+\setthumb{Z}{26}
 \input{Lieder/ZogeneinstfuenfwildeSchwaene}
 
 
 \begin{intersong}
-    \thiswatermark{}
+    \nothumb
     \newpage
     \markboth{}{}
     \songchapter{Christliches}
     \ifthenelse{\boolean{pics}}{
-        \center\includegraphics[width=1\textwidth]{Bilder/IrenaRuppert_Friedenstaube.png}
+        \center
+        \includegraphics[width=\textwidth]{Bilder/IrenaRuppert_Friedenstaube.png}
     }{}
     \newpage
 \end{intersong}
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_A}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_A}}}
- 
-\input{Lieder/AmazingGrace} % Eigentlich Christlich!
-\input{Lieder/Aufstehnnaufeinanderzugehn} %Ohne Noten, Peter, fertig
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_D}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_D}}}
+\setthumb{A}{1}
+\input{Lieder/AmazingGrace}
+\input{Lieder/Aufstehnnaufeinanderzugehn}
 
-\input{Lieder/DerHimmelgehtueberallenauf} %(Der Himmel geht über allen auf, bleibt das?) Noten 
-\input{Lieder/Danke} %Ohne Noten, Peter, fertig
+\setthumb{D}{4}
+\input{Lieder/DerHimmelgehtueberallenauf}
+\input{Lieder/Danke}
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_E}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_E}}}
+\setthumb{E}{5}
+\input{Lieder/EineHandvollErde}
 
-\input{Lieder/EineHandvollErde} %Eine Hand voll Erde ?? -- Noten fehlen
-
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_G}}}
-\rightwatermark{\put(330,-590	){\includegraphics{Daumenregister/DaumenregisterBL_G}}}
-
+\setthumb{G}{7}
 \input{Lieder/GodownMoses}
-\input{Lieder/GottgabunsAtem} %Ohne Noten, Jonas, fertig
+\input{Lieder/GottgabunsAtem}
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_H}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_H}}}
-
+\setthumb{H}{8}
 \input{Lieder/Havanagila}
-\input{Lieder/Hesgotthewholeworld} %Ohne Noten, Jonas, fertig
-\input{Lieder/HerrdeineLiebe} %Ohne Note, Peter,fertig 
+\input{Lieder/Hesgotthewholeworld}
+\input{Lieder/HerrdeineLiebe}
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_I}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_I}}}
+\setthumb{I}{9}
+\input{Lieder/InsWasserfaellteinStein}
 
-\input{Lieder/InsWasserfaellteinStein} %Ohne Noten, Jonas, fertig
+\setthumb{K}{11}
+\input{Lieder/Kumbaya}
 
-\input{Lieder/Kumbaya} %Ohne Noten, Peter
+\setthumb{L}{12}
+\input{Lieder/Laudatosi}
+\input{Lieder/Lebendigundkraeftigundschaerfer}
+\input{Lieder/LiebewaechstwieWeizen}
 
-
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_K}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_K}}}
-
-\input{Lieder/Laudatosi} %Ohne Noten, Jonas, fertig
-
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_L}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_L}}}
-
-\input{Lieder/Lebendigundkraeftigundschaerfer} %Ohne Noten, Jonas, fertig
-\input{Lieder/LiebewaechstwieWeizen} %Ohne Noten, Jonas, fertig
-
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_M}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_M}}}
-
+\setthumb{M}{13}
 \input{Lieder/MasithiAmen}
-\input{Lieder/MoegedieStrasse} %Noten
+\input{Lieder/MoegedieStrasse}
 
-\leftwatermark{\put(-58,-590){\includegraphics{Daumenregister/DaumenregisterB_S}}}
-\rightwatermark{\put(330,-590){\includegraphics{Daumenregister/DaumenregisterBL_S}}}
-
-
+\setthumb{S}{19}
 \input{Lieder/Sandyland}
-\input{Lieder/Singhallelujah} %Ohne Noten, Jonas fertig
-\input{Lieder/Siyahamba} %Ohne Noten, Jonas fertig
+\input{Lieder/Singhallelujah}
+\input{Lieder/Siyahamba}
 
 
 \begin{intersong}
     \newpage
-    \thiswatermark{}
+    \nothumb
     \markboth{}{}
-    
     \songchapter{Modernes}
     \ifthenelse{\boolean{pics}}{
         \vspace{100pt}
-        \center\includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
+        \center
+        \includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
     }{}
     \newpage
 \end{intersong}
-    
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Nr}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Nr}}}
 
 \clearpage
+
+\setthumb{\#}{0}
 \input{Lieder/500Miles}
 \input{Lieder/1-2Lovesong}
 \input{Lieder/500JahreMusik}
 \input{Lieder/74-75}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_A}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_A}}}
-
+\setthumb{A}{1}
 \input{Lieder/AllesausLiebe}
 \input{Lieder/Allesnurgeklaut}
 \input{Lieder/Alwayslookonthebrightsideoflife}
 \input{Lieder/Anderssein}
 \input{Lieder/Angie}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_B}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_B}}}
-
+\setthumb{B}{2}
 \input{Lieder/Behindblueeyes}
-\input{Lieder/Bestofyou} %Löschen ?
-
+\input{Lieder/Bestofyou}
 \input{Lieder/BieneMaja} 
 \input{Lieder/Bitch} 
 \input{Lieder/BlowingintheWind} 
 \input{Lieder/BoulevardofBrokenDreams} 
 \input{Lieder/BreakfastatTiffanys} 
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_C}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_C}}}
-
+\setthumb{C}{3}
 \input{Lieder/Californication} 
 \input{Lieder/Cathedral}
 \input{Lieder/CatsintheCradle}
 \input{Lieder/Countryroads}  
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_D}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_D}}}
-
+\setthumb{D}{4}
 \input{Lieder/DasKornfeldundderWind}
 \input{Lieder/DearMr.President}
 \input{Lieder/DeineSchuld}
@@ -378,29 +311,21 @@
 \input{Lieder/DreiReiter}
 \input{Lieder/DutraegstkeineLiebeindir}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_E}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_E}}}
-
+\setthumb{E}{5}
 \input{Lieder/EineInselmitzweiBergen}
 \input{Lieder/EternalFlame}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_F}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_F}}}
- 
+\setthumb{F}{6} 
 \input{Lieder/Flyaway}
 \input{Lieder/FatherandSon}
 \input{Lieder/FrankreichFrankreich}
 \input{Lieder/Freiheit}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_G}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_G}}}
-
+\setthumb{G}{7}
 \input{Lieder/GoodRiddance}
 \input{Lieder/Grotesksong}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_H}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_H}}}
-
+\setthumb{H}{8}
 \input{Lieder/Hallelujah}
 \input{Lieder/Herewithoutyou}
 \input{Lieder/HierkommtAlex}
@@ -409,79 +334,64 @@
 \input{Lieder/Hurt}
 \input{Lieder/Hymn}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_I}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_I}}}
-
+\setthumb{I}{9}
 \input{Lieder/Idontlikemondays}
 \input{Lieder/Imabeliever}
 \input{Lieder/Imagine}
 \input{Lieder/ImWagenvormir}
 \input{Lieder/Ironic}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_J}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_J}}}
-
+\setthumb{J}{10}
 \input{Lieder/Jessie}
 \input{Lieder/JetztistSommer}
 \input{Lieder/JohnnyB}
 \input{Lieder/JohnnyWalker}
 \input{Lieder/KarlderKaefer}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_K}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_K}}}
-
+\setthumb{K}{11}
 \input{Lieder/KnockinonHeavensDoor}
 \input{Lieder/LadyinBlack}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_L}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_L}}}
-
+\setthumb{L}{12}
 \input{Lieder/LeavingonaJetPlane}
 \input{Lieder/LemonTree}
 \input{Lieder/Letitbe}
 \input{Lieder/LocomotiveBreath}
 \input{Lieder/LordoftheDance}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_M}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_M}}}
-
+\setthumb{M}{13}
 \input{Lieder/Manonthemoon}
 \input{Lieder/Maenner}
 \input{Lieder/MarmorSteinundEisenbricht}
-\input{Lieder/Morninghasbroken} %186 fehlt komplett, sonst getauscht
+\input{Lieder/Morninghasbroken}
 \input{Lieder/MeinkleinergruenerKaktus}
 \input{Lieder/Mrs.Robinson}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_N}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_N}}}
-
+\setthumb{N}{14}
 \input{Lieder/Narcotic}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_O}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_O}}}
-
+\setthumb{O}{15}
 \input{Lieder/Otherside}
 \input{Lieder/NorwegianWood}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_P}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_P}}}
-
+\setthumb{P}{16}
 \input{Lieder/PaintitBlack}
 \input{Lieder/ProbiersmalmitGemuetlichkeit}
 \input{Lieder/PureLust}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_R}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_R}}}
-
+\setthumb{R}{18}
 \input{Lieder/Rebell}
 \input{Lieder/RingofFire}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_S}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_S}}}
-
-\input{Lieder/Sailing} % 198, 199 getauscht -> Platz
+\setthumb{S}{19}
+\input{Lieder/Sailing}
 \input{Lieder/SagmirwodieBlumensind}
 \input{Lieder/SanFrancisco}
+\begin{intersong}
+    \newpage
+    ~ % empty page for consistency
+    \newpage
+\end{intersong}
 \input{Lieder/SaveTonight}
 \input{Lieder/SchreinachLiebe}
 \input{Lieder/SelfEsteem}
@@ -492,24 +402,17 @@
 \input{Lieder/Summerof69}
 \input{Lieder/Supergirl}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_T}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_T}}}
-
+\setthumb{T}{20}
 \input{Lieder/Thelionsleepstonight}
 \input{Lieder/TiefimBusch}
 \input{Lieder/Tribute}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_U}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_U}}}
-
-
-\input{Lieder/UndertheBridge} %214, 215 getauscht -> Platz
+\setthumb{U}{21}
+\input{Lieder/UndertheBridge}
 \input{Lieder/UeberdenWolken}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_W}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_W}}}
-
-\input{Lieder/Warumbinichsofroehlich} % 216, 217 getauscht -> Platz
+\setthumb{W}{23}
+\input{Lieder/Warumbinichsofroehlich}
 \input{Lieder/WannwirdsmalwiederrichtigSommer}
 \input{Lieder/Westerland}
 \input{Lieder/Whatshallwedowiththedrunkensailor}
@@ -517,24 +420,16 @@
 \input{Lieder/WildWorld}
 \input{Lieder/WindOfChange}
 \input{Lieder/Wonderwall}
+
+\setthumb{Y}{25}
 \input{Lieder/Yesterday}
 
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Y}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Y}}}
-
-
+\setthumb{Z}{26}
 \input{Lieder/Zombie}
-
-\leftwatermark{\put(-56,-593){\includegraphics{Daumenregister/DaumenregisterC_Z}}}
-\rightwatermark{\put(345,-593){\includegraphics{Daumenregister/DaumenregisterCL_Z}}}
-
 \input{Lieder/ZuSpaet}
 
-\newpage
-\leftwatermark{\put(-56,-593){}}
-\rightwatermark{\put(345,-593){}}
-
 \beginsong{}
+	\nothumb
     \markboth{Platz für eigene Lieder}{Platz für eigene Lieder}
     \clearpage
     \clearpage
@@ -550,7 +445,7 @@
 
 \begin{intersong}
     \newpage
-    \thiswatermark{}
+    \nothumb
     \markboth{}{}
     \songchapter{Appendix}
 \end{intersong}
