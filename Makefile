@@ -54,6 +54,8 @@ Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 Ausgaben/%-pics.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+Ausgaben/%.html:		Ausgaben/%.pdf
+	pdf2htmlEX --bg-format=svg $(basename $@).pdf $@
 
 # create a temporary sxd
 Ausgaben/%.sxd.tmp: 	$(AUSGABE_DEPS) $(GENERIC_DEPS)

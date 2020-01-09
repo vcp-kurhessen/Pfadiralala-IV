@@ -8,6 +8,7 @@
 *.out
 *.fls
 *.pdf
+*.html
 PDFs
 !Tutorial.pdf
 .vscode
