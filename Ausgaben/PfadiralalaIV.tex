@@ -4,11 +4,6 @@
 
 \input{Misc/basic}
 
-% different spacing
-\versesep=10pt plus 2pt minus 4pt
-\afterpreludeskip=2pt
-\beforepostludeskip=2pt
-
 \newindex{Seitenzahlen}{Ausgaben/PfadiralalaIV}
 \indexsongsas{Seitenzahlen}{\thepage}
 
@@ -51,13 +46,12 @@
 \input{Lieder/AmUral}
 \input{Lieder/AndensechsvergangnenTagen}
 \input{Lieder/AufvielenStrassen}
+\begin{intersong}\newpage\end{intersong}
 \begin{intersong}
-\vspace{30pt}
 \ifthenelse{\boolean{pics}}{
-    \centering\includegraphics[width=1\textwidth]{Bilder/powell.jpg}
-}{
-    \newpage~\newpage
-}
+    \ThisLRCornerWallPaper{1}{Bilder/_BadenPowell.png}
+}{}
+\vspace{\textheight}
 \end{intersong}
 
 \setthumb{B}{2}
@@ -243,7 +237,7 @@
 \begin{intersong}
 \ifthenelse{\boolean{pics}}{
     \vspace{100pt}
-    \centering\includegraphics[width=0.75\textwidth]{Bilder/wein.png}	
+    \centering\includegraphics[width=0.75\textwidth]{Bilder/_WeinMitGlas.png}	
 }{}
 \end{intersong}
 \input{Lieder/Nunlustiglustig}
@@ -252,7 +246,7 @@
 \end{intersong}
 \begin{intersong}
 \ifthenelse{\boolean{pics}}{
-    \ThisLRCornerWallPaper{1}{Bilder/Zelt.png}
+    \ThisLRCornerWallPaper{1}{Bilder/_Zelt.png}
 }{}
 \end{intersong}
 
@@ -425,7 +419,7 @@
     \ifthenelse{\boolean{pics}}{
         \vspace{100pt}
         \center
-        \includegraphics[width=1\textwidth]{Bilder/rockband.jpg}
+        \includegraphics[width=1\textwidth]{Bilder/_Rockband.jpg}
     }{}
     \newpage
 \end{intersong}
