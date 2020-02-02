@@ -56,7 +56,6 @@ jobs:
           prerelease: true
 
       - name: Upload PfadiralalaIV.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -67,7 +66,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload PfadiralalaIV-pics.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -78,7 +76,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload PfadiralalaIV-print.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -89,7 +86,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload PfadiralalaIVplus.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,7 +96,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload PfadiralalaIVplus-pics.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -111,7 +106,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload PfadiralalaIVplus-print.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -122,7 +116,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload Pfadiralala2020.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -133,7 +126,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload Pfadiralala2020-pics.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -144,7 +136,6 @@ jobs:
           asset_content_type: application/pdf
 
       - name: Upload Pfadiralala2020-print.pdf
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
