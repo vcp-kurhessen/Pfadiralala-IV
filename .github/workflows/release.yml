@@ -43,6 +43,9 @@ jobs:
       - run: make Ausgaben/PfadiralalaIVplus.pdf
       - run: make Ausgaben/PfadiralalaIVplus-pics.pdf
       - run: make Ausgaben/PfadiralalaIVplus-print.pdf
+      - run: make Ausgaben/Pfadiralala2020.pdf
+      - run: make Ausgaben/Pfadiralala2020-pics.pdf
+      - run: make Ausgaben/Pfadiralala2020-print.pdf
 
       - name: Create Release
         id: create_release
