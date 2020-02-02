@@ -20,6 +20,13 @@ jobs:
           cd abcm2ps-8.14.1/
           ./configure
           sudo make install
+      - name: "Install songidx"
+        run: |
+          pushd songs-2.18/
+          ./configure
+          make
+          popd
+          cp songs-2.18/src/songidx/songidx Tools/songidx
       - name: "Install LaTeX and dependencies"
         run: |
           sudo apt-get update
