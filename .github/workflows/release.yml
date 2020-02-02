@@ -27,15 +27,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-extra-utils texlive-lang-german xzdec ghostscript make
-      - name: "Install songidx"
-        run: |
-          tar xf Tools/songs-2.18.tar.gz 
-          pushd songs-2.18/
-          ./configure
-          cd src/songidx
-          make
-          popd
-          cp songs-2.18/src/songidx/songidx Tools/songidx
+
       - run: make Ausgaben/PfadiralalaIV.pdf
       - run: make Ausgaben/PfadiralalaIV-pics.pdf
       - run: make Ausgaben/PfadiralalaIV-print.pdf

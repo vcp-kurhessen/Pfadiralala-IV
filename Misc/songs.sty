@@ -2060,15 +2060,11 @@
 }
 \newcommand\SB@repcolon{{%
   \usefont{OT1}{cmss}{m}{n}\selectfont%
-  \ifchorded%
-    \baselineskip.5\SB@dimen%
-    \vbox{\hbox{:}\hbox{:}\kern.5\p@}%
-  \else%
-    \raise.5\p@\hbox{:}%
-  \fi%
+  \raise1.5\p@\hbox{:}%
 }}
 \newcommand\lrep{%
   \SB@dimen\baselineskip%
+  \divide\SB@dimen by 2%
   \advance\SB@dimen-2\p@%
   \vrule\@width1.5\p@\@height\SB@dimen\@depth\p@%
   \kern1.5\p@%
@@ -2077,6 +2073,7 @@
 }
 \newcommand\rrep{%
   \SB@dimen\baselineskip%
+  \divide\SB@dimen by 2%
   \advance\SB@dimen-2\p@%
   \SB@repcolon%
   \vrule\@width.5\p@\@height\SB@dimen\@depth\p@%

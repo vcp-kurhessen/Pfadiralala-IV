@@ -38,6 +38,10 @@
 \usepackage{hyperref}
 \usepackage[chorded, noshading]{Misc/songs}
 
+% Songs Patch: force space before rep  
+\let\songsrep\rep
+\renewcommand\rep[1]{~\songsrep{#1}}
+
 % different spacing
 \versesep=10pt plus 2pt minus 4pt
 \afterpreludeskip=2pt
