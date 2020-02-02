@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: "Install abcm2ps"
         run: |
-          apt-get update
-          apt-get install --no-install-recommends -y make gcc libc6-dev
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y make gcc libc6-dev
           wget https://github.com/leesavide/abcm2ps/archive/v8.14.1.tar.gz -O abcm2ps-8.14.1.tar.gz
           tar -xf abcm2ps-8.14.1.tar.gz
           cd abcm2ps-8.14.1/
