@@ -22,6 +22,7 @@ jobs:
           sudo make install
       - name: "Install songidx"
         run: |
+          tar xf Tools/songs-2.18.tar.gz 
           pushd songs-2.18/
           ./configure
           make
