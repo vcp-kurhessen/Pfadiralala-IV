@@ -1,3 +1,5 @@
+name: "Build Release"
+
 on: [push]
 
 jobs:
@@ -22,6 +24,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-extra-utils texlive-lang-german xzdec ghostscript make
-      - name: "Compile PfadiralalaIV.pdf"
-        run: |
-          make Ausgaben/PfadiralalaIV.pdf
+      - run: make Ausgaben/PfadiralalaIV.pdf
+      - run: make Ausgaben/PfadiralalaIV-pics.pdf
+      - run: make Ausgaben/PfadiralalaIV-print.pdf
+      - run: make Noten
+      - run: make Ausgaben/PfadiralalaIVplus.pdf
+      - run: make Ausgaben/PfadiralalaIVplus-pics.pdf
+      - run: make Ausgaben/PfadiralalaIVplus-print.pdf
+      - run: make Ausgaben/PfadiralalaIV.pdf
