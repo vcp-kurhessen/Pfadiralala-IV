@@ -120,3 +120,36 @@ jobs:
           asset_path: ./Ausgaben/PfadiralalaIVplus-print.pdf
           asset_name: PfadiralalaIVplus-print.pdf
           asset_content_type: application/pdf
+
+      - name: Upload Pfadiralala2020.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/Pfadiralala2020.pdf
+          asset_name: Pfadiralala2020.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload Pfadiralala2020-pics.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/Pfadiralala2020-pics.pdf
+          asset_name: Pfadiralala2020-pics.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload Pfadiralala2020-print.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/Pfadiralala2020-print.pdf
+          asset_name: Pfadiralala2020-print.pdf
+          asset_content_type: application/pdf
