@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-18.04
     name: "Build PDFs for all Books"
     steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v1
+        with:
+          submodules: recursive
       - name: "Install abcm2ps"
         run: |
           sudo apt-get update
