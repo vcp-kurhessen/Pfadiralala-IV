@@ -29,6 +29,7 @@ jobs:
           tar xf Tools/songs-2.18.tar.gz 
           pushd songs-2.18/
           ./configure
+          cd src/songidx
           make
           popd
           cp songs-2.18/src/songidx/songidx Tools/songidx
