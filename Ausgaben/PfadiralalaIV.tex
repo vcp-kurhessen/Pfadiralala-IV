@@ -46,7 +46,7 @@
 \input{Lieder/AmUral}
 \input{Lieder/AndensechsvergangnenTagen}
 \input{Lieder/AufvielenStrassen}
-\begin{intersong}\newpage\end{intersong}
+\begin{intersong}\clearpage\end{intersong}
 \begin{intersong}
 \ifthenelse{\boolean{pics}}{
     \ThisLRCornerWallPaper{1}{Bilder/_BadenPowell.png}
@@ -171,6 +171,7 @@
     \vspace{30pt}
     \centering\includegraphics[width=0.8\textwidth]{Bilder/MikeschTuerck_Musikwaffe.jpg}
 }{}
+\newpage
 \end{intersong}
 \input{Lieder/IndasDorf}
 
@@ -183,7 +184,7 @@
 \input{Lieder/Kaperslied}
 \input{Lieder/Kaspar}
 \begin{intersong}
-    \newpage
+\newpage\null
 \end{intersong}
 \begin{intersong}
 \ifthenelse{\boolean{pics}}{
@@ -229,20 +230,18 @@
 \end{intersong}
 \input{Lieder/Nordwaerts}
 \begin{intersong}
-    \newpage
-    ~
-    \newpage
+    \flushbottom\newpage\flushbottom
 \end{intersong}
 \input{Lieder/Notabene}
 \begin{intersong}
-\ifthenelse{\boolean{pics}}{
-    \vspace{100pt}
-    \centering\includegraphics[width=0.75\textwidth]{Bilder/_WeinMitGlas.png}	
-}{}
+    \newpage
+    \ifthenelse{\boolean{pics}}{
+        \centering\includegraphics[width=0.75\textwidth]{Bilder/_WeinMitGlas.png}	
+    }{}
 \end{intersong}
 \input{Lieder/Nunlustiglustig}
 \begin{intersong}
-\newpage
+    \newpage\null
 \end{intersong}
 \begin{intersong}
 \ifthenelse{\boolean{pics}}{
@@ -358,15 +357,15 @@
 
 
 \begin{intersong}
+    \newpage\null
     \nothumb
-    \newpage
     \markboth{}{}
     \songchapter{Christliches}
     \ifthenelse{\boolean{pics}}{
         \center
         \includegraphics[width=\textwidth]{Bilder/IrenaRuppert_Friedenstaube.jpg}
     }{}
-    \newpage
+    \newpage\null
 \end{intersong}
 
 
@@ -399,6 +398,9 @@
 \setthumb{L}{12}
 \input{Lieder/Laudatosi}
 \input{Lieder/Lebendigundkraeftigundschaerfer}
+\begin{intersong}
+    \newpage
+\end{intersong}
 \input{Lieder/LiebewaechstwieWeizen}
 
 \setthumb{M}{13}
@@ -412,13 +414,11 @@
 
 
 \begin{intersong}
-    \newpage
-    \nothumb
     \markboth{}{}
     \songchapter{Modernes}
+    \vspace{100pt}
+    \center
     \ifthenelse{\boolean{pics}}{
-        \vspace{100pt}
-        \center
         \includegraphics[width=1\textwidth]{Bilder/_Rockband.jpg}
     }{}
     \newpage
