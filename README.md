@@ -1,5 +1,5 @@
 # Pfadiralala-IV
-[![Build Status](https://travis-ci.org/vcp-kurhessen/Pfadiralala-IV.svg?branch=master)](https://travis-ci.org/vcp-kurhessen/Pfadiralala-IV)
+![Build Release](https://github.com/vcp-kurhessen/Pfadiralala-IV/workflows/Build%20Release/badge.svg)
 
 Das ''Pfadiralala IV'' und ''Pfadiralala IVplus'' sind Liederbücher der Region Kurhessen im Verband Christlicher Pfadfinderinnen und Pfadfinder. Es ist ausschließlich zum internen Gebrauch von den Mitgliedern der Region bestimmt und wird nur an diese ausgegeben. Das Liederbuch stellt daher keine Veröffentlichung im Sinne des Pressegesetzes dar. Alle Rechte an den Melodien, Texten und Zeichnungen liegen bei den Autoren. 
 
