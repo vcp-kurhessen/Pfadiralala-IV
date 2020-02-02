@@ -48,7 +48,7 @@ Noten: $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 # Generic targets for all books
 AUSGABE_DEPS = Ausgaben/%.tex $(wildcard Ausgaben/%/*.tex)
 
-Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS)
+Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	$(PDFLATEX)  -jobname=$(basename $@) $(basename $@).tex
 Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
