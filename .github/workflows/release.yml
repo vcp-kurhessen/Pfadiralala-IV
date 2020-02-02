@@ -65,3 +65,58 @@ jobs:
           asset_path: ./Ausgaben/PfadiralalaIV.pdf
           asset_name: PfadiralalaIV.pdf
           asset_content_type: application/pdf
+
+      - name: Upload PfadiralalaIV-pics.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/PfadiralalaIV-pics.pdf
+          asset_name: PfadiralalaIV-pics.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload PfadiralalaIV-print.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/PfadiralalaIV-print.pdf
+          asset_name: PfadiralalaIV-print.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload PfadiralalaIVplus.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/PfadiralalaIVplus.pdf
+          asset_name: PfadiralalaIVplus.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload PfadiralalaIVplus-pics.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/PfadiralalaIVplus-pics.pdf
+          asset_name: PfadiralalaIVplus-pics.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload PfadiralalaIVplus-print.pdf
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Ausgaben/PfadiralalaIVplus-print.pdf
+          asset_name: PfadiralalaIVplus-print.pdf
+          asset_content_type: application/pdf
