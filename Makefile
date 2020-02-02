@@ -1,5 +1,5 @@
 PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
-SONGIDX = ./Tools/songidx
+SONGIDX = texlua ./Tools/songidx.lua
 GENERIC_DEPS = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
 SED = sed
@@ -63,23 +63,23 @@ Ausgaben/%.sxd.tmp: 	$(AUSGABE_DEPS) $(GENERIC_DEPS)
 	mv $(basename $@) $@
 # compile temporary sxd to temporary sbx
 Ausgaben/%.sbx.tmp: 	Ausgaben/%.sxd.tmp
-	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
+	$(SONGIDX) $< $@ 2>&1 | tee $@.log
 # use temporary sbx file to create final sxd
 Ausgaben/%.sxd:			Ausgaben/%.sbx.tmp $(AUSGABE_DEPS) $(GENERIC_DEPS)
 	cp $(basename $@).sbx.tmp $(basename $@).sbx
 	$(PDFLATEX) -jobname=$(basename $@) $(basename $@).tex
 # compile final sxd
 Ausgaben/%.sbx: 		Ausgaben/%.sxd
-	$(SONGIDX) --output $@ $< 2>&1 | tee $@.log	
+	$(SONGIDX) $< $@ 2>&1 | tee $@.log
 
 # Special case: Pfadiralala IVplus with combined Index
 LEGACY_IDX = ~~~{\\textit{&}}
 Ausgaben/PfadiralalaIVplus.sbx: 		Ausgaben/PfadiralalaIV.sxd Ausgaben/PfadiralalaIVplus.sxd
 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd; } | \
-	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
+	$(SONGIDX) - $@ 2>&1 | tee $@.log
 Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/PfadiralalaIVplus.sxd.tmp
 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd.tmp ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd.tmp; } | \
-	$(SONGIDX) --output $@ - 2>&1 | tee $@.log
+	$(SONGIDX) - $@ 2>&1 | tee $@.log
 
 # Special case: Generated Songbook with all Songs
 Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
