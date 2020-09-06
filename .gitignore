@@ -16,3 +16,4 @@ html
 *.tmp
 !Einband/export/*.pdf
 Ausgaben/CompleteEdition.tex
+__latexindent_temp.tex
