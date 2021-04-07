@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 import sys, re
 
-legit_chords = ["A","B","H","C","C#","D","C#","E","F","F#","G","G#"]
+legit_chords = ["A","B","H","C","C#","D","D#","E","F","F#","G","G#"]
 legit_chords += [chord+"m" for chord in legit_chords]
-legit_chords += ["Cadd9","Dsus4","Dsus2"]
+legit_chords += [chord+"7" for chord in legit_chords]
+legit_chords += [chord+"sus2" for chord in legit_chords]
+legit_chords += [chord+"sus4" for chord in legit_chords]
+legit_chords += ["Cadd9"]
 
 def isChordLine(line):
     # criteria: more than half of the words are legit chords
