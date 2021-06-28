@@ -51,9 +51,9 @@ AUSGABE_DEPS = Ausgaben/%.tex $(wildcard Ausgaben/%/*.tex)
 Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	$(PDFLATEX)  -jobname=$(basename $@) $(basename $@).tex
 Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
-	PRINT=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+	PRINT=1 $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 Ausgaben/%-pics.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
-	PICS=true $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+	PICS=1 $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 Ausgaben/%.html:		Ausgaben/%.pdf
 	pdf2htmlEX --bg-format=svg $(basename $@).pdf $@
 

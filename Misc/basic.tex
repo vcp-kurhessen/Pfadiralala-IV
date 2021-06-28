@@ -8,19 +8,15 @@
 
 \getenv[\PRINT]{PRINT}
 \getenv[\PICS]{PICS}
-\def\true{true }
-
-\newboolean{pics}
-\setboolean{pics}{false}
 
 % Keine Bilder einfügen, wenn ein draft erzeugt wird.
-\ifx\PICS\true
-	\setboolean{pics}{true}
+\if1\PICS
+        \usepackage[final]{graphicx}
 \fi
 
 % Schnittmarken hinzufügen, wenn ein Druckdokument erzeugt wird.
-\ifx\PRINT\true
-	\setboolean{pics}{true}
+\if1\PRINT
+        \usepackage[final]{graphicx}
 	\usepackage[cam,a4,center,dvips]{crop}
 \fi
 
@@ -37,8 +33,6 @@
 % Songs Latex Package
 \usepackage{hyperref}
 \usepackage[chorded, noshading]{Misc/songs}
-
-\PassOptionsToPackage{draft}{graphicx}
 
 % Songs Patch: force space before rep  
 \let\songsrep\rep
