@@ -1,3 +1,7 @@
+% Songs Latex Package
+\usepackage{hyperref}
+\usepackage[chorded, noshading]{Misc/songs}
+
 \usepackage{ifthen}
 
 % Enables retrieval of ENV variables (https://tex.stackexchange.com/questions/62010/can-i-access-system-environment-variables-from-latex-for-instance-home/62032#62032)
@@ -12,12 +16,16 @@
 % Keine Bilder einfügen, wenn ein draft erzeugt wird.
 \if1\PICS
         \usepackage[final]{graphicx}
+        \hypersetup{final}
+        \PassOptionsToPackage{final}{bookmark}
 \fi
 
 % Schnittmarken hinzufügen, wenn ein Druckdokument erzeugt wird.
 \if1\PRINT
         \usepackage[final]{graphicx}
 	\usepackage[cam,a4,center,dvips]{crop}
+        \hypersetup{final}
+        \PassOptionsToPackage{final}{bookmark}
 \fi
 
 \usepackage[dvips=false, pdftex=false, vtex=false,
@@ -29,10 +37,6 @@
 	paperwidth=148mm, paperheight=210mm,
 	% paperwidth=154mm, paperheight=216mm, % wir-machen-druck rand
 	twoside]{geometry}
-
-% Songs Latex Package
-\usepackage{hyperref}
-\usepackage[chorded, noshading]{Misc/songs}
 
 % Songs Patch: force space before rep  
 \let\songsrep\rep
@@ -324,3 +328,6 @@
 \usepackage{wrapfig}
 
 \usepackage{tabularx}
+
+\renewcommand{\songtarget}[2]{\pdfbookmark[#1]{\songtitle}{#2}}
+\renewcommand{\songlink}[2]{\hyperlink{#1}{#2}}
