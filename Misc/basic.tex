@@ -23,7 +23,8 @@
 % Schnittmarken hinzufügen, wenn ein Druckdokument erzeugt wird.
 \if1\PRINT
         \usepackage[final]{graphicx}
-	\usepackage[cam,a4,center,dvips]{crop}
+        % \usepackage[cam,a4,center,dvips]{crop}
+	\usepackage[cam,width=15.4cm,height=21.6cm,center,dvips]{crop}
         \hypersetup{final}
         \PassOptionsToPackage{final}{bookmark}
 \fi
