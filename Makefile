@@ -1,4 +1,4 @@
-PDFLATEX = pdflatex --interaction=batchmode --enable-write18 -shell-escape
+PDFLATEX = pdflatex --interaction=nonstopmode --halt-on-error --enable-write18 -shell-escape
 SONGIDX = texlua ./Tools/songidx.lua
 GENERIC_DEPS = Lieder/*.tex Misc/GrifftabelleGitarre.tex Misc/GrifftabelleUkuleleGCEA.tex Misc/GrifftabelleUkuleleADFisH.tex Misc/GrifftabelleUkuleleDGHE.tex Misc/basic.tex Misc/songs.sty 
 ABCM2PS = abcm2ps -c -F Misc/abcm2ps.fmt
