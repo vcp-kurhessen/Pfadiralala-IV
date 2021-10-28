@@ -1,0 +1,24 @@
+\beginsong{\VAR{title}}[
+\BLOCK{for k, v in metadata.items()}
+	\VAR{k}={\VAR{v}},
+\BLOCK{endfor}
+]
+
+\BLOCK{for block in inhalt}
+
+\VAR{block.umgBeg}
+\BLOCK{for zeile in block.text}
+\VAR{zeile}
+\BLOCK{endfor}
+\VAR{block.umgEnd}
+\BLOCK{endfor}
+
+\endsong
+
+\BLOCK{if info}
+\VAR{info.umgBeg}
+\BLOCK{for zeile in info.text}
+\VAR{zeile}
+\BLOCK{endfor}
+\VAR{info.umgEnd}
+\BLOCK{endif}
