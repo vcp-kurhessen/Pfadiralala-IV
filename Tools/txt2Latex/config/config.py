@@ -1,7 +1,7 @@
 # Konfiguration: Benötigt von lib/texttype/SongLaTexttype
 from typing import List, Dict
 # l: Mollakkorde in Kleinbuchstaben, m: mit m (e-> Em), (Leer): Keine Änderung
-Akkordstil = 'l'
+Akkordstil = 'm'
 
 # Reguläre Ausdrücke, mit denen die verschiedenene Teile der Lieder identifiziertz werden können-
 STROPHENREGEX = r'^\s?\d+([).:]|( :))*\s*' # Nummern für die Strophen
@@ -9,6 +9,11 @@ REFRAINREGEX = r'^\s?Ref(rain)?[).: ]+\s*' # Bezeichnung des Refrains
 INFOREGEX = r'^\s?@?info((:\s*)|\s+)'      # Bezeichnung des Infoblockes
 
 AKKORDREGEX = r'\S+' # muss einfach nur alles fressen, was möglicherweise ein Akkord sein könnte.
+
+#regulärer Ausdruck für ZEilen, die nur Akkorde enthalten
+akkord_zeilen_regex = r'( *([:|]+|(\(?([A-Ha-h](#|b)?(sus|dim|add|m(aj)?)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)))+ *'
+#regulärer Ausdruck für einen Akkord (spezifisch, soll nicht auf normalen Text passen)
+akkord_regex = r'(\(?([A-Ha-h](#|b)?(sus|dim|add|m(aj)?)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)'
 
 #WDHLREGEX = r'[/|]{1,2}\:' #Im Moment nicht Verwendet
 #WDHRREGEX = r'\:[/|]{1,2}' #Im Moment nicht Verwendet

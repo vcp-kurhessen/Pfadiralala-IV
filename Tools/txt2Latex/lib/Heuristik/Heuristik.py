@@ -1,18 +1,13 @@
 # Heuristik.py
 # Dieses Skript bestimmt die Warscheinlichkeit, dass eine Zeile eine Textzeile, überschrift, etc ist.
 import re
+from config.config import akkord_zeilen_regex, akkord_regex
 
 _typen = dict(Überschrift='Überschrift', Leer='Leer', Akkordzeile='Akkordzeile', Textzeile='Textzeile',
               Info='Info', none=None)
 
 # Alle attributnamen, die in der überschrift erlaubt sind.
 _Ueber_starts = set('ww wuw  jahr j  mel melodie weise  melj meljahr weisej weisejahr  txt worte text  txtj wortej wortejahr textj txtjahr textjahr alb album lager tonart key bo bock capo cp codex pf1 pfi pf  pf2 pfii  pf3 pfiii pf4 pfiiii pfiv pf4p pfiiiip pfivp ju jurten jurtenburg  gruen grün gruenes grünes  kss4 kssiv kssiiii  siru  biest  eg evg  egp evgp egplus evgplus tf turm turmfalke gb gnorken gnorkenbüdel'.split())
-
-# Regex - Ausdrücke, die für die Erkennung gebraucht werden.
-akkord_zeilen_regex = r'( *([:|]+|(\(?([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)))+ *'
-akkord_regex = r'(\(?([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)'
-# TODO: LABEL-Regex?
-
 
 def Heuristik(zeilen):
     # Eingabe:  liste aus Strings, jeder string entspricht einer Zeile
@@ -97,12 +92,17 @@ def p_Akkordzeile(line, lineNr, prev):
     # zerlege in zusammenhängenden text und prüfe, wie groß der Anteil an akkorden ist.
     parts = line.split(' ')
     korrekte = 0   # Anzahl erkannter Akkorde
-    inkorrekte = 0 # Anzahl nicht als Akkord erkannter Wörter
+    inkorrekte = 0 # Anzahl nicht als Akkord erkannter Wörter. Der wert wirt etwas größer als null gewählt um die division durch null bei leeren ZEilen zu vermeiden.
     for pot_Akk in parts:
+        if pot_Akk == '':
+            continue
         if re.fullmatch(akkord_regex, pot_Akk) is not None:
             korrekte += 1
         else: 
             inkorrekte += 1
+    
+    if korrekte+inkorrekte==0:
+        return 0 #eine Leere Zeile ist keine Akkordzeile
     return korrekte/(korrekte+inkorrekte)
 
 

@@ -30,12 +30,12 @@ GB: Site im Gnorkenbüdel (GB, GNORKEN, GNORKENBÜDEL)
    Esus4     H       G7
 Man schreibt die Akkorde einfach
  E     d      H
-über den Text.
+über den Text. Hier in Großkleinschreibung
 
-G    F     E    D    C
+    G    F     Em    Dm    Cm
 Das hier ist auch eine Strophe,
  G         H    c   
-alerdings ohne Nummer
+alerdings ohne Nummer und mit m-Notation
 
        Esus2
 Ref. Das ist der Refrain. Der funktioniert wie alle Strophen auch.
