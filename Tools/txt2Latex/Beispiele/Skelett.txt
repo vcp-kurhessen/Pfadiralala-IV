@@ -1,0 +1,73 @@
+Titel des Liedes [Alternativer Titel nur für die sortierung]
+wuw: Worte und Weise(alternativ: ww)<natürlich nur, wenn beides von der gleichen Person stammt.>
+jahr: jahr(alternativ: j, jahr)
+mel: Autor der Melodie(mel, melodie, weise)
+meljahr: jahr(meljahr, melj, weisej, weisejahr)
+txt: Autor des Textes(txt, text, worte)
+txtj: Jahr(txtj, textj, txtjahr, textjahr, wortej, wortejahr)
+alb: Das Album (alb, album)
+lager: Lager auf dem Das Lied geschrieben wurde
+tonart: Tonart des Liedes (tonart, key)
+bo: Seite im Liederbock(bo, bock, Liederbock)
+SIRU: SEite in der Singenden Runde
+BIEST: SEite im Biest
+Grün: Seite im Grünen
+CP: Seite im Codex Pathomomosis (oder wie auch immer der sich schreibt)
+PF1: Seite Im Pfadiralala1 (PF1, PF, PFI)
+PF2: seite im Pfadiralala2 (PF2, PFII)
+PF3: analog (PF3, PFIII)
+PF4: analog (PF4, PFIV, PFIIII)
+PF4p: Seite Im Pfadiralala4 plus (PF4P, PFIVP, PFIIIIP)
+JU: SEite in der Jurtenburg (JU, JURTEN, JURTENBURG)
+KSS4: SEite in Kinder SChoko songs 4 (KSS4, KSSIIII, KSSIV)
+EG: Seite im evangelischen Gesangbuch (EG, EVG)
+EGP: SEite im evangelischen GEsangbuch plus (EGP, EVGP, EGPLUS, EVGPLUS)
+TF: Seite im Turmfalken (TF, TURM, TURMFALKE)
+GB: Site im Gnorkenbüdel (GB, GNORKEN, GNORKENBÜDEL)
+
+    a      e     F           C
+1) Das hier ist die erste Strophe,
+   Esus4     H       G7
+Man schreibt die Akkorde einfach
+ E     d      H
+über den Text. Hier in Großkleinschreibung
+
+    G    F     Em    Dm    Cm
+Das hier ist auch eine Strophe,
+ G         H    c   
+alerdings ohne Nummer und mit m-Notation
+
+       Esus2
+Ref. Das ist der Refrain. Der funktioniert wie alle Strophen auch.
+             A                  B
+beachte: "Akkorde" werden linksbündig eingefügt, sowohl im Refrain, als auch in den Strophen.
+
+
+5) Die Nummerierten strophen werden weitergezählt.
+Das hier ist also die zweite Strophe. Hier stehen
+keine Akkorde.
+ C      D    E
+Nur in der letzten zeile stehen Akkorde
+
+       C#         E5                   C    D Dsus2 D e
+3) |: Die Dritte Strophe hat wieder Akkorde
+   C                                         a
+warum auch immer. Vielleicht ist die Melodie anders :|
+
+dieser Vers hat keine Akkorde. Beachte, dass durch den leerraum eine 
+  D          E                      f#   
+neue Strophe ohne Nummer entsteht. Dieser Vers hat Akkorde
+so schreibt man einen Vers ohne Akkorde.
+
+
+@Info: Im Prinzip kann man den Infoblock überall hinsetzen.
+Der infoblock enthält zusätzlich Informationen über das lied, zum 
+Beispiel zur Geschichte.
+Am sinnvollsten ist er unter dem Lied untergebracht. Der Infoblock
+beginnt mit @Info: oder Info:
+Auch mehrere Zeilen sind drin.
+Leerzeilen sind aber nicht drin (sonst gibt es eine neue strophe)
+Das heißt aber noch lange nicht, dass sich Latex auch daran hält.
+Neuzeilen gehen aber mit \\
+Im Prinzip sind also Latex-kommandos möglich
+
