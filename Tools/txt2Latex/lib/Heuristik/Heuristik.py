@@ -68,7 +68,7 @@ def p_Textzeile(line, lineNr, prev):
     if line.replace('\r', '').replace('\n', '') == '':
         return 0
     for zeichen in line:
-        if zeichen not in ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜäöüß.,-:;…–\'?!':
+        if zeichen not in ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜäöüß.,-:;…–\'?!':
             p_text *= 0.85                    # Textzeilen sollten nur text enthalten.
     p_text *= 0.85 ** line.count('  ')     # Doppelte leerzeichen deuten auf Akkordzeilen hin
     # Erlaube zwei Wiederholungszeichen (:|, |: oder :|:) pro zeile, bevor der die Warscheinlichkeit sinkt
