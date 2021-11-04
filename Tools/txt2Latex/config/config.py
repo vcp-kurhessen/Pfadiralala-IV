@@ -10,7 +10,7 @@ INFOREGEX = r'^\s?@?info((:\s*)|\s+)'      # Bezeichnung des Infoblockes
 
 AKKORDREGEX = r'\S+' # muss einfach nur alles fressen, was möglicherweise ein Akkord sein könnte.
 
-#regulärer Ausdruck für ZEilen, die nur Akkorde enthalten
+#regulärer Ausdruck für ZEilen, die nur Akkorde enthalten (spezifisch, soll nicht auf normalen Text passen)
 akkord_zeilen_regex = r'( *([:|]+|(\(?([A-Ha-h](#|b)?(sus|dim|add|m(aj)?)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)))+ *'
 #regulärer Ausdruck für einen Akkord (spezifisch, soll nicht auf normalen Text passen)
 akkord_regex = r'(\(?([A-Ha-h](#|b)?(sus|dim|add|m(aj)?)?\d*)(\/([A-Ha-h](#|b)?(sus|dim|add|maj)?\d*))*\)?)'
@@ -30,22 +30,30 @@ def _WdhErsetzungen(line: str) -> str:
     # Stelle sicher, dass nach \lrep bzw. \rrep ein leerzeichen folgt. auch wenn es in der eingabe vergessen wurde.
     return line.replace("||:", r" \lrep ").replace("|:", r" \lrep ").replace(":||", r" \rrep ").replace(":|", r" \rrep ") #TODO: das geht schöner
 
-#sollte ursprünglich umlaute ersetzen, tatsächlich sind wegen \usepackage{inputenc}
-#    nur noch einige Sonderzeichen nötig.
-_UmlErsetzungen = { "&":r'{\&}',
-                    "’":"'", #typographische Apostrophe und accents
-                    "´":"'",
-                    "`":"'",
-                    "\"":r"\dq ",
-                    }#"ä":r'{\"a}',
+#sollte ursprünglich umlaute ersetzen, tatsächlich sind wegen \usepackage{inputenc} im allgemeinen keine nötig
+_UmlErsetzungen = { #"ä":r'{\"a}',
                     #"ö":r'{\"o}',
                     #"ü":r'{\"u}',
                     #'Ä':r'{\"A}',
                     #'Ö':r'{\"O}',
-                    #'Ü':r'{\"U}'}
+                    #'Ü':r'{\"U}'
+                    }
+#ersetzungen für Sonderzeichen
+_ZeichenErsetzungen = { "&":r'{\&}',
+                    "’":"'", #typographische Apostrophe und accents
+                    "´":"'",
+                    "`":"'",
+                    "\"":r"{\dq}",
+                    }
 def _UmlErsetzen(line:str) -> str:
     """ ersetzt umlaute und Sonderzeichen durch latex-befehle bzw. Äquivalente"""
     for orig, new in _UmlErsetzungen.items():
+        line = line.replace(orig, new)
+    return line
+
+def _ZeichenErsetzen(line:str) -> str:
+    """ ersetzt umlaute und Sonderzeichen durch latex-befehle bzw. Äquivalente"""
+    for orig, new in _ZeichenErsetzungen.items():
         line = line.replace(orig, new)
     return line
 
@@ -59,6 +67,7 @@ def postFormatRef(text: List[str]) -> List[str]:
     for i in range(len(text)):
         text[i] = _WdhErsetzungen(text[i])
         text[i] = _UmlErsetzen(text[i])
+        text[i] = _ZeichenErsetzen(text[i])
     return text
 
 # Formatierungen an den Strophen, die vor der Konvertierung der Akkorde durchgeführt werden:
@@ -70,26 +79,30 @@ def postFormatVers(text: List[str]) -> List[str]:
     for i in range(len(text)):
         text[i] = _WdhErsetzungen(text[i])
         text[i] = _UmlErsetzen(text[i])
+        text[i] = _ZeichenErsetzen(text[i])
     return text
 
 # Formatierungen Am Infotext; hier werden keine Akkorde gesetzt, daher gibt es nur eine Funktion.
 def formatInfo(text: List[str]) -> List[str]:
     for i in range(len(text)):
         text[i] = _UmlErsetzen(text[i])
+        text[i] = _ZeichenErsetzen(text[i])
     return text
 
 # Formatierungen Titel und Liedanfang
 def formatTitel(text: List[str]) -> List[str]:
     for i in range(len(text)):
         text[i] = _UmlErsetzen(text[i])
+        text[i] = _ZeichenErsetzen(text[i])
     return text
 
 # Formatierungen anderen TExtbasiertzen MEtadaten(z.B. Autor, Album, etc.)
 def formatMeta(meta: Dict[str,str]) -> Dict[str,str]:
     """erlaubt die Umformatierung der MEtadaten. 
-    Aktuell werden nur Seonderzeichn durch latex-kompatible ersetzt. natürlich ist hier noch mehr möglich."""
+    Aktuell werden nur Sonderzeichn durch latex-kompatible ersetzt. natürlich ist hier noch mehr möglich."""
     for metakey in meta.keys():
         meta[metakey] = _UmlErsetzen(meta[metakey])
+        meta[metakey] = _ZeichenErsetzen(meta[metakey])
     return meta
 
 Umgebungen = {  # Definiert die start- und endkommandos für die verwendeten latex-Umgebungen
