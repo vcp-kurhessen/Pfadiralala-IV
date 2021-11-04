@@ -2,12 +2,13 @@
 # Dieses Skript bestimmt die Warscheinlichkeit, dass eine Zeile eine Textzeile, überschrift, etc ist.
 import re
 from config.config import akkord_zeilen_regex, akkord_regex
+from config.metakeys import metakeys
 
 _typen = dict(Überschrift='Überschrift', Leer='Leer', Akkordzeile='Akkordzeile', Textzeile='Textzeile',
               Info='Info', none=None)
 
 # Alle attributnamen, die in der überschrift erlaubt sind.
-_Ueber_starts = set('ww wuw  jahr j  mel melodie weise  melj meljahr weisej weisejahr  txt worte text  txtj wortej wortejahr textj txtjahr textjahr alb album lager tonart key bo bock capo cp codex pf1 pfi pf  pf2 pfii  pf3 pfiii pf4 pfiiii pfiv pf4p pfiiiip pfivp ju jurten jurtenburg  gruen grün gruenes grünes  kss4 kssiv kssiiii  siru  biest  eg evg  egp evgp egplus evgplus tf turm turmfalke gb gnorken gnorkenbüdel'.split())
+_Ueber_starts = set(metakeys.keys())
 
 def Heuristik(zeilen):
     # Eingabe:  liste aus Strings, jeder string entspricht einer Zeile
