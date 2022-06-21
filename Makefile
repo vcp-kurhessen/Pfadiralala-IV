@@ -82,5 +82,5 @@ Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/Pfa
 	$(SONGIDX) - $@ 2>&1 | tee $@.log
 
 # Special case: Generated Songbook with all Songs
-Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
-	bash ./Tools/generate_songbook.sh > $@
+Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook/generate_songbook.sh
+	bash ./Tools/generate_songbook/generate_songbook.sh > $@
