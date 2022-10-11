@@ -5,16 +5,38 @@ from typing import Tuple, List, Dict, Union
 import os
 import sys
 
-wrap = lambda pfad: "\\input{" + pfad + "}"
+#header and footer for the output file
+generated_head = """\documentclass{book}
 
-"Unter einen Lied wird hier eine Textdatei im Latexformat verstanden, das nichts außer (genau) einem Lied entsprechend des songs-Packets enthält. Die daei beginnt also mit \\begin{song}… und endet mit \\end{song}"
+\\providecommand{\\bookname}{Pfadiralala IV: Complete Sorted Edition}
 
-argParser = argparse.ArgumentParser(description="sortiert die eingegebenen Lieder (tex-Format) nach den Metadaten.")
+\\input{Misc/basic}
+
+% different spacing
+\\versesep=10pt plus 2pt minus 4pt
+\\afterpreludeskip=2pt
+\\beforepostludeskip=2pt
+
+\\newindex{Seitenzahlen}{Ausgaben/CompleteEdition}
+\\indexsongsas{Seitenzahlen}{\\thepage}
+
+\\begin{document}
+	\\begin{songs}{Seitenzahlen}
+
+		\\showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}"""
+generated_foot = """
+	\\end{songs}
+\\end{document}"""
+
+
+"Unter einen Lied wird hier eine Textdatei im Latexformat verstanden, das nichts außer (genau) einem Lied entsprechend des songs-Packets enthält. Die Datei beginnt also mit \\begin{song}… und endet mit \\end{song}"
+
+argParser = argparse.ArgumentParser(description="sortiert die eingegebenen Lieder (tex-Format) nach den Metadaten. Fügt einen Dateikopf und einen Dateifuß hinzu, sodass ein komplettes Latex-Dokument als Ausgabe entsteht.")
 argParser.add_argument('-b', '--by', action="append", help="Schlüssel, nach dem sortiert werden soll. Wird die die Option mehrfach spezifiziert, finden die Sortierungen in der angegebenen Reihenfolge statt. \nGültig sind alle Schlüssel, die in den Metadaten angegeben werden können. Außerdem \"titel\", um nach dem Titel zu sortieren. \"wuw\" (Worte und Weise) wird in \"txt\" und \"mel\" übertragen, falls ersteres gesetzt und letztere jeweils nicht gesetzt sind. Der Schlüssel \"index\" wird mit dem Wert des Titels versehen, falls er nicht existiert. Weiterhin gibt es die Möglichkeiten \"name\" (sortiert nach dem Dateinamen) und \"pfad\" (sortiert nach dem absoluten Pfad). \nKommt ein Schlüssel in einer Datei mehrfach vor (z.B. mehrere index-Einträge), wird der zuletzt angegebene Wert zur Sortierung herangezogen.")
-argParser.add_argument('-p', '--root', action="store", default=None, nargs="?", const=".", help="Wurzelverzeichnis für die Ausgabe von Pfaden. Standardmäßig findet keine Veränderung statt. Wird die Option ohne Angabe eines Pfades verwendet, wird das aktuelle Verzeichnis gewählt")
-argParser.add_argument('--prefix', action="store", default="", help="fügt ein Prefix vor jedem ausgegebenen Dateipfad ein.")
-argParser.add_argument('--suffix', action="store", default="", help="fügt ein Suffix nach jedem ausgegebenen Dateipfad ein.")
-argParser.add_argument('files', action="extend", nargs="+", help = "Die sortiert aufzulistenden Dateien. Wenn Fehler, zum Beispiel aufgrund eines falschen Formats, auftreten, sind die fehlerhaften Dateien nicht in der Ausgabe enthalten.")
+argParser.add_argument('-p', '--root', action="store", default=None, nargs="?", const=".", help="Wurzelverzeichnis für die Ausgabe von Pfaden. Standardmäßig findet keine Veränderung statt. Wird die Option ohne Angabe eines Pfades verwendet, wird das aktuelle Verzeichnis (.) gewählt")
+argParser.add_argument('--prefix', action="store", default="\t\t\input{", help="fügt ein Prefix vor jedem ausgegebenen Dateipfad ein. (Standard ist \"\t\t\input{\")")
+argParser.add_argument('--suffix', action="store", default="}", help="fügt ein Suffix nach jedem ausgegebenen Dateipfad ein. (Standard ist \"}\")")
+argParser.add_argument('files', action="extend", nargs="+", help = "Die sortiert aufzulistenden Dateien. Wenn Fehler, zum Beispiel aufgrund eines falschen Formats auftreten, sind die fehlerhaften Dateien nicht in der Ausgabe enthalten.")
 
 
 class SortierbaresLied():
@@ -81,17 +103,18 @@ class MetaFinder():
 
 		meta = MetaFinder.dateiname_zu_meta(lied)
 
-		# inhalt lesen, falls noch nicht geschehen
+		# Inhalt lesen, falls noch nicht geschehen
 		if lied.inhalt is None:
 			lied.lesen()
 
-		#indecees auspacken
+		# Indezees auspacken
 		(starttitle, endtitle), (startmeta, endmeta) = indicees
 		# Titel extrahieren. Das ist einfach
 		meta["titel"] = lied.inhalt[starttitle: endtitle]
 
 		# Metasting extrahieren:
 		# einzelne Metaangaben sind durch Kommata getrennt. Sie haben das Format <key>=["{"]<value>["}"],
+		# funktioniert nicht, wenn der string escapte endmeta-zeichen enthält (z.B. \}, wenn endmeta } ist).
 		metastrings = lied.inhalt[startmeta: endmeta].split(',')
 
 		for m in metastrings:
@@ -169,5 +192,7 @@ if __name__ == '__main__':
 
 	lieder = sort(lieder, by=args.by)
 
+	print(generated_head)
 	for i in range(len(lieder)):
 		print(args.prefix + pfad_umschreiben(lieder[i].pfad, args.root) + args.suffix)
+	print(generated_foot)
