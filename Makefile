@@ -83,4 +83,5 @@ Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/Pfa
 
 # Special case: Generated Songbook with all Songs
 Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
-	bash ./Tools/generate_songbook.sh > $@
+Ausgaben/CompleteSortedEdition.tex: Tools/generate_sorted_songbook.py Lieder/*.tex
+	python ./Tools/generate_sorted_songbook.py --by index --by txt --by mel --by titel Lieder/*.tex > $@

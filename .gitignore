@@ -16,5 +16,6 @@ html
 *.tmp
 !Einband/export/*.pdf
 Ausgaben/CompleteEdition.tex
+Ausgaben/CompleteSortedEdition.tex
 __latexindent_temp.tex
 songlist.csv
