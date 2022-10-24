@@ -35,9 +35,9 @@ jobs:
       - run: make Ausgaben/PfadiralalaIVplus.pdf
       - run: make Ausgaben/PfadiralalaIVplus-pics.pdf
       - run: make Ausgaben/PfadiralalaIVplus-print.pdf
-      - run: make Ausgaben/Pfadiralala2020.pdf
-      - run: make Ausgaben/Pfadiralala2020-pics.pdf
-      - run: make Ausgaben/Pfadiralala2020-print.pdf
+      - run: make Ausgaben/Pfadiralala2023.pdf
+      - run: make Ausgaben/Pfadiralala2023-pics.pdf
+      - run: make Ausgaben/Pfadiralala2023-print.pdf
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -116,32 +116,32 @@ jobs:
           asset_name: PfadiralalaIVplus-print.pdf
           asset_content_type: application/pdf
 
-      - name: Upload Pfadiralala2020.pdf
+      - name: Upload Pfadiralala2023.pdf
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Ausgaben/Pfadiralala2020.pdf
-          asset_name: Pfadiralala2020.pdf
+          asset_path: ./Ausgaben/Pfadiralala2023.pdf
+          asset_name: Pfadiralala2023.pdf
           asset_content_type: application/pdf
 
-      - name: Upload Pfadiralala2020-pics.pdf
+      - name: Upload Pfadiralala2023-pics.pdf
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Ausgaben/Pfadiralala2020-pics.pdf
-          asset_name: Pfadiralala2020-pics.pdf
+          asset_path: ./Ausgaben/Pfadiralala2023-pics.pdf
+          asset_name: Pfadiralala2023-pics.pdf
           asset_content_type: application/pdf
 
-      - name: Upload Pfadiralala2020-print.pdf
+      - name: Upload Pfadiralala2023-print.pdf
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Ausgaben/Pfadiralala2020-print.pdf
-          asset_name: Pfadiralala2020-print.pdf
+          asset_path: ./Ausgaben/Pfadiralala2023-print.pdf
+          asset_name: Pfadiralala2023-print.pdf
           asset_content_type: application/pdf
