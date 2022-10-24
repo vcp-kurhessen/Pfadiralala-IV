@@ -15,7 +15,7 @@ all: $(patsubst Ausgaben/%.tex,Ausgaben/%.pdf,$(wildcard Ausgaben/*.tex)) $(pats
 clean: clean_Noten
 	rm -f Ausgaben/*.lb Ausgaben/.*.lb Ausgaben/*.aux Ausgaben/*.log Ausgaben/*.sxc Ausgaben/*.sxd Ausgaben/*.sbx Ausgaben/*.synctex.gz Ausgaben/*.out Ausgaben/*.fls Ausgaben/*.pdf Ausgaben/*.tmp Ausgaben/CompleteEdition.tex
 clean_Noten: 
-	rm -f $(patsubst ABC_Noten/%.abc,Noten/%.pdf,$(wildcard ABC_Noten/*.abc))
+	rm -f $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 
 
 # targets for song PDFs
