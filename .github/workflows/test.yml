@@ -1,0 +1,31 @@
+name: "Build"
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    name: "Build PDFs for all Books"
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v1
+        with:
+          submodules: recursive
+      - name: "Install abcm2ps"
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y make gcc libc6-dev
+          wget https://github.com/leesavide/abcm2ps/archive/v8.14.1.tar.gz -O abcm2ps-8.14.1.tar.gz
+          tar -xf abcm2ps-8.14.1.tar.gz
+          cd abcm2ps-8.14.1/
+          ./configure
+          sudo make install
+      - name: "Install LaTeX and dependencies"
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-extra-utils texlive-lang-german xzdec ghostscript make lua5.3
+
+      - run: make
