@@ -13,6 +13,15 @@
 \getenv[\PRINT]{PRINT}
 \getenv[\PICS]{PICS}
 
+% Hotfix for newer LaTeX versions: https://tex.stackexchange.com/questions/650106/recent-update-broke-songs-package
+\makeatletter
+\renewcommand\SB@obeylines{%
+  \let\obeyedline\SB@par%
+  \obeylines%
+  \let\@par\SB@@par%
+}
+\makeatother
+
 % Keine Bilder einfügen, wenn ein draft erzeugt wird.
 \if1\PICS
         \usepackage[final]{graphicx}
