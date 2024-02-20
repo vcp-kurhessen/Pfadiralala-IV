@@ -1,4 +1,4 @@
-FROM ubuntu:bionic as abcm2ps_builder
+FROM ubuntu:22.04 as abcm2ps_builder
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
@@ -8,18 +8,18 @@ RUN apt-get update \
     && apt-get clean
 
 WORKDIR /tmp/
-ADD https://github.com/leesavide/abcm2ps/archive/v8.14.1.tar.gz abcm2ps-8.14.1.tar.gz
-RUN tar -xf abcm2ps-8.14.1.tar.gz
+ADD https://github.com/leesavide/abcm2ps/archive/v8.14.15.tar.gz abcm2ps-8.14.15.tar.gz
+RUN tar -xf abcm2ps-8.14.15.tar.gz
 
-WORKDIR /tmp/abcm2ps-8.14.1/
+WORKDIR /tmp/abcm2ps-8.14.15/
 RUN ./configure
 RUN make install
 
 
-FROM ubuntu:bionic
+FROM ubuntu:22.04
 LABEL maintainer="pfadfinder@jonashoechst.de"
 LABEL description="A docker image for build the Pfadiralala IV VCP Kurhessen (german scouts) songbook."
-LABEL version="1.1"
+LABEL version="1.2"
 
 ENV DEBIAN_FRONTEND noninteractive
 
