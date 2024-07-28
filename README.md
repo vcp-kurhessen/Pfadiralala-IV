@@ -15,13 +15,13 @@ Das ''Pfadiralala IV'' und ''Pfadiralala IVplus'' sind Liederbücher der Region 
 
 Folgende Software wird zum bauen der Bücher verwendet bzw. benötigt:
 
-- `make`: [https://www.gnu.org/software/make/]()
-- `abcm2ps`: [http://moinejf.free.fr]()
-- `pdflatex` + verschiedene Pakete, z.B. TexLive: [https://www.tug.org/texlive/]()
-- `ps2pdf`: [https://ghostscript.com/doc/current/Ps2pdf.htm]()
-- `pdfcrop`: [https://ctan.org/pkg/pdfcrop]()
-- `songidx`: [http://songs.sourceforge.net]() (Versionen für macOS (64-bit) und Linux (32- und 64-bit) liegen im Repo)
-- `sed`: [https://www.gnu.org/software/sed/]() (Wichtig: es werden Features aus gnu-sed verwendet, auf *BSD muss gsed explizit installiert werden.) 
+- `make`: [https://www.gnu.org/software/make/](https://www.gnu.org/software/make/)
+- `abcm2ps`: [http://moinejf.free.fr](http://moinejf.free.fr)
+- `pdflatex` + verschiedene Pakete, z.B. TexLive: [https://www.tug.org/texlive/](https://www.tug.org/texlive/)
+- `ps2pdf`: [https://ghostscript.readthedocs.io/en/latest/Use.html#convert-a-postscript-document-to-pdf](https://ghostscript.readthedocs.io/en/latest/Use.html#convert-a-postscript-document-to-pdf)
+- `pdfcrop`: [https://ctan.org/pkg/pdfcrop](https://ctan.org/pkg/pdfcrop)
+- `songidx`: [http://songs.sourceforge.net](http://songs.sourceforge.net) (Versionen für macOS (64-bit) und Linux (32- und 64-bit) liegen im Repo)
+- `sed`: [https://www.gnu.org/software/sed/](https://www.gnu.org/software/sed/) (Wichtig: es werden Features aus gnu-sed verwendet, auf *BSD muss gsed explizit installiert werden.) 
 
 ## LaTeX kompilieren / Makefile
 
