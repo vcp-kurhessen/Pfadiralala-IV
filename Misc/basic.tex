@@ -12,6 +12,7 @@
 
 \getenv[\PRINT]{PRINT}
 \getenv[\PICS]{PICS}
+\getenv[\EBOOK]{EBOOK}
 
 % Hotfix for newer LaTeX versions: https://tex.stackexchange.com/questions/650106/recent-update-broke-songs-package
 % 2024/03: Hotfix breaks in recent latex versions, disabled
@@ -35,6 +36,14 @@
         \usepackage[final]{graphicx}
         % \usepackage[cam,a4,center,dvips]{crop}
 	\usepackage[cam,width=15.4cm,height=21.6cm,center,dvips]{crop}
+        \hypersetup{final}
+        \PassOptionsToPackage{final}{bookmark}
+\fi
+
+% Schnittmarken hinzufügen, wenn ein Druckdokument erzeugt wird.
+\if1\EBOOK
+        \usepackage[final]{graphicx}
+	\usepackage[cam,width=126mm,height=186mm,center,dvips]{crop}
         \hypersetup{final}
         \PassOptionsToPackage{final}{bookmark}
 \fi
